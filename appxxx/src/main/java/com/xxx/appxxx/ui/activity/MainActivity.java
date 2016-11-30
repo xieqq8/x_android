@@ -1,7 +1,9 @@
-package com.xxx.appxxx;
+package com.xxx.appxxx.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.xxx.appxxx.R;
 
 import okhttp3.OkHttpClient;
 
