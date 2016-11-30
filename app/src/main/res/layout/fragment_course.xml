@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white" >
+
+        <RelativeLayout
+            android:id="@+id/rl_course_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/iv_course_no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rank_no_data_img" />
+
+            <TextView
+                android:id="@+id/tv_course_no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_course_no_data"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="主银，没有相关数据" />
+        </RelativeLayout>
+
+        <com.bjkx2.view.PullToRefreshView
+            android:id="@+id/gv_pullToRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:orientation="vertical" >
+
+            <GridView
+                android:id="@+id/gv_course_base"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:background="#eeeeee"
+                android:gravity="center"
+                android:horizontalSpacing="0dp"
+                android:listSelector="#00000000"
+                android:numColumns="2"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:scrollbars="none"
+                android:verticalSpacing="20dp" >
+            </GridView>
+        </com.bjkx2.view.PullToRefreshView>
+
+        <ProgressBar
+            android:id="@+id/pb_course_base_loading"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_centerInParent="true"
+            android:indeterminateDrawable="@anim/update_loading_progressbar_anim"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_course_base_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pb_course_base_loading"
+            android:layout_centerInParent="true"
+            android:text="加载中......"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

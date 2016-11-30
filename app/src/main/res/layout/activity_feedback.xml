@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/menu_title"
+        layout="@layout/title" />
+
+    <EditText
+        android:id="@+id/edt_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:gravity="top"
+        android:hint="@string/et_feed_back"
+        android:textSize="16sp"
+        android:textCursorDrawable="@null"
+        android:textColorHint="@color/border_line"/>
+
+    <Button
+        android:id="@+id/btn_commit"
+        style="@style/menu_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/default_btn_green"
+        android:padding="8dp"
+        android:text="@string/pw_change_commit" />
+</LinearLayout>

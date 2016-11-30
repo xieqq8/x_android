@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">fudao</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_act_welcome">跨辅导</string>
+
+    <string name="actmain_exit">再按一次退出</string>
+    <string name="actmain_rb_tab_ask">提问</string>
+    <string name="actmain_rb_tab_find">课程</string>
+    <string name="actmain_rb_tab_msg">消息</string>
+    <string name="actmain_rb_tab_me">我的</string>
+
+    <string name="login_name_hint">请输入手机号</string>
+    <string name="login_pwd_hint">请输入密码</string>
+    <string name="login_txt">登录</string>
+    <string name="pwd_back_txt">找回密码</string>
+    <string name="btn_logout">退出登录</string>
+
+
+    <!-- 加载 -->
+    <string name="refresh_loading">加载中....</string>
+    <string name="refresh_load_error">加载失败,点击刷新</string>
+    <string name="refresh_no_data">加载失败,点击刷新</string>
+
+    <!-- 上拉下拉刷新 -->
+    <string name="pull_to_refresh_footer_release_label">松开后加载</string>
+    <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
+    <string name="pull_to_refresh_footer_refreshing_label">加载中\u2026</string>
+    <string name="pull_to_refresh_pull_label" translatable="false">向下拉动可以刷新</string>
+    <string name="pull_to_refresh_release_label" translatable="false">松开可以刷新</string>
+    <string name="pull_to_refresh_refreshing_label" translatable="false">加载中&#8230;</string>
+    <string name="pull_to_refresh_tap_label" translatable="false">点击刷新</string>
+
+    <string name="self_feedback">意见反馈</string>
+    <string name="self_update">版本更新</string>
+    <string name="self_about">关于</string>
+    <string name="self_about_argeement">用户服务协议</string>
+    <string name="self_about_pingjia">评价</string>
+    <string name="self_about_pingjia_none">没有找到应用市场</string>
+    <string name="self_about_share">分享</string>
+    <string name="company_name">北京XXX科技发展有限公司</string>
+
+    <!--个人中心-->
+    <string name="data_avatar" translatable="false">头像</string>
+    <string name="data_pw" translatable="false">密码</string>
+    <string name="data_pw_change" translatable="false">修改</string>
+
+    <!--修改密码-->
+    <string name="pw_change_title">修改密码</string>
+    <string name="pw_change_old_hint">当前密码</string>
+    <string name="pw_change_new_hint">新密码</string>
+    <string name="pw_change_again_hint">再次输入新密码</string>
+    <string name="pw_change_commit">提交</string>
+
+    <string name="et_feed_back">请输入您的意见</string>
+
+    <string name="eror_no_web">找不到网页</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

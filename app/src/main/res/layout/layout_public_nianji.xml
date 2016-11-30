@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_dd_niangji"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ll_0_nianji"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_weight="0.8"
+        android:layout_marginTop="45dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn0_jianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="初一"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn1_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="初二"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn2_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="初三"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_1_nianji"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_weight="0.8"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn3_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="高一"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn4_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="高二"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn5_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="高三"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_2_nianji"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_weight="0.8"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn6_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全部"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn7_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn8_nianji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:visibility="invisible" />
+    </LinearLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="horizontal" />
+</LinearLayout>

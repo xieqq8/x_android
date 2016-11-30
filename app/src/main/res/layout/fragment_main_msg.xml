@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg_main_msg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/green_b"
+        android:gravity="center_vertical"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_tab_msg_ask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/rank_tab_left"
+            android:button="@null"
+            android:gravity="center"
+            style="@style/tab_top_text"
+            android:checked="true"
+            android:text="答疑消息" />
+
+        <RadioButton
+            android:id="@+id/rb_tab_msg_sys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/rank_tab_right"
+            android:button="@null"
+            android:gravity="center"
+            style="@style/tab_top_text"
+            android:text="系统消息"
+            android:checked="false" />
+    </RadioGroup>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rg_main_msg_tab"/>
+
+    <include layout="@layout/activity_login" android:id="@+id/dlg_login"/>
+
+</RelativeLayout>

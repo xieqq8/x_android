@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/menu_title"
+        layout="@layout/title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_title"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/setting_selector"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        style="@style/userinfo_key_textView_style"
+                        android:text="@string/data_avatar" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_head"
+                        style="@style/image_arrow_style" />
+
+                    <ImageView
+                        android:id="@+id/riv_avatar"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@id/iv_arrow_head"
+                        android:src="@drawable/default_avatar_s" />
+                </RelativeLayout>
+
+                <include layout="@layout/layout_self_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_pwd"
+                    style="@style/userinfo_rl_style">
+
+                    <TextView
+                        style="@style/userinfo_key_textView_style"
+                        android:text="@string/data_pw" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_2"
+                        style="@style/image_arrow_style" />
+
+                    <TextView
+                        style="@style/userinfo_value_textView_style"
+                        android:layout_toLeftOf="@+id/iv_arrow_2"
+                        android:text="@string/data_pw_change"
+                        android:textColor="@color/gray" />
+                </RelativeLayout>
+
+                <include layout="@layout/layout_self_line" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/default_btn_orange"
+                android:padding="10dp"
+                android:text="@string/btn_logout"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/user_camera_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

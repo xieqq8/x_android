@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_b">
+
+    <RelativeLayout
+        android:id="@+id/rl_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/transparent" >
+
+        <RelativeLayout
+            android:id="@+id/rl_course_title_conten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" >
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="全部课程"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white" />
+
+            <ImageButton
+                android:id="@+id/imgbtn_course_categoryAA"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/tvTitle"
+                android:background="@android:color/transparent"
+                android:scaleType="center"
+                android:src="@drawable/teseds_down_arror_select" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_top_bar"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#DCDCDC" />
+
+        <com.xxx.views.PagerSlidingTabStrip
+            android:id="@+id/mColumnHorizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#FFFFFF"
+            app:pstsIndicatorColor="#00BDD1"
+            app:pstsIndicatorHeight="3dp"
+            app:pstsTabPaddingLeftRight="20dp"
+            app:pstsTextColor="#000000"
+            app:pstsTextSize="@dimen/kemu_textsize"
+            app:pstsUnderlineHeight="1px"
+            app:pstsisMore="true"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background" />
+    </LinearLayout>
+
+</RelativeLayout>

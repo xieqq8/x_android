@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="progressBarHorizontal_color" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_color_horizontal</item>
+        <item name="android:minHeight">5dip</item>
+        <item name="android:maxHeight">5dip</item>
+    </style>
+
+    <style name="tab_top_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textColor">@color/tab_top_text</item>
+    </style>
+
+    <style name="middle_title_text">
+        <item name="android:textSize">@dimen/middle_text_size</item>
+        <item name="android:textColor">@color/deep_dark</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <style name="tab_bottom">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/color_radiobutton</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+    <!-- back return theme 返回-->
+    <style name="SwipeTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Note that we use the base animation style here (that is no
+             animations) because we really have no idea how this kind of
+             activity will be used. -->
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="menu_title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <!-- 我的资料relayout style -->
+    <style name="userinfo_rl_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/setting_selector</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="setting_text">
+        <item name="android:textColor">@color/black_l</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:background">@drawable/setting_selector</item>
+        <item name="android:drawableRight">@drawable/triangle</item>
+    </style>
+    <!-- 我的资料textview style -->
+    <style name="userinfo_value_textView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_l</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <!-- 我的资料textview style -->
+    <style name="userinfo_key_textView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_l</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!-- 箭头style -->
+    <style name="image_arrow_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/triangle</item>
+    </style>
+
+    <!-- 课程蛋pop动画 -->
+    <style name="pop_window">
+        <item name="android:windowEnterAnimation">@anim/pop_up</item>
+        <item name="android:windowExitAnimation">@anim/pop_down</item>
+    </style>
+</resources>
