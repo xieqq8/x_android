@@ -1,18 +1,15 @@
 package com.xxx.appxxx.ui.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Window;
 
 import com.xxx.appxxx.R;
+import com.xxx.appxxx.uitest.Act00NavBar;
+import com.xxx.appxxx.uitest.Act01MainViewPage;
 import com.xxx.base.BaseActivity;
+import com.xxx.utils.LogX;
 
 public class Act000Welcome extends BaseActivity {
 
@@ -51,9 +48,9 @@ public class Act000Welcome extends BaseActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-
+        LogX.getLogger().d("Act000Welcome onCreate");
         // 延迟时间
-        new Handler().postDelayed(r, 2200);
+        new Handler().postDelayed(r, 1200);
     }
 
     Runnable r = new Runnable() {
@@ -77,7 +74,7 @@ public class Act000Welcome extends BaseActivity {
 //                if (isFrist) {
 //                    startActivity(new Intent(mContext, Act004GuidePage.class));
 //                }else {
-                startActivity(new Intent(mContext, MainActivity.class));
+                startActivity(new Intent(mContext, Act00NavBar.class));
 //                }
 //            }
             finish();

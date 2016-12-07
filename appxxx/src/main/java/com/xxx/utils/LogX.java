@@ -20,8 +20,8 @@ public class LogX {
 	 * log tag
 	 */
 	private String tagName = "XLogger";// tag name
-		private static int logLevel = Log.ERROR;
-//	private static int logLevel = Log.VERBOSE;//.DEBUG;
+//		private static int logLevel = Log.ERROR;
+	private static int logLevel = Log.VERBOSE;//.DEBUG;
 
 	private static LogX inst;
 	private Lock lock;

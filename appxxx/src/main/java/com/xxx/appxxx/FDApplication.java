@@ -1,9 +1,16 @@
 package com.xxx.appxxx;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
@@ -14,10 +21,17 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
-import com.squareup.leakcanary.LeakCanary;
+import com.xxx.appxxx.ui.activity.Act000Welcome;
+import com.xxx.appxxx.ui.activity.Act001Main;
+import com.xxx.utils.LogX;
+import com.xxx.utils.PackageUtils;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.Map;
+import java.util.jar.*;
 
 /**
  * 公共application对象
@@ -48,90 +62,13 @@ public class FDApplication extends Application {
     @Override
     public void onCreate() {
         // Android 和 Java 内存泄露检测。
-        LeakCanary.install(this);
+//        LeakCanary.install(this);
 
         mInstance = this;
 
         initImageLoader();
         initScreenSize();
 
-//        api = WXAPIFactory.createWXAPI(this, WeiXinPay.APP_ID);
-//        api.registerApp(ConfigUtil.WX_APP_ID);
-//
-//        //微信
-//        PlatformConfig.setWeixin(ConfigUtil.WX_APP_ID, ConfigUtil.WX_APP_SECRET);
-//        //新浪微博
-//        PlatformConfig.setSinaWeibo(ConfigUtil.WEIBO_APP_ID, ConfigUtil.WEIBO_APP_SECRET);
-//        //QQ
-//        PlatformConfig.setQQZone(ConfigUtil.QQ_APP_ID, ConfigUtil.QQ_APP_KEY);
-//
-//        Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
-//
-//
-//        //获取屏幕分辨率
-//        DensityUtil.getDisplay(getApplicationContext());
-//
-//        // 缓存、上传、下载
-//        // 创建默认的ImageLoader配置参数
-////        ImageLoaderConfiguration config = ImageLoaderConfiguration
-////                .createDefault(this);
-////        ①减少配置之中线程池的大小，(.threadPoolSize).推荐1-5；
-////        ②使用.bitmapConfig(Bitmap.config.RGB_565)代替ARGB_8888;
-////        ③使用.imageScaleType(ImageScaleType.IN_SAMPLE_INT)或者 try.imageScaleType(ImageScaleType.EXACTLY)；
-////        ④避免使用RoundedBitmapDisplayer.他会创建新的ARGB_8888格式的Bitmap对象；
-////        ⑤使用.memoryCache(new WeakMemoryCache())，不要使用.cacheInMemory();
-//
-////        LruMemoryCache 开源框架默认的内存缓存类，缓存的是bitmap的强引用
-////        UsingFreqLimitedMemoryCache（如果缓存的图片总量超过限定值，先删除使用频率最小的bitmap）
-////
-////        LRULimitedMemoryCache（这个也是使用的lru算法，和LruMemoryCache不同的是，他缓存的是bitmap的弱引用）
-////        FIFOLimitedMemoryCache（先进先出的缓存策略，当超过设定值，先删除最先加入缓存的bitmap）
-////        LargestLimitedMemoryCache(当超过缓存限定值，先删除最大的bitmap对象)
-////        LimitedAgeMemoryCache（当 bitmap加入缓存中的时间超过我们设定的值，将其删除）
-////        LogX.getLogger().d("aaaaaaaaaaaaaaaaaaa");
-//
-//        // 文件数据
-////        File cacheDir = new File(StorageUtil.getDataFloder() +"/AA");
-//        Context mContext = this.getApplicationContext();
-//        File cacheDir = StorageUtils.getCacheDirectory(this.getApplicationContext());
-////        LogX.getLogger().d("StorageUtils: %s",cacheDir.getAbsolutePath());
-//        LogX.getLogger().d("StorageUtil getSelfCache: %s", StorageUtil.getSelfCache(mContext));
-////        LogX.getLogger().d("StorageUtil getSdCards: ");
-////        StorageUtil.getSdCards(mContext);
-////        LogX.getLogger().d("StorageUtil getDevMountList: ");
-////        StorageUtil.getDevMountList();
-////        LogX.getLogger().d("StorageUtil getExternalSdCardPath: %s", StorageUtil.getExternalSdCardPath());
-////        LogX.getLogger().d("StorageUtil getDataFloder: %s", StorageUtil.getDataFloder());
-//
-//
-//        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this.getApplicationContext())
-//                .memoryCacheExtraOptions(480, 800) // default = device screen dimensions 内存缓存文件的最大长宽
-////                .diskCacheExtraOptions(480, 800, null) // 本地缓存的详细信息(缓存的最大长宽)，最好不要设置这个
-////                .taskExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
-////                .taskExecutorForCachedImages(AsyncTask.THREAD_POOL_EXECUTOR) //                .httpConnectTimeout(5000)
-//                .threadPoolSize(3) // default  线程池内加载的数量
-//                .threadPriority(Thread.NORM_PRIORITY - 1)  // default 设置当前线程的优先级
-//                .tasksProcessingOrder(QueueProcessingType.FIFO) // default
-//                .denyCacheImageMultipleSizesInMemory()
-//                .memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024)) //可以通过自己的内存缓存实现
-//                .memoryCacheSize(2 * 1024 * 1024)    // 内存缓存的最大值
-//                .memoryCacheSizePercentage(13) // default
-//                .diskCache(new UnlimitedDiskCache(cacheDir)) // default 磁盘缓存
-//                .diskCacheSize(30 * 1024 * 1024)       // 磁盘缓存大小
-//                .diskCacheFileCount(1000)        // 可以缓存的文件数量
-//                .diskCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
-//                .imageDownloader(new BaseImageDownloader(this.getApplicationContext(), 5 * 1000, 30 * 1000)) // default // connectTimeout (5 s), readTimeout (30 s)
-//                .imageDecoder(new BaseImageDecoder(false)) // default
-//                .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
-////                .writeDebugLogs() // 日志是否打开
-//                .build();
-//        ImageLoader.getInstance().init(config);
-////        ImageLoader.getInstance().clearMemoryCache();
-////        ImageLoader.getInstance().clearDiskCache();
-//        // 网络请求头配置
-//        NetRestClient.Instance().setAppContext(this.getApplicationContext());
-//        NetRestClient.Instance().HeaderConfig();// 服务端解析头
-//
 //        // 配置设置初始化
 //        ConfigUtil.Instance().setAppContext(this.getApplicationContext());
 //
@@ -151,6 +88,10 @@ public class FDApplication extends Application {
 ////        LogX.getLogger().d("BOARD:" + Build.BOARD);//MSM8974  骁龙800 MSM8974（LTE)是高通2013年推出的Snapdragon 800系列产品
 ////        LogX.getLogger().d("HARDWARE:" + Build.HARDWARE);//qcom高通
         super.onCreate();
+
+        if (quickStart()) {
+            return;
+        }
     }
 
     /**
@@ -226,6 +167,109 @@ public class FDApplication extends Application {
         screenWidth = curMetrics.widthPixels;
         screenHeight = curMetrics.heightPixels;
         screenDensity = curMetrics.density;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+
+        if (!quickStart() && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {//>=5.0的系统默认对dex进行oat优化
+            if (needWait(base)){
+                waitForDexopt(base);//Dex进行优化
+            }
+            MultiDex.install (this );
+        } else {
+            return;
+        }
+
+    }
+
+    public static final String KEY_DEX2_SHA1 = "dex2-SHA1-Digest";
+
+    public boolean quickStart() {
+        if (StringUtils.contains( getCurProcessName(this), ":mini")) {
+            LogX.getLogger().d( ":mini start!");
+            return true;
+        }
+        return false ;
+    }
+    //neead wait for dexopt ?
+    private boolean needWait(Context context){
+        String flag = get2thDexSHA1(context);
+        LogX.getLogger().d( "dex2-sha1 "+flag);
+        SharedPreferences sp = context.getSharedPreferences(
+                PackageUtils.getPackageInfo(context). versionName, MODE_MULTI_PROCESS);
+        String saveValue = sp.getString(KEY_DEX2_SHA1, "");
+        return !StringUtils.equals(flag,saveValue);
+    }
+    /**
+     * Get classes.dex file signature
+     * @param context
+     * @return
+     */
+    private String get2thDexSHA1(Context context) {
+        ApplicationInfo ai = context.getApplicationInfo();
+        String source = ai.sourceDir;
+        try {
+            JarFile jar = new JarFile(source);
+            java.util.jar.Manifest mf = jar.getManifest();
+            Map<String, Attributes> map = mf.getEntries();
+            Attributes a = map.get("classes2.dex"); // 对这个进行优化 , 没有classess2.dex
+            return a.getValue("SHA1-Digest");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null ;
+    }
+
+    // optDex finish
+    public void installFinish(Context context){
+        SharedPreferences sp = context.getSharedPreferences(
+                PackageUtils.getPackageInfo(context).versionName, MODE_MULTI_PROCESS);
+        sp.edit().putString(KEY_DEX2_SHA1,get2thDexSHA1(context)).commit();
+    }
+
+
+    public static String getCurProcessName(Context context) {
+        try {
+            int pid = android.os.Process.myPid();
+            ActivityManager mActivityManager = (ActivityManager) context
+                    .getSystemService(Context. ACTIVITY_SERVICE);
+            for (ActivityManager.RunningAppProcessInfo appProcess : mActivityManager
+                    .getRunningAppProcesses()) {
+                if (appProcess.pid == pid) {
+                    return appProcess. processName;
+                }
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+        return null ;
+    }
+    public void waitForDexopt(Context base) {
+        Intent intent = new Intent();
+        ComponentName componentName = new
+                ComponentName( "com.xxx.appxxx", Act000Welcome.class.getName());
+        intent.setComponent(componentName);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        base.startActivity(intent);
+        long startWait = System.currentTimeMillis ();
+        long waitTime = 10 * 1000 ;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB_MR1 ) {
+            waitTime = 20 * 1000 ;//实测发现某些场景下有些2.3版本有可能10s都不能完成optdex
+        }
+        while (needWait(base)) {
+            try {
+                long nowWait = System.currentTimeMillis() - startWait;
+                LogX.getLogger().d( "wait ms :" + nowWait);
+                if (nowWait >= waitTime) {
+                    return;
+                }
+                Thread.sleep(200 );
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 

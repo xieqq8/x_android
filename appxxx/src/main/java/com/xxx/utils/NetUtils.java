@@ -1,6 +1,9 @@
 package com.xxx.utils;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -40,7 +43,6 @@ public class NetUtils {
                 }
             }
         }
-
         return false;
     }
 
@@ -53,13 +55,13 @@ public class NetUtils {
         if (context != null) {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) context
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mWiFiNetworkInfo = mConnectivityManager
-                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if (mWiFiNetworkInfo != null) {
-                return mWiFiNetworkInfo.isAvailable();
-            }
+
+            if (mConnectivityManager == null)
+                return false;
+            return mConnectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
         }
         return false;
+
     }
 
     /**
@@ -136,5 +138,16 @@ public class NetUtils {
 
         return params;
     }
-
+    /**
+     * 打开网络设置界面
+     */
+    public static void openSetting(Activity activity)
+    {
+        Intent intent = new Intent("/");
+        ComponentName cm = new ComponentName("com.android.settings",
+                "com.android.settings.WirelessSettings");
+        intent.setComponent(cm);
+        intent.setAction("android.intent.action.VIEW");
+        activity.startActivityForResult(intent, 0);
+    }
 }
