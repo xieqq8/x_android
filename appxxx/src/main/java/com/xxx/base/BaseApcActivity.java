@@ -16,7 +16,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseApcActivity extends AppCompatActivity {
     private ProgressDialog mProgressDialog;
     FragmentManager fragmentManager;
 

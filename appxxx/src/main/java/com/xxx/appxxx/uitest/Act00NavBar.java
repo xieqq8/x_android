@@ -1,18 +1,30 @@
 package com.xxx.appxxx.uitest;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.xxx.appxxx.R;
-import com.xxx.base.BaseActivity;
+import com.xxx.appxxx.ui.fragment.Fg100Host;
+import com.xxx.appxxx.ui.fragment.Fg200Books;
+import com.xxx.base.BackHandledFragment;
+import com.xxx.base.BaseApcActivity;
+import com.xxx.base.BaseFragment;
+import com.xxx.utils.LogX;
 
-public class Act00NavBar extends BaseActivity {
+import java.util.ArrayList;
+
+public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.OnTabSelectedListener,
+        BaseFragment.OnFragmentInteractionListener,
+        BackHandledFragment.BackHandledInterface {
     private int lastSelectedPosition = 0;
+
+    public final static Uri ATOB = Uri.parse("atob");
 
     @Override
     public void initContentView() {
@@ -29,18 +41,14 @@ public class Act00NavBar extends BaseActivity {
                 .setFirstSelectedPosition(lastSelectedPosition )//设置默认选中
                 .initialise();
 
-        Button button = (Button) findViewById(R.id.button2);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, ScrollingActivity.class));
-            }
-        });
+        bottomNavigationBar.setTabSelectedListener(this);
     }
 
     @Override
     public void initView() {
+        fragments = getFragments();
+
+        setDefaultFragment();
 
     }
 
@@ -52,9 +60,85 @@ public class Act00NavBar extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+    private ArrayList<Fragment> fragments;
 
+    @Override
+    public void onTabSelected(int position) {
+        if (fragments != null) {
+            if (position < fragments.size()) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment fragment = fragments.get(position);
+                LogX.getLogger().d("posion:" + position);
+                if (fragment.isAdded()) {
+                    ft.replace(R.id.layFrame, fragment);
+                } else {
+                    ft.add(R.id.layFrame, fragment);
+                }
+                ft.commitAllowingStateLoss();
+            }
+        }
+    }
 
+    @Override
+    public void onTabUnselected(int position) {
+        if (fragments != null) {
+            LogX.getLogger().d("posion:" + position);
 
+            if (position < fragments.size()) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                Fragment fragment = fragments.get(position);
+                ft.remove(fragment);
+                ft.commitAllowingStateLoss();
+            }
+        }
+    }
 
+    @Override
+    public void onTabReselected(int position) {
+
+    }
+
+    /**
+     * 设置默认的
+     */
+    private void setDefaultFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+//        transaction.replace(R.id.layFrame, Fg100Host.newInstance("Home","home"));
+//        transaction.commit();
+//        Fragment fragment = fragments.get(0);
+//        transaction.remove(fragment);
+//        transaction.commitAllowingStateLoss();
+
+        Fragment fragment = fragments.get(0);
+        if (fragment.isAdded()) {
+            transaction.replace(R.id.layFrame, fragment);
+        } else {
+            transaction.add(R.id.layFrame, fragment);
+        }
+        transaction.commitAllowingStateLoss();
+    }
+
+    private ArrayList<Fragment> getFragments() {
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(Fg100Host.newInstance("Home","home"));
+        fragments.add(Fg200Books.newInstance("Books","books"));
+        fragments.add(Fg100Host.newInstance("Music","music"));
+
+        return fragments;
+    }
+
+    @Override
+    public void setSelectedFragment(BackHandledFragment selectedFragment) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        // 这里的Uri可以自己改
+        LogX.getLogger().d("Act00NavBar  onFragmentInteraction_" + uri);
     }
 }

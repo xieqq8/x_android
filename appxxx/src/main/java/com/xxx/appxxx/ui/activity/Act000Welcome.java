@@ -7,11 +7,10 @@ import android.view.Window;
 
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.uitest.Act00NavBar;
-import com.xxx.appxxx.uitest.Act01MainViewPage;
-import com.xxx.base.BaseActivity;
+import com.xxx.base.BaseApcActivity;
 import com.xxx.utils.LogX;
 
-public class Act000Welcome extends BaseActivity {
+public class Act000Welcome extends BaseApcActivity {
 
     @Override
     public void initContentView() {

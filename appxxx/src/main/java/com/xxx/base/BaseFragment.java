@@ -1,15 +1,19 @@
 package com.xxx.base;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.xxx.appxxx.ui.fragment.Fg100Host;
+
 public abstract class BaseFragment extends Fragment  {
-    private BaseActivity mActivity;
-    private View mLayoutView;
+    private BaseApcActivity mActivity;
+    protected View mLayoutView;
+    private OnFragmentInteractionListener mListener;
 
     /**
      * 初始化布局
@@ -67,9 +71,9 @@ public abstract class BaseFragment extends Fragment  {
      *
      * @return
      */
-    public BaseActivity getBaseActivity() {
+    public BaseApcActivity getBaseActivity() {
         if (mActivity == null) {
-            mActivity = (BaseActivity) getActivity();
+            mActivity = (BaseApcActivity) getActivity();
         }
         return mActivity;
     }
@@ -77,5 +81,34 @@ public abstract class BaseFragment extends Fragment  {
     @Override
     public Context getContext() {
         return getActivity();
+    }
+
+        // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 }

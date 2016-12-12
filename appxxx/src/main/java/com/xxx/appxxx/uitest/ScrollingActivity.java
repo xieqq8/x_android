@@ -3,14 +3,13 @@ package com.xxx.appxxx.uitest;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.xxx.appxxx.R;
-import com.xxx.base.BaseActivity;
+import com.xxx.base.BaseApcActivity;
 
-public class ScrollingActivity extends BaseActivity {
+public class ScrollingActivity extends BaseApcActivity {
 
     @Override
     public void initContentView() {
@@ -35,7 +34,6 @@ public class ScrollingActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
     }
 
     @Override

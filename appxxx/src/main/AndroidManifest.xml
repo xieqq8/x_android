@@ -40,7 +40,8 @@
         <activity
             android:name=".uitest.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

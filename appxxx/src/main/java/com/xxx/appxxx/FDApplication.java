@@ -89,9 +89,9 @@ public class FDApplication extends Application {
 ////        LogX.getLogger().d("HARDWARE:" + Build.HARDWARE);//qcom高通
         super.onCreate();
 
-        if (quickStart()) {
-            return;
-        }
+//        if (quickStart()) {
+//            return;
+//        }
     }
 
     /**
@@ -173,15 +173,14 @@ public class FDApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
 
-        if (!quickStart() && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {//>=5.0的系统默认对dex进行oat优化
-            if (needWait(base)){
-                waitForDexopt(base);//Dex进行优化
-            }
-            MultiDex.install (this );
-        } else {
-            return;
-        }
-
+//        if (!quickStart() && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {//>=5.0的系统默认对dex进行oat优化
+//            if (needWait(base)){
+//                waitForDexopt(base);//Dex进行优化
+//            }
+//            MultiDex.install (this );
+//        } else {
+//            return;
+//        }
     }
 
     public static final String KEY_DEX2_SHA1 = "dex2-SHA1-Digest";

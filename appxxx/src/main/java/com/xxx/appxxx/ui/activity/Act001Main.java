@@ -1,18 +1,15 @@
 package com.xxx.appxxx.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.xxx.appxxx.R;
-import com.xxx.base.BaseActivity;
-
-import okhttp3.OkHttpClient;
+import com.xxx.base.BaseApcActivity;
 
 /**
  * 主页一
  */
-public class Act001Main extends BaseActivity {
+public class Act001Main extends BaseApcActivity {
 
     @Override
     public void initContentView() {

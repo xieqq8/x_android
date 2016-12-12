@@ -1,14 +1,22 @@
 package com.xxx.appxxx.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.xxx.appxxx.R;
+import com.xxx.appxxx.uitest.Act00NavBar;
+import com.xxx.appxxx.uitest.ScrollingActivity;
+import com.xxx.base.BackHandledFragment;
+import com.xxx.base.BaseFragment;
+import com.xxx.utils.LogX;
 
 /**
  * A fragment with a Google +1 button.
@@ -18,7 +26,7 @@ import com.xxx.appxxx.R;
  * Use the {@link Fg100Host#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fg100Host extends Fragment {
+public class Fg100Host extends BackHandledFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,8 +38,6 @@ public class Fg100Host extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
 
     public Fg100Host() {
         // Required empty public constructor
@@ -56,22 +62,74 @@ public class Fg100Host extends Fragment {
     }
 
     @Override
+    public int getLayoutRes() {
+        return R.layout.fragment_fg100_host;
+    }
+
+    @Override
+    public void initView() {
+        if(mLayoutView == null)
+            return;
+
+        LogX.getLogger().d("Fg100Host initView:" + mParam1);
+        Button button = (Button) mLayoutView.findViewById(R.id.button2);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ScrollingActivity.class));
+            }
+        });
+
+        Button btn = (Button) mLayoutView.findViewById(R.id.button);
+        btn.setText(mParam2);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Act00NavBar.ATOB;
+                onButtonPressed(uri);
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onBackPressed() {
+        Toast.makeText(getActivity(), "别点了，再点就退出", Toast.LENGTH_LONG).show();
+        getActivity().finish();
+        return true;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+//        if (savedInstanceState == null) {
+//            // getFragmentManager().beginTransaction()...commit()
+//        }else{
+//            //先通过id或者tag找到“复活”的所有UI-Fragment
+//            UIFragment fragment1 = getFragmentManager().findFragmentById(R.id.fragment1);
+//            UIFragment fragment2 = getFragmentManager().findFragmentByTag("tag");
+//            UIFragment fragment3 = ...
+//            ...
+//            //show()一个即可
+//            getFragmentManager().beginTransaction()
+//                    .show(fragment1)
+//                    .hide(fragment2)
+//                    .hide(fragment3)
+//                    .hide(...)
+//            .commit();
+//        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fg100_host, container, false);
-
-
-        return view;
+        return super.onCreateView(inflater, container,savedInstanceState);
     }
 
     @Override
@@ -79,44 +137,4 @@ public class Fg100Host extends Fragment {
         super.onResume();
 
     }
-
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
 }
