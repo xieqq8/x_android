@@ -32,7 +32,6 @@ public class Fg200Books extends BackHandledFragment {
     private String mParam1;
     private String mParam2;
 
-//    private OnFragmentInteractionListener mListener;
 
     public Fg200Books() {
         // Required empty public constructor
@@ -63,12 +62,15 @@ public class Fg200Books extends BackHandledFragment {
 
     @Override
     public int getLayoutRes() {
-        return 0;
+        return R.layout.fragment_fg200_books;
     }
 
     @Override
     public void initView() {
         LogX.getLogger().d("Fg200Books initView:" + mParam1);
+
+        Button btn = (Button) mLayoutView.findViewById(R.id.button);
+        btn.setText(mParam2);
     }
 
     @Override
@@ -83,17 +85,20 @@ public class Fg200Books extends BackHandledFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fg200_books, container, false);
-        Button btn = (Button) view.findViewById(R.id.button);
-        btn.setText(mParam2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Act00NavBar.ATOB;
-                onButtonPressed(uri);
-            }
-        });
-        return view;
+
+        return super.onCreateView(inflater, container,savedInstanceState);
+//
+//        View view = inflater.inflate(R.layout.fragment_fg200_books, container, false);
+//        Button btn = (Button) view.findViewById(R.id.button);
+//        btn.setText(mParam2);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Uri uri = Act00NavBar.ATOB;
+//                onButtonPressed(uri);
+//            }
+//        });
+//        return view;
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event
@@ -120,18 +125,18 @@ public class Fg200Books extends BackHandledFragment {
 //        mListener = null;
 //    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+//    /**
+//     * This interface must be implemented by activities that contain this
+//     * fragment to allow an interaction in this fragment to be communicated
+//     * to the activity and potentially other fragments contained in that
+//     * activity.
+//     * <p>
+//     * See the Android Training lesson <a href=
+//     * "http://developer.android.com/training/basics/fragments/communicating.html"
+//     * >Communicating with Other Fragments</a> for more information.
+//     */
+//    public interface OnFragmentInteractionListener {
+//        // TODO: Update argument type and name
+//        void onFragmentInteraction(Uri uri);
+//    }
 }

@@ -3,6 +3,7 @@ package com.xxx.appxxx.uitest;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -30,6 +31,11 @@ public class ScrollingActivity extends BaseApcActivity {
         mToolbar.setNavigationIcon(android.R.drawable.ic_menu_delete);
         mToolbar.setTitle("zhangphil");
         mToolbar.setSubtitle("zhangphil副标题");
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        for (int i = 0; i < 8; i++)
+            tabLayout.addTab(tabLayout.newTab().setText("选项卡槽" + i));
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 
     @Override

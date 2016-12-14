@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,11 @@ import com.xxx.appxxx.uitest.ScrollingActivity;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.base.BaseFragment;
 import com.xxx.utils.LogX;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.id.tabs;
 
 /**
  * A fragment with a Google +1 button.
@@ -63,8 +72,12 @@ public class Fg100Host extends BackHandledFragment {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.fragment_fg100_host;
+//        return R.layout.fragment_fg100_host;
+        return R.layout.activity_scrolling;
     }
+    private List<String> mTitle = new ArrayList<String>();
+    private List<Fragment> mFragment = new ArrayList<Fragment>();
+    private ViewPager viewPager;
 
     @Override
     public void initView() {
@@ -72,24 +85,29 @@ public class Fg100Host extends BackHandledFragment {
             return;
 
         LogX.getLogger().d("Fg100Host initView:" + mParam1);
-        Button button = (Button) mLayoutView.findViewById(R.id.button2);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ScrollingActivity.class));
-            }
-        });
+        TabLayout tabLayout = (TabLayout) mLayoutView.findViewById(R.id.tabLayout);
 
-        Button btn = (Button) mLayoutView.findViewById(R.id.button);
-        btn.setText(mParam2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Act00NavBar.ATOB;
-                onButtonPressed(uri);
-            }
-        });
+        viewPager = (ViewPager) mLayoutView.findViewById(R.id.vp_view);
+//        for (int i = 0; i < 3; i++)
+//            tabLayout.addTab(tabLayout.newTab().setText("选项卡槽" + i));
+//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+        mTitle.add("tab1");
+        mTitle.add("tab2");
+        mTitle.add("tab3");
+
+        mFragment.add(new Fg110());
+        mFragment.add(new Fg120());
+        mFragment.add(new Fg110());
+//        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), mTitle, mFragment);
+        MyAdapter adapter = new MyAdapter(getChildFragmentManager(), mTitle, mFragment);
+
+        viewPager.setAdapter(adapter);
+        //为TabLayout设置ViewPager
+        tabLayout.setupWithViewPager(viewPager);
+        //使用ViewPager的适配器
+//        tabLayout.setTabsFromPagerAdapter(adapter);
     }
 
 
@@ -136,5 +154,36 @@ public class Fg100Host extends BackHandledFragment {
     public void onResume() {
         super.onResume();
 
+    }
+
+
+
+    class MyAdapter extends FragmentPagerAdapter {
+
+        private List<String> title;
+        private List<Fragment> views;
+
+        public MyAdapter(FragmentManager fm, List<String> title, List<Fragment> views) {
+            super(fm);
+            this.title = title;
+            this.views = views;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return views.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return views.size();
+        }
+
+
+        //配置标题的方法
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return title.get(position);
+        }
     }
 }

@@ -12,6 +12,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.ui.fragment.Fg100Host;
 import com.xxx.appxxx.ui.fragment.Fg200Books;
+import com.xxx.appxxx.ui.fragment.Fg300Me;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.base.BaseApcActivity;
 import com.xxx.base.BaseFragment;
@@ -126,7 +127,8 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(Fg100Host.newInstance("Home","home"));
         fragments.add(Fg200Books.newInstance("Books","books"));
-        fragments.add(Fg100Host.newInstance("Music","music"));
+//        fragments.add(Fg100Host.newInstance("Music","music"));
+        fragments.add(Fg300Me.newInstance("Music","music"));
 
         return fragments;
     }
