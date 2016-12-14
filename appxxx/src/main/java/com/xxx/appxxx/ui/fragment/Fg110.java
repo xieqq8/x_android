@@ -86,5 +86,14 @@ public class Fg110 extends BackHandledFragment {
 
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
 
+        if (isVisibleToUser) {
+            // 页面正在展示,在这里加载你的数据
+        }else{
+            // 页面没有展示
+        }
+    }
 }

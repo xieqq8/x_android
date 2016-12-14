@@ -71,13 +71,18 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 Fragment fragment = fragments.get(position);
-                LogX.getLogger().d("posion:" + position);
+                LogX.getLogger().d("onTabSelected posion:" + position);
                 if (fragment.isAdded()) {
-                    ft.replace(R.id.layFrame, fragment);
+//                    ft.replace(R.id.layFrame, fragment);
+                    ft.show(fragment);
                 } else {
+
                     ft.add(R.id.layFrame, fragment);
                 }
                 ft.commitAllowingStateLoss();
+
+//                ft.replace(R.id.layFrame,fragment);
+//                ft.commit();
             }
         }
     }
@@ -85,20 +90,25 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
     @Override
     public void onTabUnselected(int position) {
         if (fragments != null) {
-            LogX.getLogger().d("posion:" + position);
+            LogX.getLogger().d("onTabUnselected posion:" + position);
 
             if (position < fragments.size()) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 Fragment fragment = fragments.get(position);
-                ft.remove(fragment);
-                ft.commitAllowingStateLoss();
+//                ft.remove(fragment);
+                ft.hide(fragment);
+
+                ft.commitAllowingStateLoss(); // 用hide show 没有 切换后滑动消失的
+
+//                ft.commit();
             }
         }
     }
 
     @Override
     public void onTabReselected(int position) {
+        LogX.getLogger().d("onTabReselected posion:" + position);
 
     }
 
@@ -143,4 +153,29 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
         // 这里的Uri可以自己改
         LogX.getLogger().d("Act00NavBar  onFragmentInteraction_" + uri);
     }
+
+    ///
+    // http://blog.csdn.net/lovexieyuan520/article/details/50594271
+    // 这个时候我们的app已经被销毁，我们按多任务键切换回来，发现界面上多个Fragment出现了重叠的情况，
+    // 这是因为多个Fragment同时显示了，出现了重叠的情况，解决的办法如下：重写Activity的 onRestoreInstanceState 方法
+    ///
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+//        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+//            RadioButton mTab = (RadioButton) radioGroup.getChildAt(i);
+//            FragmentManager fm = getSupportFragmentManager();
+//            Fragment fragment = fm.findFragmentByTag((String) mTab.getTag());
+//            FragmentTransaction ft = fm.beginTransaction();
+//            if (fragment != null) {
+//                if (!mTab.isChecked()) {
+//                    ft.hide(fragment);
+//                }
+//            }
+//            ft.commit();
+//        }
+    }
+
+
 }

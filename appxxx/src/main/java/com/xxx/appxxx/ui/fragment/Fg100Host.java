@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,18 @@ public class Fg100Host extends BackHandledFragment {
 //        return R.layout.fragment_fg100_host;
         return R.layout.activity_scrolling;
     }
+
+    // 防止 恢复Fragment的时候会出现菜单混乱
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+//        if (!hidden) {
+//            ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+//            ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+//            setHasOptionsMenu(true);
+//        }
+    }
+
     private List<String> mTitle = new ArrayList<String>();
     private List<Fragment> mFragment = new ArrayList<Fragment>();
     private ViewPager viewPager;
@@ -97,9 +110,9 @@ public class Fg100Host extends BackHandledFragment {
         mTitle.add("tab2");
         mTitle.add("tab3");
 
-        mFragment.add(new Fg110());
-        mFragment.add(new Fg120());
-        mFragment.add(new Fg110());
+        mFragment.add(Fg110.newInstance("",""));
+        mFragment.add(Fg120.newInstance("",""));
+        mFragment.add(Fg110.newInstance("",""));
 //        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), mTitle, mFragment);
         MyAdapter adapter = new MyAdapter(getChildFragmentManager(), mTitle, mFragment);
 
