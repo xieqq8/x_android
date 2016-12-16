@@ -8,9 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trello.rxlifecycle.components.support.RxFragment;
 import com.xxx.appxxx.ui.fragment.Fg100Host;
 
-public abstract class BaseFragment extends Fragment  {
+public abstract class BaseFragment extends RxFragment {
     private BaseApcActivity mActivity;
     protected View mLayoutView;
     private OnFragmentInteractionListener mListener;

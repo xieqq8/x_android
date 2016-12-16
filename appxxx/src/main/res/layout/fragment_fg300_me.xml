@@ -11,9 +11,81 @@
         android:layout_centerVertical="true"
         android:text="Button" />
 
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="142dp"
-        android:text="Button" />
+        android:layout_height="wrap_content"
+        android:text="Button_weather" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
+
+        <EditText android:id="@+id/city"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:hint="请输入城市"
+            android:text="北京"/>
+
+        <TextView android:id="@+id/query"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="查询天气"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_simple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="rxjava+retrofit的http"/>
+        <Button
+            android:id="@+id/btn_rx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="rx+retrofit绝对封装"/>
+
+        <Button
+            android:id="@+id/btn_rx_mu_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="多任务断点续传下载"/>
+
+        <Button
+            android:id="@+id/btn_rx_uploade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="rx+retrofit上传"/>
+
+    </LinearLayout>
+    <TextView android:id="@+id/weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

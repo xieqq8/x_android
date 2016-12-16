@@ -21,6 +21,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
 import com.xxx.appxxx.ui.activity.Act000Welcome;
 import com.xxx.appxxx.ui.activity.Act001Main;
 import com.xxx.utils.LogX;
@@ -68,6 +69,8 @@ public class FDApplication extends Application {
 
         initImageLoader();
         initScreenSize();
+
+        RxRetrofitApp.init(this);
 
 //        // 配置设置初始化
 //        ConfigUtil.Instance().setAppContext(this.getApplicationContext());
