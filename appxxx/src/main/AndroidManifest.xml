@@ -21,7 +21,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.Act000Welcome"
-            android:label="@string/title_activity_act000_welcome"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
