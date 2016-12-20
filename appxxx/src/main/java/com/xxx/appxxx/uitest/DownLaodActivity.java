@@ -36,7 +36,13 @@ public class DownLaodActivity extends AppCompatActivity {
         /*第一次模拟服务器返回数据掺入到数据库中*/
         if(listData.isEmpty()){
             String[] downUrl=new String[]{"http://www.izaodao.com/app/izaodao_app.apk",
-                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c758670fd23b5ac4"};
+                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c758670fd235ac4",
+                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c758670fd3b5ac4",
+                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c758670f23b5ac4",
+                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c758670d23b5ac4",
+                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c7580fd23b5ac4",
+                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c75867fd23b5ac4",
+                    "http://download.fir.im/v2/app/install/572eec6fe75e2d7a05000008?download_token=572bcb03dad2eed7c75670fd23b5ac4"};
             for (int i = 0; i < downUrl.length; i++) {
                 File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
                         "test"+i + ".apk");

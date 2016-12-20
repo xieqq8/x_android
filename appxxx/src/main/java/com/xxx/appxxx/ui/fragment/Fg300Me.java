@@ -37,6 +37,7 @@ import com.xxx.appxxx.R;
 import com.xxx.appxxx.api.SubjectPostApiFragment;
 import com.xxx.appxxx.api.UploadApi;
 import com.xxx.appxxx.api.UploadApiFragment;
+import com.xxx.appxxx.mvpsample.DWeatherActivity;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.appxxx.uitest.DownLaodActivity;
 import com.xxx.appxxx.uitest.ScrollingActivity;
@@ -138,6 +139,7 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
                 Uri uri = Act00NavBar.ATOB;
                 onButtonPressed(uri);
 
+                startActivity( new Intent(getActivity(), DWeatherActivity.class));
 
             }
         });

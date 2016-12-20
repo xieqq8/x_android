@@ -39,13 +39,16 @@
         <activity
             android:name=".uitest.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".uitest.DownLaodActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".mvpsample.DWeatherActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
