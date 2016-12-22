@@ -25,19 +25,20 @@ import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseResultEntity;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.resulte.RetrofitEntity;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.resulte.SubjectResulte;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.resulte.UploadResulte;
+
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpService;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.upload.ProgressRequestBody;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.upload.UploadProgressListener;
+import com.xxx.appxxx.HttpPostService;
 import com.xxx.appxxx.R;
-import com.xxx.appxxx.api.SubjectPostApiFragment;
+
+import com.xxx.appxxx.api.SubjectPostApi;
 import com.xxx.appxxx.api.UploadApi;
-import com.xxx.appxxx.api.UploadApiFragment;
 import com.xxx.appxxx.mvpsample.DWeatherActivity;
+import com.xxx.appxxx.resulte.RetrofitEntity;
+import com.xxx.appxxx.resulte.SubjectResulte;
+import com.xxx.appxxx.resulte.UploadResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.appxxx.uitest.DownLaodActivity;
 import com.xxx.appxxx.uitest.ScrollingActivity;
@@ -542,7 +543,7 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
 
     //    完美封装简化版
     private void simpleDo() {
-        SubjectPostApiFragment postEntity = new SubjectPostApiFragment(simpleOnNextListener,this);
+        SubjectPostApi postEntity = new SubjectPostApi(simpleOnNextListener,getBaseActivity());
         postEntity.setAll(true);
         HttpManager manager = HttpManager.getInstance();
         manager.doHttpDeal(postEntity);
@@ -594,7 +595,7 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
                         progressBar.setProgress((int) currentBytesCount);
                     }
                 }));
-        UploadApiFragment uplaodApi = new UploadApiFragment(httpOnNextListener,this);
+        UploadApi uplaodApi = new UploadApi(httpOnNextListener,getBaseActivity());
         uplaodApi.setPart(part);
         HttpManager manager = HttpManager.getInstance();
         manager.doHttpDeal(uplaodApi);
@@ -640,9 +641,9 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
                 .build();
 
 //        加载框
-        final ProgressDialog pd = new ProgressDialog(getBaseActivity());
+        final ProgressDialog pd = new ProgressDialog(getContext());
 
-        HttpService apiService = retrofit.create(HttpService.class);
+        HttpPostService apiService = retrofit.create(HttpPostService.class);
         Observable<RetrofitEntity> observable = apiService.getAllVedioBy(true);
         observable.subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

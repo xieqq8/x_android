@@ -1,6 +1,7 @@
 package com.wzgiceman.rxretrofitlibrary.retrofit_rx.http;
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApiFragment;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.RetryWhenNetworkException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieInterceptor;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.subscribers.ProgressSubscriber;
@@ -38,6 +39,8 @@ public class HttpManager {
         return INSTANCE;
     }
 
+
+
     /**
      * 处理http请求
      *
@@ -49,7 +52,7 @@ public class HttpManager {
         builder.connectTimeout(basePar.getConnectionTime(), TimeUnit.SECONDS);
         builder.addInterceptor(new CookieInterceptor(basePar.isCache()));
         /*get缓存去掉无效逻辑*/
-//        builder.addInterceptor(new CookieInterceptor(basePar.isCache()));     
+//        builder.addInterceptor(new CookieInterceptor(basePar.isCache()));
 //        builder.cache(new Cache(MyApplication.app.getCacheDir(),10*1024*1024));
 
         /*创建retrofit对象*/

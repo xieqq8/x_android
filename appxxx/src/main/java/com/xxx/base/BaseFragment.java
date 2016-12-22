@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle.components.support.RxFragment;
 import com.xxx.appxxx.ui.fragment.Fg100Host;
 
 public abstract class BaseFragment extends RxFragment {
-    private BaseApcActivity mActivity;
+    private RxAppCompatActivity mActivity;
     protected View mLayoutView;
     private OnFragmentInteractionListener mListener;
 
@@ -72,9 +73,9 @@ public abstract class BaseFragment extends RxFragment {
      *
      * @return
      */
-    public BaseApcActivity getBaseActivity() {
+    public RxAppCompatActivity getBaseActivity() {
         if (mActivity == null) {
-            mActivity = (BaseApcActivity) getActivity();
+            mActivity = (RxAppCompatActivity) getActivity();
         }
         return mActivity;
     }
