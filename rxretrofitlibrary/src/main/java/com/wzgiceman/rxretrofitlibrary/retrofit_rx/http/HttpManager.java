@@ -1,7 +1,6 @@
 package com.wzgiceman.rxretrofitlibrary.retrofit_rx.http;
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApiFragment;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.RetryWhenNetworkException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieInterceptor;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.subscribers.ProgressSubscriber;
@@ -44,7 +43,7 @@ public class HttpManager {
      *
      * @param basePar 封装的请求数据
      */
-    public void doHttpDeal(BaseApiFragment basePar) {
+    public void doHttpDeal(BaseApi basePar) {
         //手动创建一个OkHttpClient并设置超时时间缓存等设置
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(basePar.getConnectionTime(), TimeUnit.SECONDS);
@@ -60,11 +59,11 @@ public class HttpManager {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(basePar.getBaseUrl())
                 .build();
-        HttpService httpService = retrofit.create(HttpService.class);
+
 
         /*rx处理*/
         ProgressSubscriber subscriber = new ProgressSubscriber(basePar);
-        Observable observable = basePar.getObservable(httpService)
+        Observable observable = basePar.getObservable(retrofit)
                 /*失败后的retry配置*/
                 .retryWhen(new RetryWhenNetworkException())
                 /*生命周期管理*/

@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.widget.Toast;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.trello.rxlifecycle.components.support.RxFragment;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApiFragment;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.HttpTimeException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieResulte;
@@ -35,18 +33,18 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
     //    回调接口
     private SoftReference<HttpOnNextListener> mSubscriberOnNextListener;
     //    弱引用反正内存泄露
-    private SoftReference<RxFragment> mActivity;
+    private SoftReference<RxAppCompatActivity> mActivity;
     //    加载框可自己定义
     private ProgressDialog pd;
     /*请求数据*/
-    private BaseApiFragment api;
+    private BaseApi api;
 
 
     /**
      * 构造
      * @param api
      */
-    public ProgressSubscriber(BaseApiFragment api){
+    public ProgressSubscriber(BaseApi api){
         this.api=api;
         this.mSubscriberOnNextListener = api.getListener();
         this.mActivity = new SoftReference<>(api.getRxAppCompatActivity());
@@ -56,25 +54,13 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
         }
     }
 
-//    /**
-//     * 构造
-//     * @param api
-//     */
-//    public ProgressSubscriber(BaseApiFragment api){
-//        this.api=api;
-//        this.mSubscriberOnNextListener = api.getListener();
-//        this.mActivity = new SoftReference<>(api.getRxAppCompatActivity());
-//        setShowPorgress(api.isShowProgress());
-//        if(api.isShowProgress()){
-//            initProgressDialog(api.isCancel());
-//        }
-//    }
+
 
     /**
      * 初始化加载框
      */
     private void initProgressDialog(boolean cancel) {
-        Context context = mActivity.get().getActivity();
+        Context context = mActivity.get();
         if (pd == null && context != null) {
             pd = new ProgressDialog(context);
             pd.setCancelable(cancel);
@@ -95,7 +81,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
      */
     private void showProgressDialog() {
         if(!isShowPorgress())return;
-        Context context = mActivity.get().getActivity();
+        Context context = mActivity.get();
         if (pd == null || context == null) return;
         if (!pd.isShowing()) {
             pd.show();
@@ -193,7 +179,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
 
     /*错误统一处理*/
     private void errorDo(Throwable e){
-        Context context = mActivity.get().getActivity();
+        Context context = mActivity.get();
         if (context == null) return;
         if (e instanceof SocketTimeoutException) {
             Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();

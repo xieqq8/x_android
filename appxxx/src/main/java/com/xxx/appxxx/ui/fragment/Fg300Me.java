@@ -153,6 +153,8 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
 
             @Override
             public void onClick(View v) {
+                // 查询
+
                 weatherTV.setText("");
                 String city = cityET.getText().toString();
                 if(TextUtils.isEmpty(city)){

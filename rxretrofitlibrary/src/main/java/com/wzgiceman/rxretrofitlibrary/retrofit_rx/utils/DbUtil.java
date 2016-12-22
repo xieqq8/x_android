@@ -14,6 +14,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.List;
 
+
 /**
  * 断点续传
  * 数据库工具类-geendao运用

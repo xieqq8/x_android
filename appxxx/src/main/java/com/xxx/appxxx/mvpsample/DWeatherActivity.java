@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.mvpsample.bean.WeatherData;
 import com.xxx.appxxx.mvpsample.presenter.WeatherPresenter;
-import com.xxx.appxxx.mvpsample.presenter.WeatherPresenterImp;
 import com.xxx.appxxx.mvpsample.view.WeatherView;
 import com.xxx.base.BaseApcActivity;
 
@@ -65,7 +64,7 @@ public class DWeatherActivity extends BaseApcActivity implements WeatherView, Vi
 
     @Override
     public void initPresenter() {
-        mWeatherPresenter = new WeatherPresenterImp(this);
+        mWeatherPresenter = new WeatherPresenter(this);
         mWeatherPresenter.getWeatherData("2", "苏州");
 
     }
