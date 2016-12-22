@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApiFragment;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.HttpTimeException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieResulte;
@@ -39,9 +38,6 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
     private ProgressDialog pd;
     /*请求数据*/
     private BaseApi api;
-    /*请求数据*/
-    private BaseApiFragment apiFg;
-
 
     /**
      * 构造
