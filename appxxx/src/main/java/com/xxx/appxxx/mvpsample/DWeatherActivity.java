@@ -17,25 +17,15 @@ import com.xxx.base.BaseApcActivity;
 
 public class DWeatherActivity extends BaseApcActivity implements WeatherView, View.OnClickListener {
 
-//    @Bind(R.id.textView1)
     TextView textView1;
-//    @Bind(R.id.textView2)
     TextView textView2;
-//    @Bind(R.id.textView3)
     TextView textView3;
-//    @Bind(R.id.textView4)
     TextView textView4;
-//    @Bind(R.id.textView5)
     TextView textView5;
-//    @Bind(R.id.textView6)
     TextView textView6;
-//    @Bind(R.id.textView7)
     TextView textView7;
-//    @Bind(R.id.textView8)
     TextView textView8;
-//    @Bind(R.id.textView9)
     TextView textView9;
-//    @Bind(R.id.button2)
     Button mButton2;
 
     private WeatherPresenter mWeatherPresenter;

@@ -66,11 +66,16 @@ public class FDApplication extends Application {
 //        LeakCanary.install(this);
 
         mInstance = this;
+        LogX.getLogger().d("FDApplication onCreate");
 
         initImageLoader();
+        LogX.getLogger().d("initImageLoader OK");
+
         initScreenSize();
+        LogX.getLogger().d("initScreenSize OK");
 
         RxRetrofitApp.init(this);
+        LogX.getLogger().d("RxRetrofitApp init");
 
 //        // 配置设置初始化
 //        ConfigUtil.Instance().setAppContext(this.getApplicationContext());
