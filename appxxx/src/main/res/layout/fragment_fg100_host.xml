@@ -12,6 +12,8 @@
 
     <Button
         android:text="Button"
+        android:textStyle="italic|bold"
+        android:typeface="normal"
         android:layout_width="wrap_content"
         android:layout_height="142dp"
         android:id="@+id/button" />

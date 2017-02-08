@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="一个TextView" />
+                    android:text="一个TextViewAAA" />
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -54,7 +54,6 @@
             app:tabSelectedTextColor="#1976d2"
             app:tabTextColor="#90caf9" />
     </android.support.design.widget.AppBarLayout>
-    <!--<include layout="@layout/content_scrolling" />-->
 
     <!--可滑动的布局内容-->
     <android.support.v4.view.ViewPager

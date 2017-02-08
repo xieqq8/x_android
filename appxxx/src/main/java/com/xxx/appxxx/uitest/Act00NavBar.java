@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.OnTabSelectedListener,
         BaseFragment.OnFragmentInteractionListener,
         BackHandledFragment.BackHandledInterface {
-    private int lastSelectedPosition = 0;
+    private int lastSelectedPosition = 0; // 初始选中
 
     public final static Uri ATOB = Uri.parse("atob");
 
@@ -32,7 +32,7 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
         setContentView(R.layout.act00_nav_bar);
 
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
-        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
+        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED); // 导航栏模式
 
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.mipmap.ic_location_on_white_24dp, "UI").setActiveColor(R.color.orange))

@@ -10,6 +10,9 @@ import android.view.View;
 import com.xxx.appxxx.R;
 import com.xxx.base.BaseApcActivity;
 
+/**
+ * 个人中心？？
+ */
 public class ScrollingActivity extends BaseApcActivity {
 
     @Override
@@ -27,7 +30,7 @@ public class ScrollingActivity extends BaseApcActivity {
             }
         });
 
-        mToolbar.setLogo(R.mipmap.ic_book_white_24dp);
+//        mToolbar.setLogo(R.mipmap.ic_book_white_24dp);
         mToolbar.setNavigationIcon(android.R.drawable.ic_menu_delete);
         mToolbar.setTitle("zhangphil");
         mToolbar.setSubtitle("zhangphil副标题");

@@ -68,7 +68,7 @@ public class FDApplication extends Application {
         mInstance = this;
         LogX.getLogger().d("FDApplication onCreate");
 
-        initImageLoader();
+//        initImageLoader();  // 用这个fresco 图片缓存 代替
         LogX.getLogger().d("initImageLoader OK");
 
         initScreenSize();
@@ -102,38 +102,38 @@ public class FDApplication extends Application {
 //        }
     }
 
-    /**
-     * 初始化imageloader
-     */
-    private void initImageLoader() {
-        File cacheDir = StorageUtils.getOwnCacheDirectory(
-                getApplicationContext(), "imageloader/Cache");
-
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheInMemory(true) // 加载图片时会在内存中加载缓存
-                .cacheOnDisk(true) // 加载图片时会在磁盘中加载缓存
-                .build();
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-                this)
-                .threadPoolSize(3)  // default  线程池内加载的数量
-                // default
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                // default
-                .tasksProcessingOrder(QueueProcessingType.FIFO)
-                // default
-                .denyCacheImageMultipleSizesInMemory()
-                .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
-                .memoryCacheSize(2 * 1024 * 1024).memoryCacheSizePercentage(13)
-                // default      UnlimitedDiskCache
-                .diskCache(new UnlimitedDiskCache(cacheDir))
-                // default
-                .diskCacheSize(30 * 1024 * 1024).diskCacheFileCount(300)
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator()) // default
-                .defaultDisplayImageOptions(defaultOptions) // default
-                .writeDebugLogs().build();
-        ImageLoader.getInstance().init(config);
-    }
+//    /**
+//     * 初始化imageloader
+//     */
+//    private void initImageLoader() {
+//        File cacheDir = StorageUtils.getOwnCacheDirectory(
+//                getApplicationContext(), "imageloader/Cache");
+//
+//        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+//                .cacheInMemory(true) // 加载图片时会在内存中加载缓存
+//                .cacheOnDisk(true) // 加载图片时会在磁盘中加载缓存
+//                .build();
+//
+//        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+//                this)
+//                .threadPoolSize(3)  // default  线程池内加载的数量
+//                // default
+//                .threadPriority(Thread.NORM_PRIORITY - 2)
+//                // default
+//                .tasksProcessingOrder(QueueProcessingType.FIFO)
+//                // default
+//                .denyCacheImageMultipleSizesInMemory()
+//                .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+//                .memoryCacheSize(2 * 1024 * 1024).memoryCacheSizePercentage(13)
+//                // default      UnlimitedDiskCache
+//                .diskCache(new UnlimitedDiskCache(cacheDir))
+//                // default
+//                .diskCacheSize(30 * 1024 * 1024).diskCacheFileCount(300)
+//                .diskCacheFileNameGenerator(new Md5FileNameGenerator()) // default
+//                .defaultDisplayImageOptions(defaultOptions) // default
+//                .writeDebugLogs().build();
+//        ImageLoader.getInstance().init(config);
+//    }
 
     public static Context getInstance() {
         return mInstance;

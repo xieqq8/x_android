@@ -1,8 +1,13 @@
 2017-02-04
-	新增appxxx 框架
+	新增的appxxx 框架
 		
-	mvp
-		
+	mvp 
+	要有 通用 fragement activity
+	滑动返回
+	登录、注册、忘记密码、加载中...
+			
+	activity AppCompatActivity
+	
 	
 	|——
 	|——
