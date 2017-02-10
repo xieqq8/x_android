@@ -53,6 +53,7 @@
         <activity
             android:name=".ui.activity.Act002Login"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
     </application>
 

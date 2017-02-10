@@ -73,7 +73,8 @@ public class Act000Welcome extends BaseApcActivity {
 //                if (isFrist) {
 //                    startActivity(new Intent(mContext, Act004GuidePage.class));
 //                }else {
-                startActivity(new Intent(mContext, Act00NavBar.class));
+                startActivity(new Intent(mContext, Act002Login.class));//Act00NavBar
+//                    startActivity(new Intent(mContext, Act00NavBar.class));//
 //                }
 //            }
             finish();

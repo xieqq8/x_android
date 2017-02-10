@@ -100,4 +100,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment 111111111</string>
+
+    <string name="login_name_hint">请输入手机号</string>
+    <string name="register_pwd_hint">6-16位密码,建议数字,字母,符号组合</string>
+    <string name="register_pwd_hint2">请重复密码</string>
+    <string name="register_pwd_check">两次输入密码不一致</string>
+    <string name="register_code_error">验证码错误</string>
+    <string name="register_send_code">获取验证码</string>
+    <string name="register_code">验证码</string>
+    <string name="register_btn">注册</string>
+    <string name="login_pwd_hint">请输入密码</string>
+    <string name="login_txt">登录</string>
+    <string name="pwd_back_txt">找回密码</string>
+    <string name="btn_logout">退出登录</string>
+    <string name="error_empty_txt">用户名或密码不能为空</string>
+
 </resources>

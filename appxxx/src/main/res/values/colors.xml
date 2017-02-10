@@ -15,4 +15,18 @@
     <color name="blue">#2196F3</color>
     <color name="grey">#607D8B</color>
     <color name="orange">#F57C00</color>
+
+    <!--分隔线-->
+    <color name="border_line">#d2d2d2</color>
+
+    <color name="title_bg">#f0f0f0</color>
+    <color name="background">#FFFFFF</color>
+    <color name="orange_r">#ec6941</color>
+
+    <color name="gray_t">#aaaaaa</color>
+
+    <!--按钮-->
+    <color name="btn_orange_bg">#ffba00</color>
+    <!--课程-->
+    <color name="btn_course_bg">#6bc858</color>
 </resources>
