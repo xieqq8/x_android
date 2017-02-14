@@ -1,6 +1,7 @@
 package com.xxx.appxxx.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.xxx.appxxx.R;
+import com.xxx.appxxx.ui.activity.Act002Login;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.utils.LogX;
@@ -71,6 +73,14 @@ public class Fg200Books extends BackHandledFragment {
 
         Button btn = (Button) mLayoutView.findViewById(R.id.button);
         btn.setText(mParam2);
+        btn.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View v) {
+                                       startActivity(new Intent(getContext(), Act002Login.class));//Act00NavBar
+                                   }
+                               }
+        );
+
     }
 
     @Override

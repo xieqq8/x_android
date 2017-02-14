@@ -6,7 +6,10 @@ package com.xxx.appxxx.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -19,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.xxx.appxxx.R;
 import com.xxx.base.BaseApcActivity;
 import org.json.JSONArray;
@@ -44,7 +48,6 @@ public class Act002Login extends BaseApcActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
     }
 
@@ -53,10 +56,17 @@ public class Act002Login extends BaseApcActivity implements View.OnClickListener
      */
     @Override
     public void initContentView() {
+        setContentView(R.layout.activity_login);
+
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        mToolbar.setNavigationIcon(android.R.drawable.ic_menu_delete);//R.mipmap.title_back);
+
+        mToolbar.setNavigationIcon(R.mipmap.title_back);//);
+
+//        ff-81-ff-00
+        Color.argb(0xff,0x81,0xff,0x00);
+        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0x81,0xff,0x00));
 
 //        // 返回
 //        ImageView iv_left = (ImageView) findViewById(R.id.iv_left);

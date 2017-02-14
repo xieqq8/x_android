@@ -169,8 +169,6 @@ public class Fg100Host extends BackHandledFragment {
 
     }
 
-
-
     class MyAdapter extends FragmentPagerAdapter {
 
         private List<String> title;
@@ -191,7 +189,6 @@ public class Fg100Host extends BackHandledFragment {
         public int getCount() {
             return views.size();
         }
-
 
         //配置标题的方法
         @Override

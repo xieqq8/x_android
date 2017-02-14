@@ -1,10 +1,13 @@
 package com.xxx.appxxx.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 
+import com.githang.statusbar.StatusBarCompat;
+import com.githang.statusbar.StatusBarExclude;
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.base.BaseApcActivity;
@@ -32,10 +35,15 @@ public class Act000Welcome extends BaseApcActivity {
         super.onCreate(savedInstanceState);
 
         // 隐藏标题栏
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
         setContentView(R.layout.act_000_welcome);
+
+        StatusBarCompat.setStatusBarColor(this, R.color.orange_r); // 这样没有效果
+        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0x81,0xff,0x00));
+        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
+
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //
@@ -73,8 +81,8 @@ public class Act000Welcome extends BaseApcActivity {
 //                if (isFrist) {
 //                    startActivity(new Intent(mContext, Act004GuidePage.class));
 //                }else {
-                startActivity(new Intent(mContext, Act002Login.class));//Act00NavBar
-//                    startActivity(new Intent(mContext, Act00NavBar.class));//
+//                startActivity(new Intent(mContext, Act002Login.class));//Act00NavBar
+                    startActivity(new Intent(mContext, Act00NavBar.class));//
 //                }
 //            }
             finish();

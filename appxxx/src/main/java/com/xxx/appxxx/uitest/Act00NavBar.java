@@ -1,5 +1,6 @@
 package com.xxx.appxxx.uitest;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.githang.statusbar.StatusBarCompat;
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.ui.fragment.Fg100Host;
 import com.xxx.appxxx.ui.fragment.Fg200Books;
@@ -43,6 +45,9 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
                 .initialise();
 
         bottomNavigationBar.setTabSelectedListener(this);
+
+        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
+
     }
 
     @Override

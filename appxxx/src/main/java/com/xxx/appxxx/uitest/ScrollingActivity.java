@@ -1,5 +1,6 @@
 package com.xxx.appxxx.uitest;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.xxx.appxxx.R;
 import com.xxx.base.BaseApcActivity;
 
@@ -39,6 +41,11 @@ public class ScrollingActivity extends BaseApcActivity {
         for (int i = 0; i < 8; i++)
             tabLayout.addTab(tabLayout.newTab().setText("选项卡槽" + i));
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+
+        StatusBarCompat.setStatusBarColor(this, R.color.orange_r); // 这样没有效果
+        //StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
+
     }
 
     @Override
