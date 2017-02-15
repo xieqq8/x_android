@@ -41,6 +41,7 @@ import com.xxx.appxxx.resulte.SubjectResulte;
 import com.xxx.appxxx.resulte.UploadResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.appxxx.uitest.DownLaodActivity;
+import com.xxx.appxxx.uitest.DrawAppBarDemoActivity;
 import com.xxx.appxxx.uitest.ScrollingActivity;
 import com.xxx.base.BackHandledFragment;
 
@@ -145,6 +146,18 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
             }
         });
 
+        Button btn3 = (Button) mLayoutView.findViewById(R.id.button_appbar);
+//        btn3.setText(mParam2);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Act00NavBar.ATOB;
+                onButtonPressed(uri);
+
+                startActivity( new Intent(getActivity(), DrawAppBarDemoActivity.class));
+
+            }
+        });
         //获取控件实例
         cityET = (EditText) mLayoutView.findViewById(R.id.city);
         queryTV = (TextView) mLayoutView.findViewById(R.id.query);
