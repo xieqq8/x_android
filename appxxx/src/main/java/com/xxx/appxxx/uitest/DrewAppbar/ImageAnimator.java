@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * 渐变的动画效果
+ * 渐变的动画效果  两个图像页面的渐变动画, 放大到 120 一边渐变一边偏移
  * <p/>
  * Created by wangchenlong on 15/11/9.
  */
