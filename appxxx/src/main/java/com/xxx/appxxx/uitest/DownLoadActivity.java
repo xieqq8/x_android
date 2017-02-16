@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 多任務下載
  */
-public class DownLaodActivity extends AppCompatActivity {
+public class DownLoadActivity extends AppCompatActivity {
     List<DownInfo> listData;
     DbUtil dbUtil;
     @Override

@@ -40,7 +40,7 @@ import com.xxx.appxxx.resulte.RetrofitEntity;
 import com.xxx.appxxx.resulte.SubjectResulte;
 import com.xxx.appxxx.resulte.UploadResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
-import com.xxx.appxxx.uitest.DownLaodActivity;
+import com.xxx.appxxx.uitest.DownLoadActivity;
 import com.xxx.appxxx.uitest.DrawAppBarDemoActivity;
 import com.xxx.appxxx.uitest.ScrollingActivity;
 import com.xxx.base.BackHandledFragment;
@@ -71,8 +71,6 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-
-import static android.R.attr.onClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -547,7 +545,7 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
                 uploadeDo();
                 break;
             case  R.id.btn_rx_mu_down:
-                Intent intent=new Intent(getContext(),DownLaodActivity.class);
+                Intent intent=new Intent(getContext(),DownLoadActivity.class);
                 startActivity(intent);
                 break;
         }

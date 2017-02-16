@@ -5,7 +5,14 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">#00ff00</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppBaseThemeNormal"  parent="@style/AppTheme.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <style name="AppBaseThememain"  parent="@style/AppTheme.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

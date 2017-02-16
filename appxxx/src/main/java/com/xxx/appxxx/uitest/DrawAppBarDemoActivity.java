@@ -1,5 +1,6 @@
 package com.xxx.appxxx.uitest;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.uitest.DrewAppbar.PagerChangeListener;
 import com.xxx.appxxx.uitest.DrewAppbar.SimpleAdapter;
@@ -55,6 +57,9 @@ public class DrawAppBarDemoActivity extends AppCompatActivity
         mTlTab.setupWithViewPager(mVpContainer);
 
         setTitle("Girls' Generation");
+
+//        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
+
     }
 
     @Override

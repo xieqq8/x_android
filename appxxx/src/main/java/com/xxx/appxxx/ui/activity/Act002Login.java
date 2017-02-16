@@ -25,6 +25,8 @@ import android.widget.TextView;
 import com.githang.statusbar.StatusBarCompat;
 import com.xxx.appxxx.R;
 import com.xxx.base.BaseApcActivity;
+import com.xxx.base.BaseApcActivityWithSwipeBack;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +36,8 @@ import org.json.JSONObject;
  * @code: create：14-7-3下午4:57
  * class: com.kuaxue.artspace.activity.Act002Login.Java
  */
-public class Act002Login extends BaseApcActivity implements View.OnClickListener {
+public class Act002Login extends BaseApcActivityWithSwipeBack implements View.OnClickListener {
+//public class Act002Login extends BaseApcActivity implements View.OnClickListener {
     private String TAG = "Login";
     private EditText nameET;
     private EditText pwdET;
@@ -48,7 +51,10 @@ public class Act002Login extends BaseApcActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        changeStausBarBg(getResources().getColor(R.color.orange_r));
 
+        // 为什么WithSwipeBack这个没有效果
+//        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
     }
 
     /**
@@ -65,8 +71,9 @@ public class Act002Login extends BaseApcActivity implements View.OnClickListener
         mToolbar.setNavigationIcon(R.mipmap.title_back);//);
 
 //        ff-81-ff-00
-        Color.argb(0xff,0x81,0xff,0x00);
-        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0x81,0xff,0x00));
+//        Color.argb(0xff,0x81,0xff,0x00);
+//        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0x81,0xff,0x00));
+//        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
 
 //        // 返回
 //        ImageView iv_left = (ImageView) findViewById(R.id.iv_left);

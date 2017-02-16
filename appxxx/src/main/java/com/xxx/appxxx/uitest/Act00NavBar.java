@@ -46,7 +46,8 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
 
         bottomNavigationBar.setTabSelectedListener(this);
 
-        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
+//        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
+        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41),true);   // 这样有效果
 
     }
 

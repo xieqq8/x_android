@@ -40,9 +40,9 @@ public class Act000Welcome extends BaseApcActivity {
 
         setContentView(R.layout.act_000_welcome);
 
-        StatusBarCompat.setStatusBarColor(this, R.color.orange_r); // 这样没有效果
-        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0x81,0xff,0x00));
-        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
+//        StatusBarCompat.setStatusBarColor(this, R.color.orange_r); // 这样没有效果  getResources().getColor(R.color.orange_r)
+//        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0x81,0xff,0x00));
+        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.orange_r));   // 这样有效果  Color.argb(0xff,0xec,0x69,0x41)
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);

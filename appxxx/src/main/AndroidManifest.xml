@@ -35,7 +35,8 @@
         <activity
             android:name=".uitest.Act00NavBar"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppBaseThememain"
+            />
         <activity
             android:name=".uitest.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
@@ -43,7 +44,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".uitest.DownLaodActivity"
+            android:name=".uitest.DownLoadActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
@@ -53,13 +54,13 @@
         <activity
             android:name=".ui.activity.Act002Login"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppBaseThemeNormal"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".uitest.DrawAppBarDemoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppBaseThemeNormal"
             android:screenOrientation="portrait" />
     </application>
 

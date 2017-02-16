@@ -71,6 +71,7 @@ dependencies {
     //    compile 'com.squareup.retrofit2:retrofit:+'
     //    compile 'com.squareup.retrofit2:converter-gson:+'
     compile project(':rxretrofitlibrary')
+    compile project(':swipebacklib')
     //    compile 'com.squareup.retrofit2:adapter-rxjava:+'
     //    compile 'com.google.code.gson:gson:+'
     compile 'com.android.support:appcompat-v7:25.1.0'
