@@ -1,6 +1,7 @@
 package com.xxx.appxxx.uitest;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -57,9 +58,9 @@ public class DrawAppBarDemoActivity extends AppCompatActivity
         mTlTab.setupWithViewPager(mVpContainer);
 
         setTitle("Girls' Generation");
-
-//        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0xec,0x69,0x41));   // 这样有效果
-
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) { // 兼容 4.4 的
+            StatusBarCompat.setStatusBarColor(this, Color.argb(0xff, 0xec, 0x69, 0x41));   // 这样有效果
+        }
     }
 
     @Override
