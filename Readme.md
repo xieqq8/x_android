@@ -1,3 +1,13 @@
+2017-02-17
+
+    databinding
+    RXjava2
+    Retrofit2
+    Glide - 一个专注于平滑滚动的 Android 图像加载和缓存库
+    numberprogressbar 百分比
+    easyrecyclerview
+    Android Material Design（二）Observable Scroll View
+
 2017-02-04
 	新增的appxxx 框架
 		
