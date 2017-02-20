@@ -1,14 +1,7 @@
 package com.xxx.appxxx;
 
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseResultEntity;
-import com.xxx.appxxx.resulte.RetrofitEntity;
-import com.xxx.appxxx.resulte.SubjectResulte;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -17,13 +10,13 @@ import rx.Observable;
  */
 
 public interface HttpPostService {
-    @POST("AppFiftyToneGraph/videoLink")
-    Call<RetrofitEntity> getAllVedio(@Body boolean once_no);
 
-    @POST("AppFiftyToneGraph/videoLink")
-    Observable<RetrofitEntity> getAllVedioBy(@Body boolean once_no);
 
-    @POST("AppFiftyToneGraph/videoLink")
-    Observable<BaseResultEntity<List<SubjectResulte>>> getAllVedioBys(@Body boolean once_no);
+    @GET("AppFiftyToneGraph/videoLink/{once_no}")
+    Observable<String> getAllVedioBy(@Query("once_no") boolean once_no);
+
+//    @FormUrlEncoded
+    //    @POST("AppFiftyToneGraph/videoLink")
+//    Observable<String> getAllVedioBy(@Field("once_no") boolean once_no);
 
 }

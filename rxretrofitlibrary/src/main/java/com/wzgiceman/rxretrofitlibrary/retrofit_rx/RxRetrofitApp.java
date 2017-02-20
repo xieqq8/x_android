@@ -7,7 +7,7 @@ import android.app.Application;
  * Created by WZG on 2016/12/12.
  */
 
-public class RxRetrofitApp {
+public class RxRetrofitApp  {
     private static Application application;
 
     public static void init(Application app){
@@ -21,4 +21,5 @@ public class RxRetrofitApp {
     private static void setApplication(Application application) {
         RxRetrofitApp.application = application;
     }
+
 }

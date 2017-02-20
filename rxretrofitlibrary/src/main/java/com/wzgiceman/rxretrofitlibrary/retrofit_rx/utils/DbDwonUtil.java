@@ -4,11 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DaoMaster;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DaoSession;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DownInfo;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DownInfoDao;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.HttpDownManager;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DaoMaster;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DaoSession;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownInfo;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownInfoDao;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.HttpDownManager;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -21,14 +21,14 @@ import java.util.List;
  * Created by WZG on 2016/10/25.
  */
 
-public class DbUtil {
-    private static DbUtil db;
+public class DbDwonUtil {
+    private static DbDwonUtil db;
     private final static String dbName = "tests_db";
     private DaoMaster.DevOpenHelper openHelper;
     private Context context;
 
 
-    public DbUtil() {
+    public DbDwonUtil() {
         context= RxRetrofitApp.getApplication();
         openHelper = new DaoMaster.DevOpenHelper(context, dbName, null);
     }
@@ -38,11 +38,11 @@ public class DbUtil {
      * 获取单例
      * @return
      */
-    public static DbUtil getInstance() {
+    public static DbDwonUtil getInstance() {
         if (db == null) {
-            synchronized (HttpDownManager.class) {
+            synchronized (DbDwonUtil.class) {
                 if (db == null) {
-                    db = new DbUtil();
+                    db = new DbDwonUtil();
                 }
             }
         }

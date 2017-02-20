@@ -1,10 +1,10 @@
-package com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api;
+package com.xxx.appxxx.resulte;
 
 /**
  * 回调信息统一封装类
  * Created by WZG on 2016/7/16.
  */
-public class BaseResultEntity<T> {
+public class BaseResultEntity<T>{
     //  判断标示
     private int ret;
     //    提示信息
@@ -20,13 +20,6 @@ public class BaseResultEntity<T> {
         this.msg = msg;
     }
 
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 
     public int getRet() {
         return ret;
@@ -34,5 +27,13 @@ public class BaseResultEntity<T> {
 
     public void setRet(int ret) {
         this.ret = ret;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

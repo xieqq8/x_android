@@ -1,37 +1,24 @@
 package com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener;
 
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
+
 /**
  * 成功回调处理
  * Created by WZG on 2016/7/16.
  */
-public abstract class HttpOnNextListener<T> {
+public interface  HttpOnNextListener {
     /**
      * 成功后回调方法
-     * @param t
+     * @param resulte
+     * @param mothead
      */
-    public abstract void onNext(T t);
+   void onNext(String resulte,String mothead);
 
     /**
-     * 緩存回調結果
-     * @param string
-     */
-    public void onCacheNext(String string){
-
-    }
-
-    /**
+     * 失败
      * 失败或者错误方法
-     * 主动调用，更加灵活
+     * 自定义异常处理
      * @param e
      */
-    public  void onError(Throwable e){
-
-    }
-
-    /**
-     * 取消回調
-     */
-    public void onCancel(){
-
-    }
+    void onError(ApiException e);
 }

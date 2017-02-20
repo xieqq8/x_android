@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DownInfo;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownInfo;
 
 /**
  * Created by WZG on 2016/10/21.

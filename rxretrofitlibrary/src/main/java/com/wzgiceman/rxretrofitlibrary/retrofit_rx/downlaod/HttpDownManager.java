@@ -1,11 +1,10 @@
-package com.wzgiceman.rxretrofitlibrary.retrofit_rx.download;
+package com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod;
 
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DownLoadListener.DownloadInterceptor;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownLoadListener.DownloadInterceptor;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.HttpTimeException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.RetryWhenNetworkException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.subscribers.ProgressDownSubscriber;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils.DbUtil;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils.AppUtil;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils.DbDwonUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,10 +17,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+
+import static com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils.AppUtil.getBasUrl;
+import static com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils.AppUtil.writeCache;
 
 /**
  * http下载处理类
@@ -35,12 +37,12 @@ public class HttpDownManager {
     /*单利对象*/
     private volatile static HttpDownManager INSTANCE;
     /*数据库类*/
-    private DbUtil db;
+    private DbDwonUtil db;
 
     private HttpDownManager(){
         downInfos=new HashSet<>();
         subMap=new HashMap<>();
-        db=DbUtil.getInstance();
+        db= DbDwonUtil.getInstance();
     }
 
     /**
@@ -85,9 +87,9 @@ public class HttpDownManager {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .client(builder.build())
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .baseUrl(AppUtil.getBasUrl(info.getUrl()))
+                    .baseUrl(getBasUrl(info.getUrl()))
                     .build();
             httpService= retrofit.create(HttpDownService.class);
             info.setService(httpService);
@@ -105,7 +107,7 @@ public class HttpDownManager {
                     @Override
                     public DownInfo call(ResponseBody responseBody) {
                         try {
-                            AppUtil.writeCache(responseBody,new File(info.getSavePath()),info);
+                            writeCache(responseBody,new File(info.getSavePath()),info);
                         } catch (IOException e) {
                             /*失败抛出异常*/
                             throw new HttpTimeException(e.getMessage());

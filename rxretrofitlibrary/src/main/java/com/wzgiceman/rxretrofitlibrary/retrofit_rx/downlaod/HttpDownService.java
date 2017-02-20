@@ -1,5 +1,4 @@
-package com.wzgiceman.rxretrofitlibrary.retrofit_rx.download;
-
+package com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod;
 
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
@@ -9,7 +8,7 @@ import retrofit2.http.Url;
 import rx.Observable;
 
 /**
- * service统一接口数据
+ * service-下载接口
  * Created by WZG on 2016/7/16.
  */
 public interface HttpDownService {

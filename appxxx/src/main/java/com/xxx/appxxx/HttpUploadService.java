@@ -1,9 +1,5 @@
 package com.xxx.appxxx;
 
-
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseResultEntity;
-import com.xxx.appxxx.resulte.UploadResulte;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Multipart;
@@ -20,6 +16,7 @@ public interface HttpUploadService {
     /*上传文件*/
     @Multipart
     @POST("AppYuFaKu/uploadHeadImg")
-    Observable<BaseResultEntity<UploadResulte>> uploadImage(@Part("uid") RequestBody uid, @Part("auth_key") RequestBody auth_key,
-                                                            @Part MultipartBody.Part file);
+    Observable<String> uploadImage(@Part("uid") RequestBody uid, @Part("auth_key") RequestBody auth_key,
+                                   @Part MultipartBody.Part file);
+
 }

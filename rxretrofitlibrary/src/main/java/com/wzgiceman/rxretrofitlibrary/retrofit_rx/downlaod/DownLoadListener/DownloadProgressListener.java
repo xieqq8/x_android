@@ -1,4 +1,4 @@
-package com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DownLoadListener;
+package com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownLoadListener;
 
 
 /**

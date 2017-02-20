@@ -1,7 +1,6 @@
 package com.xxx.appxxx.ui.fragment;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,27 +19,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.bumptech.glide.Glide;
 import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseResultEntity;
-
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextSubListener;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.upload.ProgressRequestBody;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.upload.UploadProgressListener;
-import com.xxx.appxxx.HttpPostService;
 import com.xxx.appxxx.R;
-
 import com.xxx.appxxx.api.SubjectPostApi;
 import com.xxx.appxxx.api.UploadApi;
 import com.xxx.appxxx.mvpsample.DWeatherActivity;
-import com.xxx.appxxx.resulte.RetrofitEntity;
+import com.xxx.appxxx.resulte.BaseResultEntity;
 import com.xxx.appxxx.resulte.SubjectResulte;
 import com.xxx.appxxx.resulte.UploadResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
-import com.xxx.appxxx.uitest.DownLoadActivity;
+import com.xxx.appxxx.uitest.DownLaodActivity;
 import com.xxx.appxxx.uitest.DrawAppBarDemoActivity;
 import com.xxx.appxxx.uitest.ScrollingActivity;
 import com.xxx.base.BackHandledFragment;
@@ -55,16 +52,11 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
@@ -77,7 +69,7 @@ import rx.schedulers.Schedulers;
  * Use the {@link Fg300Me#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fg300Me extends BackHandledFragment implements View.OnTouchListener, View.OnClickListener{
+public class Fg300Me extends BackHandledFragment implements View.OnTouchListener, View.OnClickListener, HttpOnNextListener, HttpOnNextSubListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -192,6 +184,12 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
         img=(ImageView)mLayoutView.findViewById(R.id.img);
         progressBar=(NumberProgressBar)mLayoutView.findViewById(R.id.number_progress_bar);
     }
+    //    公用一个HttpManager
+    private HttpManager manager;
+    //    post请求接口信息
+    private SubjectPostApi postEntity;
+    //    上传接口信息
+    private UploadApi uplaodApi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -200,6 +198,28 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        /*初始化数据*/
+        manager = new HttpManager(this, getBaseActivity());
+
+        postEntity = new SubjectPostApi();
+        postEntity.setAll(true);
+
+        /*上传接口内部接口有token验证，所以需要换成自己的接口测试，检查file文件是否手机存在*/
+        uplaodApi = new UploadApi();
+        File file = new File("/storage/emulated/0/Download/11.jpg");
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file_name", file.getName(), new ProgressRequestBody
+                (requestBody,
+                        new UploadProgressListener() {
+                            @Override
+                            public void onProgress(long currentBytesCount, long totalBytesCount) {
+                                tvMsg.setText("提示:上传中");
+                                progressBar.setMax((int) totalBytesCount);
+                                progressBar.setProgress((int) currentBytesCount);
+                            }
+                        }));
+        uplaodApi.setPart(part);
     }
 
     @Override
@@ -535,156 +555,198 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_simple:
+            case R.id.btn_simple:   // rxjava+retrofit的http
                 onButton9Click();
                 break;
-            case R.id.btn_rx:
-                simpleDo();
+            case R.id.btn_rx: // rx+retrofit绝对封装
+//                simpleDo();
+                manager.doHttpDeal(postEntity);
                 break;
-            case R.id.btn_rx_uploade:
-                uploadeDo();
+            case R.id.btn_rx_uploade:   // rx+retrofit上传
+//                uploadeDo();
+                manager.doHttpDeal(uplaodApi);
                 break;
-            case  R.id.btn_rx_mu_down:
-                Intent intent=new Intent(getContext(),DownLoadActivity.class);
+            case  R.id.btn_rx_mu_down:  // 多任务断点续传下载
+                Intent intent=new Intent(getContext(),DownLaodActivity.class);
                 startActivity(intent);
                 break;
         }
     }
-    /*************************************************封装完请求*******************************************************/
 
     //    完美封装简化版
     private void simpleDo() {
-        SubjectPostApi postEntity = new SubjectPostApi(simpleOnNextListener,getBaseActivity());
+         /*初始化数据*/
+        manager = new HttpManager(this, getBaseActivity());
+        postEntity = new SubjectPostApi();
         postEntity.setAll(true);
-        HttpManager manager = HttpManager.getInstance();
         manager.doHttpDeal(postEntity);
     }
 
-    //   回调一一对应
-    HttpOnNextListener simpleOnNextListener = new HttpOnNextListener<List<SubjectResulte>>() {
-        @Override
-        public void onNext(List<SubjectResulte> subjects) {
-            tvMsg.setText("网络返回：\n" + subjects.toString());
+
+    @Override
+    public void onNext(String resulte, String mothead) {
+        /*post返回处理*/
+        if (mothead.equals(postEntity.getMethod())) {
+            BaseResultEntity<ArrayList<SubjectResulte>>   subjectResulte = JSONObject.parseObject(resulte, new
+                    TypeReference<BaseResultEntity<ArrayList<SubjectResulte>>>(){});
+            tvMsg.setText("post返回：\n" + subjectResulte.getData().toString());
         }
 
-        @Override
-        public void onCacheNext(String cache) {
-            /*缓存回调*/
-            Gson gson=new Gson();
-            java.lang.reflect.Type type = new TypeToken<BaseResultEntity<List<SubjectResulte>>>() {}.getType();
-            BaseResultEntity resultEntity= gson.fromJson(cache, type);
-            tvMsg.setText("缓存返回：\n"+resultEntity.getData().toString() );
+        /*上传返回处理*/
+        if (mothead.equals(uplaodApi.getMethod())) {
+            BaseResultEntity<UploadResulte> subjectResulte = JSONObject.parseObject(resulte, new
+                    TypeReference<BaseResultEntity<UploadResulte>>(){});
+            UploadResulte uploadResulte = subjectResulte.getData();
+            tvMsg.setText("上传成功返回：\n" + uploadResulte.getHeadImgUrl());
+            Glide.with(getBaseActivity()).load(uploadResulte.getHeadImgUrl()).skipMemoryCache(true).into(img);
         }
+    }
 
-        /*用户主动调用，默认是不需要覆写该方法*/
-        @Override
-        public void onError(Throwable e) {
-            super.onError(e);
-            tvMsg.setText("失败：\n" + e.toString());
-        }
-
-        /*用户主动调用，默认是不需要覆写该方法*/
-        @Override
-        public void onCancel() {
-            super.onCancel();
-            tvMsg.setText("取消請求");
-        }
-    };
-
-
-    /*********************************************文件上传***************************************************/
-
-    private void uploadeDo(){
-        File file=new File("/storage/emulated/0/Download/11.jpg");
-        RequestBody requestBody=RequestBody.create(MediaType.parse("image/jpeg"),file);
-        MultipartBody.Part part= MultipartBody.Part.createFormData("file_name", file.getName(), new ProgressRequestBody(requestBody,
-                new UploadProgressListener() {
-                    @Override
-                    public void onProgress(long currentBytesCount, long totalBytesCount) {
-                        tvMsg.setText("提示:上传中");
-                        progressBar.setMax((int) totalBytesCount);
-                        progressBar.setProgress((int) currentBytesCount);
-                    }
-                }));
-        UploadApi uplaodApi = new UploadApi(httpOnNextListener,getBaseActivity());
-        uplaodApi.setPart(part);
-        HttpManager manager = HttpManager.getInstance();
-        manager.doHttpDeal(uplaodApi);
+    @Override
+    public void onError(ApiException e) {
+        tvMsg.setText("失败：\ncode=" + e.getCode() + "\nmsg:" + e.getDisplayMessage());
     }
 
 
-    /**
-     * 上传回调
-     */
-    HttpOnNextListener httpOnNextListener=new HttpOnNextListener<UploadResulte>() {
-        @Override
-        public void onNext(UploadResulte o) {
-            tvMsg.setText("成功");
-            Glide.with(getBaseActivity()).load(o.getHeadImgUrl()).skipMemoryCache(true).into(img);
-        }
+    @Override
+    public void onNext(Observable observable) {
 
-        @Override
-        public void onError(Throwable e) {
-            super.onError(e);
-            tvMsg.setText("失败："+e.toString());
-        }
-
-    };
-
-
-
-    /**********************************************************正常不封装使用**********************************/
-
+    }
+//    /*************************************************封装完请求*******************************************************/
+//
+//    //    完美封装简化版
+//    private void simpleDo() {
+//        SubjectPostApi postEntity = new SubjectPostApi(simpleOnNextListener,getBaseActivity());
+//        postEntity.setAll(true);
+//        HttpManager manager = HttpManager.getInstance();
+//        manager.doHttpDeal(postEntity);
+//    }
+//
+//    //   回调一一对应
+//    HttpOnNextListener simpleOnNextListener = new HttpOnNextListener<List<SubjectResulte>>() {
+//        @Override
+//        public void onNext(List<SubjectResulte> subjects) {
+//            tvMsg.setText("网络返回：\n" + subjects.toString());
+//        }
+//
+//        @Override
+//        public void onCacheNext(String cache) {
+//            /*缓存回调*/
+//            Gson gson=new Gson();
+//            java.lang.reflect.Type type = new TypeToken<BaseResultEntity<List<SubjectResulte>>>() {}.getType();
+//            BaseResultEntity resultEntity= gson.fromJson(cache, type);
+//            tvMsg.setText("缓存返回：\n"+resultEntity.getData().toString() );
+//        }
+//
+//        /*用户主动调用，默认是不需要覆写该方法*/
+//        @Override
+//        public void onError(Throwable e) {
+//            super.onError(e);
+//            tvMsg.setText("失败：\n" + e.toString());
+//        }
+//
+//        /*用户主动调用，默认是不需要覆写该方法*/
+//        @Override
+//        public void onCancel() {
+//            super.onCancel();
+//            tvMsg.setText("取消請求");
+//        }
+//    };
+//
+//
+//    /*********************************************文件上传***************************************************/
+//
+//    private void uploadeDo(){
+//        File file=new File("/storage/emulated/0/Download/11.jpg");
+//        RequestBody requestBody=RequestBody.create(MediaType.parse("image/jpeg"),file);
+//        MultipartBody.Part part= MultipartBody.Part.createFormData("file_name", file.getName(), new ProgressRequestBody(requestBody,
+//                new UploadProgressListener() {
+//                    @Override
+//                    public void onProgress(long currentBytesCount, long totalBytesCount) {
+//                        tvMsg.setText("提示:上传中");
+//                        progressBar.setMax((int) totalBytesCount);
+//                        progressBar.setProgress((int) currentBytesCount);
+//                    }
+//                }));
+//        UploadApi uplaodApi = new UploadApi(httpOnNextListener,getBaseActivity());
+//        uplaodApi.setPart(part);
+//        HttpManager manager = HttpManager.getInstance();
+//        manager.doHttpDeal(uplaodApi);
+//    }
+//
+//
+//    /**
+//     * 上传回调
+//     */
+//    HttpOnNextListener httpOnNextListener=new HttpOnNextListener<UploadResulte>() {
+//        @Override
+//        public void onNext(UploadResulte o) {
+//            tvMsg.setText("成功");
+//            Glide.with(getBaseActivity()).load(o.getHeadImgUrl()).skipMemoryCache(true).into(img);
+//        }
+//
+//        @Override
+//        public void onError(Throwable e) {
+//            super.onError(e);
+//            tvMsg.setText("失败："+e.toString());
+//        }
+//
+//    };
+//
+//
+//
+//    /**********************************************************正常不封装使用**********************************/
+//
     /**
      * Retrofit加入rxjava实现http请求
      */
     private void onButton9Click() {
-        String BASE_URL="http://www.izaodao.com/Api/";
-        //手动创建一个OkHttpClient并设置超时时间
-        okhttp3.OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(5, TimeUnit.SECONDS);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(builder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL)
-                .build();
-
-//        加载框
-        final ProgressDialog pd = new ProgressDialog(getContext());
-
-        HttpPostService apiService = retrofit.create(HttpPostService.class);
-        Observable<RetrofitEntity> observable = apiService.getAllVedioBy(true);
-        observable.subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        new Subscriber<RetrofitEntity>() {
-                            @Override
-                            public void onCompleted() {
-                                if (pd != null && pd.isShowing()) {
-                                    pd.dismiss();
-                                }
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                if (pd != null && pd.isShowing()) {
-                                    pd.dismiss();
-                                }
-                            }
-
-                            @Override
-                            public void onNext(RetrofitEntity retrofitEntity) {
-                                tvMsg.setText("无封装：\n" + retrofitEntity.getData().toString());
-                            }
-
-                            @Override
-                            public void onStart() {
-                                super.onStart();
-                                pd.show();
-                            }
-                        }
-
-                );
+//        String BASE_URL="http://www.izaodao.com/Api/";
+//        //手动创建一个OkHttpClient并设置超时时间
+//        okhttp3.OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//        builder.connectTimeout(5, TimeUnit.SECONDS);
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .client(builder.build())
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .baseUrl(BASE_URL)
+//                .build();
+//
+////        加载框
+//        final ProgressDialog pd = new ProgressDialog(getContext());
+//
+//        HttpPostService apiService = retrofit.create(HttpPostService.class);
+//        Observable<RetrofitEntity> observable = apiService.getAllVedioBy(true);
+//        observable.subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        new Subscriber<RetrofitEntity>() {
+//                            @Override
+//                            public void onCompleted() {
+//                                if (pd != null && pd.isShowing()) {
+//                                    pd.dismiss();
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//                                if (pd != null && pd.isShowing()) {
+//                                    pd.dismiss();
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onNext(RetrofitEntity retrofitEntity) {
+//                                tvMsg.setText("无封装：\n" + retrofitEntity.getData().toString());
+//                            }
+//
+//                            @Override
+//                            public void onStart() {
+//                                super.onStart();
+//                                pd.show();
+//                            }
+//                        }
+//
+//                );
     }
 }

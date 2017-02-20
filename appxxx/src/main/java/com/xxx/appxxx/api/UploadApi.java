@@ -1,8 +1,7 @@
 package com.xxx.appxxx.api;
 
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.xxx.appxxx.HttpUploadService;
 
 import okhttp3.MediaType;
@@ -20,11 +19,10 @@ public class UploadApi extends BaseApi {
     /*需要上传的文件*/
     private MultipartBody.Part part;
 
-
-    public UploadApi(HttpOnNextListener listener, RxAppCompatActivity rxAppCompatActivity) {
-        super(listener, rxAppCompatActivity);
+    public UploadApi() {
         setShowProgress(true);
-        setMothed("AppFiftyToneGraph/videoLink");
+        setMethod("AppYuFaKu/uploadHeadImg");
+        setCache(true);
     }
 
     public MultipartBody.Part getPart() {
@@ -37,10 +35,10 @@ public class UploadApi extends BaseApi {
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
-        HttpUploadService service = retrofit.create(HttpUploadService.class);
+        HttpUploadService httpService = retrofit.create(HttpUploadService.class);
         RequestBody uid= RequestBody.create(MediaType.parse("text/plain"), "4811420");
-        RequestBody key = RequestBody.create(MediaType.parse("text/plain"), "cfed6cc8caad0d79ea56d917376dc4df");
-        return service.uploadImage(uid,key,getPart());
+        RequestBody key = RequestBody.create(MediaType.parse("text/plain"), "2bd467f727cdf2138c1067127e057950");
+        return httpService.uploadImage(uid,key,getPart());
     }
 
 }

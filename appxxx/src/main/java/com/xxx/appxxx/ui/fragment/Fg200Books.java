@@ -1,8 +1,6 @@
 package com.xxx.appxxx.ui.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +10,6 @@ import android.widget.Button;
 
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.ui.activity.Act002Login;
-import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.utils.LogX;
 

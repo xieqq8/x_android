@@ -44,7 +44,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".uitest.DownLoadActivity"
+            android:name=".uitest.DownLaodActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity

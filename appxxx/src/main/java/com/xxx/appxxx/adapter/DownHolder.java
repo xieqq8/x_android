@@ -7,9 +7,9 @@ import android.widget.Toast;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DownInfo;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.DownState;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.download.HttpDownManager;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownInfo;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownState;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.HttpDownManager;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpDownOnNextListener;
 import com.xxx.appxxx.R;
 

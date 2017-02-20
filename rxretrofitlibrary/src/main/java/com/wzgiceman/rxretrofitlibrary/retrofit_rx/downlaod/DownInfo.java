@@ -1,4 +1,4 @@
-package com.wzgiceman.rxretrofitlibrary.retrofit_rx.download;
+package com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod;
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpDownOnNextListener;
 
