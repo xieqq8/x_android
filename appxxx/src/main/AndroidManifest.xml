@@ -21,7 +21,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.Act000Welcome"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppThemeStartLoad">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +30,7 @@
         </activity>
         <activity
             android:name=".uitest.Act01MainViewPage"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_main" />
         <activity
             android:name=".uitest.Act00NavBar"
             android:screenOrientation="portrait"
@@ -40,16 +39,14 @@
         <activity
             android:name=".uitest.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".uitest.DownLaodActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".mvpsample.DWeatherActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".mvpsample.DWeatherActivity"/>
 
         <activity
             android:name=".ui.activity.Act002Login"

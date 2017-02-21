@@ -2,6 +2,7 @@ package com.xxx.appxxx.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
@@ -57,7 +58,12 @@ public class Act000Welcome extends BaseApcActivity {
 //        });
         LogX.getLogger().d("Act000Welcome onCreate");
         // 延迟时间
-        new Handler().postDelayed(r, 1200);
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) { // 兼容 4.4 的
+
+            new Handler().postDelayed(r, 200);
+        } else {
+            new Handler().postDelayed(r, 1200);
+        }
     }
 
     Runnable r = new Runnable() {
