@@ -41,10 +41,8 @@ public abstract class BaseApcActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mContext = this;
         mActivity = this;
-
         // 初始化布局
         initContentView();
         // 初始化控制中心

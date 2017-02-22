@@ -37,8 +37,8 @@ public class Act00NavBar extends BaseApcActivity implements BottomNavigationBar.
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED); // 导航栏模式
 
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.mipmap.ic_location_on_white_24dp, "UI").setActiveColor(R.color.orange))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_find_replace_white_24dp, "网络").setActiveColor(R.color.orange))//blue))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_location_on_white_24dp, "UI").setActiveColorResource(R.color.orange))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_find_replace_white_24dp, "网络").setActiveColorResource(R.color.orange))//blue))
                 .addItem(new BottomNavigationItem(R.mipmap.ic_favorite_white_24dp, "进阶").setActiveColor(R.color.orange))//green))
 //                .addItem(new BottomNavigationItem(R.mipmap.ic_book_white_24dp, "综合").setActiveColor(R.color.orange))//blue))
                 .setFirstSelectedPosition(lastSelectedPosition )//设置默认选中

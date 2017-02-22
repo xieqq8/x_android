@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.githang.statusbar.StatusBarCompat;
 import com.githang.statusbar.StatusBarExclude;
@@ -38,6 +39,13 @@ public class Act000Welcome extends BaseApcActivity {
         // 隐藏标题栏
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        // 不显示系统的标题栏，保证windowBackground和界面activity_main的大小一样，显示在屏幕不会有错位（去掉这一行试试就知道效果了）
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         setContentView(R.layout.act_000_welcome);
 
@@ -56,13 +64,12 @@ public class Act000Welcome extends BaseApcActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        LogX.getLogger().d("Act000Welcome onCreate");
+        LogX.getLogger().d("Act000Welcome onCreate " + Build.VERSION.SDK_INT + Build.VERSION_CODES.KITKAT);
         // 延迟时间
         if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) { // 兼容 4.4 的
-
-            new Handler().postDelayed(r, 200);
+            new Handler().postDelayed(r, 1200); // 由于install run,4.4版本后debug版本有的开机 白屏( 用 android:windowBackground 替换)
         } else {
-            new Handler().postDelayed(r, 1200);
+            new Handler().postDelayed(r, 2000);
         }
     }
 

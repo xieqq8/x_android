@@ -13,7 +13,7 @@
     tools:context="com.xxx.appxxx.ui.activity.Act000Welcome">
 
     <TextView
-        android:text="welcome_欢迎界面"
+        android:text="welcome_欢迎界面_欢迎图片定义在AppThemeStartLoad中"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

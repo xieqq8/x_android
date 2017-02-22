@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:Android="http://schemas.android.com/apk/res/android">
-    <item Android:drawable="@android:color/holo_red_dark" />
-    <item Android:drawable="@drawable/welcome" />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 设置整个屏幕背景色 -->
+    <item android:drawable="@android:color/holo_red_dark" />
+    <!-- 中间logo -->
+    <item android:gravity="center" android:drawable="@drawable/welcome" />
+    <item
+        android:bottom="10dp"
+        android:drawable="@drawable/ic_menu_camera"
+        android:gravity="bottom|center_horizontal" />
+
+    <!--<item >-->
+        <!--<bitmap-->
+            <!--android:gravity="center"-->
+            <!--android:src="@drawable/welcome" />-->
+    <!--</item>-->
+    <!--&lt;!&ndash; 底部图表 &ndash;&gt;-->
+    <!--<item android:bottom="10dp">-->
+        <!--<bitmap-->
+            <!--android:gravity="bottom|center_horizontal"-->
+            <!--android:src="@drawable/ic_menu_camera"/>-->
+    <!--</item>-->
 </layer-list>
