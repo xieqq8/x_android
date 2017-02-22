@@ -1,111 +1,200 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Button" />
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button_weather" />
-
-        <Button
-            android:id="@+id/button_appbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button_drawerlayout_AppBarLayout" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#FFFFFF"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/city"
-            android:layout_width="0dp"
+        <!--CollapsingToolbarLayout作用是提供了一个可以折叠的Toolbar-->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="3dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:hint="请输入城市"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:text="北京" />
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-        <TextView
-            android:id="@+id/query"
-            android:layout_width="80dp"
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/AppTheme.AppBarOverlay">
+                <!--<android.support.v7.widget.Toolbar-->
+                <!--android:id="@+id/toolBar"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="?attr/actionBarSize"-->
+                <!--android:background="#2196f3"-->
+                <!--android:minHeight="?attr/actionBarSize"-->
+                <!--app:layout_scrollFlags="scroll|enterAlways">-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/app_bar_height"
+                    android:layout_marginRight="@dimen/app_bar_height"
+                    android:gravity="center_horizontal"
+                    android:text="一个标题"
+                    android:textColor="@color/grey" />
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tabLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#e0e0e0"-->
+        <!--app:tabIndicatorColor="#ef5350"-->
+        <!--app:tabSelectedTextColor="#1976d2"-->
+        <!--app:tabTextColor="#90caf9" />-->
+
+        <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tabLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#e0e0e0"-->
+        <!--app:tabIndicatorColor="#ef5350"-->
+        <!--app:tabSelectedTextColor="#1976d2"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--app:layout_scrollFlags="scroll"-->
+        <!--app:tabTextColor="#90caf9" />-->
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/vp_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:text="查询天气"
-            android:textColor="#000000" />
-    </LinearLayout>
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_simple"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="rxjava+retrofit的http" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_rx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="rx+retrofit绝对封装" />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Button" />
 
-        <Button
-            android:id="@+id/btn_rx_mu_down"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="多任务断点续传下载" />
 
-        <Button
-            android:id="@+id/btn_rx_uploade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="rx+retrofit上传" />
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button_weather" />
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/button_appbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button_drawerlayout_AppBarLayout" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/weather"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="请输入城市"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="北京" />
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+                <TextView
+                    android:id="@+id/query"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="查询天气"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_simple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="rxjava+retrofit的http" />
+
+                <Button
+                    android:id="@+id/btn_rx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="rx+retrofit绝对封装" />
+
+                <Button
+                    android:id="@+id/btn_rx_mu_down"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="多任务断点续传下载" />
+
+                <Button
+                    android:id="@+id/btn_rx_uploade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="rx+retrofit上传" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/weather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
+
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

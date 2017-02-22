@@ -31,7 +31,7 @@ public class Act001Main extends BaseApcActivity {
         super.onCreate(savedInstanceState);
 
         // 隐藏标题栏
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 //        android:theme="@style/AppTheme.NoActionBar" 会把标题隐藏掉
         

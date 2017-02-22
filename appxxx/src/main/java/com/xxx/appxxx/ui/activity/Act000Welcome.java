@@ -12,6 +12,7 @@ import com.githang.statusbar.StatusBarCompat;
 import com.githang.statusbar.StatusBarExclude;
 import com.xxx.appxxx.R;
 import com.xxx.appxxx.uitest.Act00NavBar;
+import com.xxx.appxxx.uitest.Act01MainViewPage;
 import com.xxx.base.BaseApcActivity;
 import com.xxx.utils.LogX;
 
@@ -95,7 +96,14 @@ public class Act000Welcome extends BaseApcActivity {
 //                    startActivity(new Intent(mContext, Act004GuidePage.class));
 //                }else {
 //                startActivity(new Intent(mContext, Act002Login.class));//Act00NavBar
+
                     startActivity(new Intent(mContext, Act00NavBar.class));//
+
+//            startActivity(new Intent(mContext, Act01MainViewPage.class));//
+
+//            startActivity(new Intent(mContext, Act001Main.class));//
+
+
 //                }
 //            }
             finish();

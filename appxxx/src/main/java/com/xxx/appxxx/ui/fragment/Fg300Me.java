@@ -110,79 +110,80 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
     @Override
     public int getLayoutRes() {
         return R.layout.fragment_fg300_me;
+//        return R.layout.act_001_main;               //  这个 Toolbar 上滑可隐藏
     }
 
     @Override
     public void initView() {
-        Button button = (Button) mLayoutView.findViewById(R.id.button2);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ScrollingActivity.class));
-            }
-        });
-
-        Button btn = (Button) mLayoutView.findViewById(R.id.button);
-        btn.setText(mParam2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Act00NavBar.ATOB;
-                onButtonPressed(uri);
-
-                startActivity( new Intent(getActivity(), DWeatherActivity.class));
-
-            }
-        });
-
-        Button btn3 = (Button) mLayoutView.findViewById(R.id.button_appbar);
-//        btn3.setText(mParam2);
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Act00NavBar.ATOB;
-                onButtonPressed(uri);
-
-                startActivity( new Intent(getActivity(), DrawAppBarDemoActivity.class));
-
-            }
-        });
-        //获取控件实例
-        cityET = (EditText) mLayoutView.findViewById(R.id.city);
-        queryTV = (TextView) mLayoutView.findViewById(R.id.query);
-        weatherTV = (TextView) mLayoutView.findViewById(R.id.weather);
-        //对查询按钮侦听点击事件
-        queryTV.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                // 查询
-
-                weatherTV.setText("");
-                String city = cityET.getText().toString();
-                if(TextUtils.isEmpty(city)){
-                    Toast.makeText(getActivity(), "城市不能为空！", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                //采用普通写法创建Observable
-//                observableAsNormal(city);
-                //采用lambda写法创建Observable
-//            observableAsLambda(city);
-                //采用普通写法创建Observable,使用map操作符转换
-                observableMapAsNormal(city);
-                //采用lambda写法创建Observable,使用map操作符转换
-//            observableMapAsLambda(city);
-            }
-        });
-
-        tvMsg = (TextView) mLayoutView.findViewById(R.id.tv_msg);
-        mLayoutView.findViewById(R.id.btn_simple).setOnClickListener(this);
-        mLayoutView.findViewById(R.id.btn_rx).setOnClickListener(this);
-        mLayoutView.findViewById(R.id.btn_rx_mu_down).setOnClickListener(this);
-        mLayoutView.findViewById(R.id.btn_rx_uploade).setOnClickListener(this);
-        img=(ImageView)mLayoutView.findViewById(R.id.img);
-        progressBar=(NumberProgressBar)mLayoutView.findViewById(R.id.number_progress_bar);
+//        Button button = (Button) mLayoutView.findViewById(R.id.button2);
+//
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getActivity(), ScrollingActivity.class));
+//            }
+//        });
+//
+//        Button btn = (Button) mLayoutView.findViewById(R.id.button);
+//        btn.setText(mParam2);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Uri uri = Act00NavBar.ATOB;
+//                onButtonPressed(uri);
+//
+//                startActivity( new Intent(getActivity(), DWeatherActivity.class));
+//
+//            }
+//        });
+//
+//        Button btn3 = (Button) mLayoutView.findViewById(R.id.button_appbar);
+////        btn3.setText(mParam2);
+//        btn3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Uri uri = Act00NavBar.ATOB;
+//                onButtonPressed(uri);
+//
+//                startActivity( new Intent(getActivity(), DrawAppBarDemoActivity.class));
+//
+//            }
+//        });
+//        //获取控件实例
+//        cityET = (EditText) mLayoutView.findViewById(R.id.city);
+//        queryTV = (TextView) mLayoutView.findViewById(R.id.query);
+//        weatherTV = (TextView) mLayoutView.findViewById(R.id.weather);
+//        //对查询按钮侦听点击事件
+//        queryTV.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//                // 查询
+//
+//                weatherTV.setText("");
+//                String city = cityET.getText().toString();
+//                if(TextUtils.isEmpty(city)){
+//                    Toast.makeText(getActivity(), "城市不能为空！", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                //采用普通写法创建Observable
+////                observableAsNormal(city);
+//                //采用lambda写法创建Observable
+////            observableAsLambda(city);
+//                //采用普通写法创建Observable,使用map操作符转换
+//                observableMapAsNormal(city);
+//                //采用lambda写法创建Observable,使用map操作符转换
+////            observableMapAsLambda(city);
+//            }
+//        });
+//
+//        tvMsg = (TextView) mLayoutView.findViewById(R.id.tv_msg);
+//        mLayoutView.findViewById(R.id.btn_simple).setOnClickListener(this);
+//        mLayoutView.findViewById(R.id.btn_rx).setOnClickListener(this);
+//        mLayoutView.findViewById(R.id.btn_rx_mu_down).setOnClickListener(this);
+//        mLayoutView.findViewById(R.id.btn_rx_uploade).setOnClickListener(this);
+//        img=(ImageView)mLayoutView.findViewById(R.id.img);
+//        progressBar=(NumberProgressBar)mLayoutView.findViewById(R.id.number_progress_bar);
     }
     //    公用一个HttpManager
     private HttpManager manager;

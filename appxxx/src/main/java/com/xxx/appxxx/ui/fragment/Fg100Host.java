@@ -73,8 +73,9 @@ public class Fg100Host extends BackHandledFragment {
 
     @Override
     public int getLayoutRes() {
-//        return R.layout.fragment_fg100_host;
-        return R.layout.activity_scrolling;
+//        return R.layout.fragment_fg100_host;        // 这个切换的时候不会跳动
+//        return R.layout.activity_scrolling;         //  这个 Toolbar 上滑不会可隐藏
+        return R.layout.act_001_main;               //  这个 Toolbar 上滑可隐藏
     }
 
     // 防止 恢复Fragment的时候会出现菜单混乱

@@ -61,22 +61,24 @@ public class Fg200Books extends BackHandledFragment {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.fragment_fg200_books;
+//        return R.layout.fragment_fg200_books;
+                return R.layout.activity_scrolling;         //  这个 Toolbar 上滑不会可隐藏
+
     }
 
     @Override
     public void initView() {
         LogX.getLogger().d("Fg200Books initView:" + mParam1);
 
-        Button btn = (Button) mLayoutView.findViewById(R.id.button);
-        btn.setText(mParam2);
-        btn.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View v) {
-                                       startActivity(new Intent(getContext(), Act002Login.class));//Act00NavBar
-                                   }
-                               }
-        );
+//        Button btn = (Button) mLayoutView.findViewById(R.id.button);
+//        btn.setText(mParam2);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//                                   @Override
+//                                   public void onClick(View v) {
+//                                       startActivity(new Intent(getContext(), Act002Login.class));//Act00NavBar
+//                                   }
+//                               }
+//        );
 
     }
 
