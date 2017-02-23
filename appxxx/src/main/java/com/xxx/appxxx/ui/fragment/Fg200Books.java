@@ -61,8 +61,8 @@ public class Fg200Books extends BackHandledFragment {
 
     @Override
     public int getLayoutRes() {
-//        return R.layout.fragment_fg200_books;
-                return R.layout.activity_scrolling;         //  这个 Toolbar 上滑不会可隐藏
+        return R.layout.fragment_fg200_books;
+//                return R.layout.activity_scrolling;         //  这个 Toolbar 上滑不会可隐藏
 
     }
 
