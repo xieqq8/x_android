@@ -70,15 +70,15 @@ public class Fg200Books extends BackHandledFragment {
     public void initView() {
         LogX.getLogger().d("Fg200Books initView:" + mParam1);
 
-//        Button btn = (Button) mLayoutView.findViewById(R.id.button);
-//        btn.setText(mParam2);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//                                   @Override
-//                                   public void onClick(View v) {
-//                                       startActivity(new Intent(getContext(), Act002Login.class));//Act00NavBar
-//                                   }
-//                               }
-//        );
+        Button btn = (Button) mLayoutView.findViewById(R.id.button);
+        btn.setText(mParam2);
+        btn.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View v) {
+                                       startActivity(new Intent(getContext(), Act002Login.class));//Act00NavBar
+                                   }
+                               }
+        );
 
     }
 

@@ -64,21 +64,31 @@
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <!--<Button-->
-                <!--android:id="@+id/button123"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerInParent="true"-->
-                <!--android:text="Button">-->
-
-            <!--</Button>-->
-        </FrameLayout>
-
+            <Button
+                android:id="@+id/btntop"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:text="Button"/>
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Button"/>
+            <Button
+                android:id="@+id/button123"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:text="Button"/>
+        </RelativeLayout>
 
         <!--<android.support.v4.view.ViewPager-->
         <!--android:id="@+id/main_vp_container"-->
