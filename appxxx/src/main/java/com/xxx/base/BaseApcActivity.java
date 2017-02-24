@@ -13,6 +13,8 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextSubListener;
 
 
 public abstract class BaseApcActivity extends RxAppCompatActivity {

@@ -5,18 +5,44 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.alibaba.fastjson.TypeReference;
+import com.bumptech.glide.Glide;
 import com.githang.statusbar.StatusBarCompat;
 import com.githang.statusbar.StatusBarExclude;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextSubListener;
 import com.xxx.appxxx.R;
+import com.xxx.appxxx.api.SubjectPostApi;
+import com.xxx.appxxx.net.HttpUrlConstant;
+import com.xxx.appxxx.resulte.BaseResultEntity;
+import com.xxx.appxxx.resulte.SubjectResulte;
+import com.xxx.appxxx.resulte.UploadResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.appxxx.uitest.Act01MainViewPage;
 import com.xxx.base.BaseApcActivity;
 import com.xxx.utils.LogX;
 
-public class Act000Welcome extends BaseApcActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import rx.Observable;
+
+public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener, HttpOnNextSubListener {
+
+    //    公用一个HttpManager
+    private HttpManager manager;
+    //    post请求接口信息
+    private SubjectPostApi postEntity;
 
     @Override
     public void initContentView() {
@@ -65,6 +91,13 @@ public class Act000Welcome extends BaseApcActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+        /*初始化数据*/
+        manager = new HttpManager(this, this);
+
+        postEntity = new SubjectPostApi();
+        postEntity.setAll(true); // 接口需要传入的参数
+        getwebdatetime();
+
         LogX.getLogger().d("Act000Welcome onCreate " + Build.VERSION.SDK_INT + Build.VERSION_CODES.KITKAT);
         // 延迟时间
         if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) { // 兼容 4.4 的
@@ -109,4 +142,103 @@ public class Act000Welcome extends BaseApcActivity {
             finish();
         }
     };
+
+    // 时间校准
+
+    /**
+     * 得到网络时间和本地的间隔时间
+     */
+    private void getwebdatetime(){
+
+        manager.doHttpDeal(postEntity);
+
+//        NetRestClient.Instance().client.get(mContext, HttpUrlConstant.servertime, null, new TextHttpResponseHandler() {
+//            @Override
+//            public void onFailure(int i, Header[] headers, String s, Throwable throwable) {
+//            }
+//
+//            @Override
+//            public void onSuccess(int i, Header[] headers, String s) {
+////                SimpleDateFormat dff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+////                dff.setTimeZone(TimeZone.getTimeZone("GMT+08"));
+////                String ee = dff.format(new Date());
+////
+////                long cur = System.currentTimeMillis();
+////
+////                SimpleDateFormat formatter1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+////                formatter1.setTimeZone(TimeZone.getTimeZone("GMT+08"));
+////                Date curDate = new Date(cur);//获取当前时间
+////                String str = formatter1.format(new Date()); //北京时间
+////                logx.d("北京时间: %s ",str); // 得到北京时间的格式
+////
+////                Calendar calendarA = Calendar.getInstance(TimeZone.getTimeZone("GMT+08"));
+////                calendarA.setTime(new Date());
+////
+////                try {
+////                    Date date = stringToDate(str, formatter1);
+////                    long cur2 = date.getTimezoneOffset();
+////
+////
+////                    Log.d("XLogger", String.valueOf(cur));
+////                    Log.d("XLogger", String.valueOf(cur2));
+////                    Log.d("XLogger", String.valueOf(cur2-cur));
+////
+//////                    logx.d("时间差: %s _ %s _ %s " , String.valueOf(cur) , String.valueOf(cur2) , String.valueOf(cur2 - cur));
+////                } catch (java.text.ParseException e) {
+////                    e.printStackTrace();
+////                }
+////                Calendar calendarB = Calendar.getInstance(TimeZone.getDefault());
+////                calendarA.setTime(new Date());
+////
+////                long diffDateInMillisSeconds = calendarA.getTimeInMillis() - calendarB.getTimeInMillis();
+//
+//                Calendar calendar = new GregorianCalendar();
+//                Log.d("XLogger", "__" + calendar.getTimeZone().getOffset(System.currentTimeMillis()));
+//
+//
+//                lCurtime = System.currentTimeMillis() + calendar.getTimeZone().getOffset(System.currentTimeMillis()) - 28800000;
+//
+//                try {
+//                    JSONObject jsonObject = new JSONObject(s);
+//                    long server = jsonObject.optLong("date3") * 1000;
+//                    long internal = server - lCurtime;
+//                    logx.d("internal:"+ internal +"_server:"+server+"_local:"+ String.valueOf(lCurtime));
+//
+//                    PreferencesUtil.getSharedPreference(mContext).edit().putLong("server_internal",internal).commit();
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+    }
+
+    @Override
+    public void onNext(String resulte, String mothead) {
+        /*post返回处理*/
+        if (mothead.equals(postEntity.getMethod())) {
+            BaseResultEntity<ArrayList<SubjectResulte>>   subjectResulte = com.alibaba.fastjson.JSONObject.parseObject(resulte, new
+                    TypeReference<BaseResultEntity<ArrayList<SubjectResulte>>>(){});
+//            tvMsg.setText("post返回：\n" + subjectResulte.getData().toString());
+        }
+
+//        /*上传返回处理*/
+//        if (mothead.equals(uplaodApi.getMethod())) {
+//            BaseResultEntity<UploadResulte> subjectResulte = com.alibaba.fastjson.JSONObject.parseObject(resulte, new
+//                    TypeReference<BaseResultEntity<UploadResulte>>(){});
+//            UploadResulte uploadResulte = subjectResulte.getData();
+//            tvMsg.setText("上传成功返回：\n" + uploadResulte.getHeadImgUrl());
+//            Glide.with(MainActivity.this).load(uploadResulte.getHeadImgUrl()).skipMemoryCache(true).into(img);
+//        }
+    }
+
+    @Override
+    public void onError(ApiException e) {
+
+    }
+
+    @Override
+    public void onNext(Observable observable) {
+
+    }
 }
