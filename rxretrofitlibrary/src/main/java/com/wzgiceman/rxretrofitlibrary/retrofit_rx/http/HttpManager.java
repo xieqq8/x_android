@@ -1,5 +1,7 @@
 package com.wzgiceman.rxretrofitlibrary.retrofit_rx.http;
 
+import android.util.Log;
+
 import com.trello.rxlifecycle.android.ActivityEvent;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
@@ -8,10 +10,14 @@ import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.RetryWhenNetworkExc
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.subscribers.ProgressSubscriber;
 
+import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -42,6 +48,23 @@ public class HttpManager {
 
         //手动创建一个OkHttpClient并设置超时时间缓存等设置
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        //  使用Interceptor来拦截并重新设置请求头 ?? 未测试是否可用
+        builder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request()
+                        .newBuilder()
+                        .addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+                        .addHeader("Accept-Encoding", "gzip, deflate")
+                        .addHeader("Connection", "keep-alive")
+                        .addHeader("Accept", "*/*")
+                        .addHeader("Cookie", "add cookies here")
+                        .build();
+                return chain.proceed(request);
+            }
+        });
+
         builder.connectTimeout(basePar.getConnectionTime(), TimeUnit.SECONDS);
 
         /*创建retrofit对象*/
@@ -54,6 +77,7 @@ public class HttpManager {
         /*rx处理*/
         ProgressSubscriber subscriber = new ProgressSubscriber(basePar, onNextListener, appCompatActivity);
 
+        Log.d("XLogger","baseUrl:" + baseUrl);
         // RxJava
         Observable observable = basePar.getObservable(retrofit)
                 /*失败后的retry配置*/

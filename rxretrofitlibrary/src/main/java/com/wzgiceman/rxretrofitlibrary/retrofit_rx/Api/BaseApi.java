@@ -1,5 +1,7 @@
 package com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api;
 
+import android.content.Context;
+
 import retrofit2.Retrofit;
 import rx.Observable;
 
@@ -8,6 +10,7 @@ import rx.Observable;
  * Created by WZG on 2016/7/16.
  */
 public abstract class BaseApi {
+    private Context mContext = null;
     /*是否能取消加载框*/
     private boolean cancel = false;
     /*是否显示加载框*/
@@ -25,6 +28,14 @@ public abstract class BaseApi {
     private int cookieNetWorkTime = 60;
     /*无网络的情况下本地缓存时间默认30天*/
     private int cookieNoNetWorkTime = 24 * 60 * 60 * 30;
+
+    public Context getmContext() {
+        return mContext;
+    }
+
+    public void setmContext(Context mContext) {
+        this.mContext = mContext;
+    }
 
     /**
      * 设置参数

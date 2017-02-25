@@ -35,7 +35,7 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
 
     //    公用一个HttpManager
     private HttpManager manager;
-    //    post请求接口信息
+    //  post请求接口信息
     private GetServerTimeApi postEntity;
 
     @Override
@@ -164,7 +164,7 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
             Calendar calendar = new GregorianCalendar();
             Log.d("XLogger", "__" + calendar.getTimeZone().getOffset(System.currentTimeMillis()));
 
-
+            // 8*60*60 = 28800 * 1000 = 28800 000  八小时
             lCurtime = System.currentTimeMillis() + calendar.getTimeZone().getOffset(System.currentTimeMillis()) - 28800000;
 
             try {

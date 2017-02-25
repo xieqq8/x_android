@@ -8,7 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.xxx.appxxx.R;
+import com.xxx.appxxx.net.api.GetServerTimeApi;
+import com.xxx.appxxx.net.api.GetTypeApi;
 import com.xxx.appxxx.ui.activity.Act002Login;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.utils.LogX;
@@ -21,7 +26,7 @@ import com.xxx.utils.LogX;
  * Use the {@link Fg200Books#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fg200Books extends BackHandledFragment {
+public class Fg200Books extends BackHandledFragment implements HttpOnNextListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -66,9 +71,21 @@ public class Fg200Books extends BackHandledFragment {
 
     }
 
+    private Button btntop;
+    //    公用一个HttpManager
+    private HttpManager manager;
+    //  post请求接口信息
+    private GetTypeApi postEntity;
+
+
     @Override
     public void initView() {
         LogX.getLogger().d("Fg200Books initView:" + mParam1);
+
+        /*初始化数据*/
+        manager = new HttpManager(this, getBaseActivity());
+
+        postEntity = new GetTypeApi(getContext());
 
         Button btn = (Button) mLayoutView.findViewById(R.id.button);
         btn.setText(mParam2);
@@ -79,7 +96,14 @@ public class Fg200Books extends BackHandledFragment {
                                    }
                                }
         );
-
+        btntop = (Button) mLayoutView.findViewById(R.id.btntop);
+        btntop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 网络请求
+                manager.doHttpDeal(postEntity);
+            }
+        });
     }
 
     @Override
@@ -95,7 +119,7 @@ public class Fg200Books extends BackHandledFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return super.onCreateView(inflater, container,savedInstanceState);
+        return super.onCreateView(inflater, container, savedInstanceState);
 //
 //        View view = inflater.inflate(R.layout.fragment_fg200_books, container, false);
 //        Button btn = (Button) view.findViewById(R.id.button);
@@ -108,6 +132,16 @@ public class Fg200Books extends BackHandledFragment {
 //            }
 //        });
 //        return view;
+    }
+
+    @Override
+    public void onNext(String result, String mothead) {
+        LogX.getLogger().d("GetType back json:" + result);
+    }
+
+    @Override
+    public void onError(ApiException e) {
+
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event

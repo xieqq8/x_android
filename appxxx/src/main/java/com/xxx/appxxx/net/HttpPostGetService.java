@@ -29,11 +29,12 @@ public interface HttpPostGetService {
     Observable<String> getServerTime();
 
     /**
-     *  获取分类接口
+     *  获取分类接口 http://api.kuaxue.cn/Padbase/
+     *  形如?t=1&p=2&size=3的url链接不能用@PATH注解
      * @return
      */
     @GET("getType")
-    Observable<String> getType(@Query("sign") String token);
+    Observable<String> getType(@Query("sign") String sign);
 
     /**
      *
