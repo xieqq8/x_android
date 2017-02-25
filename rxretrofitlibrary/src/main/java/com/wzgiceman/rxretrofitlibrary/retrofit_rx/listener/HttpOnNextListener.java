@@ -9,10 +9,10 @@ import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
 public interface  HttpOnNextListener {
     /**
      * 成功后回调方法
-     * @param resulte
+     * @param result
      * @param mothead
      */
-   void onNext(String resulte,String mothead);
+   void onNext(String result,String mothead);
 
     /**
      * 失败

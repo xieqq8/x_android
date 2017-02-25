@@ -1,8 +1,8 @@
-package com.xxx.appxxx.api;
+package com.xxx.appxxx.net.api;
 
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.xxx.appxxx.HttpUploadService;
+import com.xxx.appxxx.net.HttpUploadService;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

@@ -1,32 +1,24 @@
 package com.xxx.appxxx.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.alibaba.fastjson.TypeReference;
-import com.bumptech.glide.Glide;
 import com.githang.statusbar.StatusBarCompat;
-import com.githang.statusbar.StatusBarExclude;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextSubListener;
 import com.xxx.appxxx.R;
-import com.xxx.appxxx.api.SubjectPostApi;
-import com.xxx.appxxx.net.HttpUrlConstant;
-import com.xxx.appxxx.resulte.BaseResultEntity;
-import com.xxx.appxxx.resulte.SubjectResulte;
-import com.xxx.appxxx.resulte.UploadResulte;
+import com.xxx.appxxx.net.api.GetServerTimeApi;
+import com.xxx.appxxx.net.resulte.BaseResultEntity;
+import com.xxx.appxxx.net.resulte.SubjectResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
-import com.xxx.appxxx.uitest.Act01MainViewPage;
 import com.xxx.base.BaseApcActivity;
 import com.xxx.utils.LogX;
+import com.xxx.utils.PreferencesUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,12 +29,14 @@ import java.util.GregorianCalendar;
 
 import rx.Observable;
 
-public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener, HttpOnNextSubListener {
+public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener {
+
+    private long lCurtime;
 
     //    公用一个HttpManager
     private HttpManager manager;
     //    post请求接口信息
-    private SubjectPostApi postEntity;
+    private GetServerTimeApi postEntity;
 
     @Override
     public void initContentView() {
@@ -94,8 +88,7 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
         /*初始化数据*/
         manager = new HttpManager(this, this);
 
-        postEntity = new SubjectPostApi();
-        postEntity.setAll(true); // 接口需要传入的参数
+        postEntity = new GetServerTimeApi();
         getwebdatetime();
 
         LogX.getLogger().d("Act000Welcome onCreate " + Build.VERSION.SDK_INT + Build.VERSION_CODES.KITKAT);
@@ -149,76 +142,43 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
      * 得到网络时间和本地的间隔时间
      */
     private void getwebdatetime(){
+        // 进度框不显示
+        postEntity.setShowProgress(false);
 
-        manager.doHttpDeal(postEntity);
+        manager.doHttpDeal(postEntity, "http://api.kuaxue.cn/ParentClient/");
 
-//        NetRestClient.Instance().client.get(mContext, HttpUrlConstant.servertime, null, new TextHttpResponseHandler() {
-//            @Override
-//            public void onFailure(int i, Header[] headers, String s, Throwable throwable) {
-//            }
-//
-//            @Override
-//            public void onSuccess(int i, Header[] headers, String s) {
-////                SimpleDateFormat dff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-////                dff.setTimeZone(TimeZone.getTimeZone("GMT+08"));
-////                String ee = dff.format(new Date());
-////
-////                long cur = System.currentTimeMillis();
-////
-////                SimpleDateFormat formatter1 = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
-////                formatter1.setTimeZone(TimeZone.getTimeZone("GMT+08"));
-////                Date curDate = new Date(cur);//获取当前时间
-////                String str = formatter1.format(new Date()); //北京时间
-////                logx.d("北京时间: %s ",str); // 得到北京时间的格式
-////
-////                Calendar calendarA = Calendar.getInstance(TimeZone.getTimeZone("GMT+08"));
-////                calendarA.setTime(new Date());
-////
-////                try {
-////                    Date date = stringToDate(str, formatter1);
-////                    long cur2 = date.getTimezoneOffset();
-////
-////
-////                    Log.d("XLogger", String.valueOf(cur));
-////                    Log.d("XLogger", String.valueOf(cur2));
-////                    Log.d("XLogger", String.valueOf(cur2-cur));
-////
-//////                    logx.d("时间差: %s _ %s _ %s " , String.valueOf(cur) , String.valueOf(cur2) , String.valueOf(cur2 - cur));
-////                } catch (java.text.ParseException e) {
-////                    e.printStackTrace();
-////                }
-////                Calendar calendarB = Calendar.getInstance(TimeZone.getDefault());
-////                calendarA.setTime(new Date());
-////
-////                long diffDateInMillisSeconds = calendarA.getTimeInMillis() - calendarB.getTimeInMillis();
-//
-//                Calendar calendar = new GregorianCalendar();
-//                Log.d("XLogger", "__" + calendar.getTimeZone().getOffset(System.currentTimeMillis()));
-//
-//
-//                lCurtime = System.currentTimeMillis() + calendar.getTimeZone().getOffset(System.currentTimeMillis()) - 28800000;
-//
-//                try {
-//                    JSONObject jsonObject = new JSONObject(s);
-//                    long server = jsonObject.optLong("date3") * 1000;
-//                    long internal = server - lCurtime;
-//                    logx.d("internal:"+ internal +"_server:"+server+"_local:"+ String.valueOf(lCurtime));
-//
-//                    PreferencesUtil.getSharedPreference(mContext).edit().putLong("server_internal",internal).commit();
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
     }
 
     @Override
     public void onNext(String resulte, String mothead) {
         /*post返回处理*/
         if (mothead.equals(postEntity.getMethod())) {
-            BaseResultEntity<ArrayList<SubjectResulte>>   subjectResulte = com.alibaba.fastjson.JSONObject.parseObject(resulte, new
-                    TypeReference<BaseResultEntity<ArrayList<SubjectResulte>>>(){});
+
+            LogX.getLogger().d(resulte);
+//            BaseResultEntity<ArrayList<SubjectResulte>>   subjectResulte = com.alibaba.fastjson.JSONObject.parseObject(resulte, new
+//                    TypeReference<BaseResultEntity<ArrayList<SubjectResulte>>>(){});
+
+//            LogX.getLogger().d(subjectResulte.getData().toString());
+
+
+            Calendar calendar = new GregorianCalendar();
+            Log.d("XLogger", "__" + calendar.getTimeZone().getOffset(System.currentTimeMillis()));
+
+
+            lCurtime = System.currentTimeMillis() + calendar.getTimeZone().getOffset(System.currentTimeMillis()) - 28800000;
+
+            try {
+                JSONObject jsonObject = new JSONObject(resulte);
+                long server = jsonObject.optLong("date3") * 1000;
+                long internal = server - lCurtime;
+                LogX.getLogger().d("internal:"+ internal +"_server:"+server+"_local:"+ String.valueOf(lCurtime));
+
+                PreferencesUtil.getSharedPreference(mContext).edit().putLong("server_internal",internal).commit();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 //            tvMsg.setText("post返回：\n" + subjectResulte.getData().toString());
         }
 
@@ -237,8 +197,5 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
 
     }
 
-    @Override
-    public void onNext(Observable observable) {
 
-    }
 }

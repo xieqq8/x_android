@@ -1,17 +1,17 @@
-package com.xxx.appxxx.api;
+package com.xxx.appxxx.net.api;
 
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
-import com.xxx.appxxx.HttpPostService;
+import com.xxx.appxxx.net.HttpPostGetService;
 
 import retrofit2.Retrofit;
 import rx.Observable;
 
 /**
  * 测试数据
- * Created by WZG on 2016/7/16.
+ * Created by xie on 2016/7/16.
  */
-public class SubjectPostApi extends BaseApi {
+public class SubjectPostGetApi extends BaseApi {
     //    接口需要传入的参数 可自定义不同类型
     private boolean all;
     /*任何你先要传递的参数*/
@@ -26,7 +26,7 @@ public class SubjectPostApi extends BaseApi {
      * 可以额外设置请求设置加载框显示，回调等（可扩展）
      * 设置可查看BaseApi
      */
-    public SubjectPostApi() {
+    public SubjectPostGetApi() {
 //        setMethod("AppFiftyToneGraph/videoLink");
     }
 
@@ -41,7 +41,7 @@ public class SubjectPostApi extends BaseApi {
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
-        HttpPostService httpService = retrofit.create(HttpPostService.class);
+        HttpPostGetService httpService = retrofit.create(HttpPostGetService.class);
         return httpService.getAllVedioBy(isAll());
     }
 

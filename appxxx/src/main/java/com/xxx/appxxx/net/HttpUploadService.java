@@ -1,4 +1,4 @@
-package com.xxx.appxxx;
+package com.xxx.appxxx.net;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

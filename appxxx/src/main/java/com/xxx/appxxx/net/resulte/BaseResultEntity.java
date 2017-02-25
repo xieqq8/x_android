@@ -1,4 +1,4 @@
-package com.xxx.appxxx.resulte;
+package com.xxx.appxxx.net.resulte;
 
 /**
  * 回调信息统一封装类

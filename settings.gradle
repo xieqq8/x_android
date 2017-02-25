@@ -1,1 +1,1 @@
-include ':appxxx', ':okhttputils',":rxretrofitlibrary",":swipebacklib"
+include ':appxxx', ":rxretrofitlibrary",":swipebacklib"

@@ -1,4 +1,4 @@
-package com.xxx.appxxx.resulte;
+package com.xxx.appxxx.net.resulte;
 
 import java.util.List;
 

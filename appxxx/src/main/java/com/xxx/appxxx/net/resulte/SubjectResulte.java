@@ -1,4 +1,4 @@
-package com.xxx.appxxx.resulte;
+package com.xxx.appxxx.net.resulte;
 
 /**
  * 测试显示数据

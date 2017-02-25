@@ -29,4 +29,7 @@
     <color name="btn_orange_bg">#ffba00</color>
     <!--课程-->
     <color name="btn_course_bg">#6bc858</color>
+
+    <color name="black_l">#2d2d2d</color>
+
 </resources>

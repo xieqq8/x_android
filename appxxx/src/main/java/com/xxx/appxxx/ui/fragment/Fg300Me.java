@@ -26,16 +26,15 @@ import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextSubListener;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.upload.ProgressRequestBody;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.upload.UploadProgressListener;
 import com.xxx.appxxx.R;
-import com.xxx.appxxx.api.SubjectPostApi;
-import com.xxx.appxxx.api.UploadApi;
+import com.xxx.appxxx.net.api.SubjectPostGetApi;
+import com.xxx.appxxx.net.api.UploadApi;
 import com.xxx.appxxx.mvpsample.DWeatherActivity;
-import com.xxx.appxxx.resulte.BaseResultEntity;
-import com.xxx.appxxx.resulte.SubjectResulte;
-import com.xxx.appxxx.resulte.UploadResulte;
+import com.xxx.appxxx.net.resulte.BaseResultEntity;
+import com.xxx.appxxx.net.resulte.SubjectResulte;
+import com.xxx.appxxx.net.resulte.UploadResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.appxxx.uitest.DownLaodActivity;
 import com.xxx.appxxx.uitest.DrawAppBarDemoActivity;
@@ -69,7 +68,7 @@ import rx.schedulers.Schedulers;
  * Use the {@link Fg300Me#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fg300Me extends BackHandledFragment implements View.OnTouchListener, View.OnClickListener, HttpOnNextListener, HttpOnNextSubListener {
+public class Fg300Me extends BackHandledFragment implements View.OnTouchListener, View.OnClickListener, HttpOnNextListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -188,7 +187,7 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
     //    公用一个HttpManager
     private HttpManager manager;
     //    post请求接口信息
-    private SubjectPostApi postEntity;
+    private SubjectPostGetApi postEntity;
     //    上传接口信息
     private UploadApi uplaodApi;
 
@@ -203,7 +202,7 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
         /*初始化数据*/
         manager = new HttpManager(this, getBaseActivity());
 
-        postEntity = new SubjectPostApi();
+        postEntity = new SubjectPostGetApi();
         postEntity.setAll(true);
 
         /*上传接口内部接口有token验证，所以需要换成自己的接口测试，检查file文件是否手机存在*/
@@ -578,7 +577,7 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
     private void simpleDo() {
          /*初始化数据*/
         manager = new HttpManager(this, getBaseActivity());
-        postEntity = new SubjectPostApi();
+        postEntity = new SubjectPostGetApi();
         postEntity.setAll(true);
         manager.doHttpDeal(postEntity);
     }
@@ -609,10 +608,6 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
     }
 
 
-    @Override
-    public void onNext(Observable observable) {
-
-    }
 //    /*************************************************封装完请求*******************************************************/
 //
 //    //    完美封装简化版

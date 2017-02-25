@@ -116,6 +116,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
                 long time = (System.currentTimeMillis() - cookieResulte.getTime()) / 1000;
                 if (time < api.getCookieNetWorkTime()) {
                     if (mSubscriberOnNextListener.get() != null) {
+                        // 这里用的缓存数据
                         mSubscriberOnNextListener.get().onNext(cookieResulte.getResulte(), api.getMethod());
                     }
                     onCompleted();

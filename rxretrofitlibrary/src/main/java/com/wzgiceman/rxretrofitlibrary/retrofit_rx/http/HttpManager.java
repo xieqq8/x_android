@@ -33,13 +33,13 @@ public class HttpManager {
         this.onNextListener = new SoftReference(onNextListener);
         this.appCompatActivity = new SoftReference(appCompatActivity);
     }
-
     /**
      * 处理http请求
      *
      * @param basePar 封装的请求数据
      */
-    public void doHttpDeal(BaseApi basePar) {
+    public void doHttpDeal(BaseApi basePar,String baseUrl) {
+
         //手动创建一个OkHttpClient并设置超时时间缓存等设置
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(basePar.getConnectionTime(), TimeUnit.SECONDS);
@@ -49,10 +49,12 @@ public class HttpManager {
                 .client(builder.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(basePar.getBaseUrl())
+                .baseUrl(baseUrl)
                 .build();
         /*rx处理*/
         ProgressSubscriber subscriber = new ProgressSubscriber(basePar, onNextListener, appCompatActivity);
+
+        // RxJava
         Observable observable = basePar.getObservable(retrofit)
                 /*失败后的retry配置*/
                 .retryWhen(new RetryWhenNetworkException())
@@ -70,6 +72,15 @@ public class HttpManager {
 
         /*数据回调*/
         observable.subscribe(subscriber);
+    }
+
+    /**
+     * 处理http请求
+     *
+     * @param basePar 封装的请求数据
+     */
+    public void doHttpDeal(BaseApi basePar) {
+        doHttpDeal(basePar, basePar.getBaseUrl());
     }
 
 
