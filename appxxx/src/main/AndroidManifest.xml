@@ -18,7 +18,7 @@
         <activity
             android:name=".ui.activity.Act001Main"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ui.activity.Act000Welcome"
             android:theme="@style/AppThemeStartLoad">

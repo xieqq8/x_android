@@ -3,104 +3,104 @@
     databinding
     RXjava2
     Retrofit2
-    Glide - Ò»¸ö×¨×¢ÓÚÆ½»¬¹ö¶¯µÄ Android Í¼Ïñ¼ÓÔØºÍ»º´æ¿â
-    numberprogressbar °Ù·Ö±È
+    Glide - ä¸€ä¸ªä¸“æ³¨äºå¹³æ»‘æ»šåŠ¨çš„ Android å›¾åƒåŠ è½½å’Œç¼“å­˜åº“
+    numberprogressbar ç™¾åˆ†æ¯”
     easyrecyclerview
-    Android Material Design£¨¶ş£©Observable Scroll View
+    Android Material Designï¼ˆäºŒï¼‰Observable Scroll View
 
 2017-02-04
-	ĞÂÔöµÄappxxx ¿ò¼Ü
+	æ–°å¢çš„appxxx æ¡†æ¶
 		
 	mvp 
-	ÒªÓĞ Í¨ÓÃ fragement activity
-	»¬¶¯·µ»Ø
-	µÇÂ¼¡¢×¢²á¡¢Íü¼ÇÃÜÂë¡¢¼ÓÔØÖĞ...
+	è¦æœ‰ é€šç”¨ fragement activity
+	æ»‘åŠ¨è¿”å›
+	ç™»å½•ã€æ³¨å†Œã€å¿˜è®°å¯†ç ã€åŠ è½½ä¸­...
 			
 	activity AppCompatActivity
 	
 	
-	|¡ª¡ª
-	|¡ª¡ª
+	|â€”â€”
+	|â€”â€”
 	|
 	|
 	
 2016-12-02
-	|¡ª¡ª×ªË½ÓĞ¿â
+	|â€”â€”è½¬ç§æœ‰åº“
 	|
 2016-12-01
 
 	AppCompatActivity
 	butterknife
 	gson
-	×Ô¶¨ÒåToolbar
+	è‡ªå®šä¹‰Toolbar
 
-	µ×²¿¼ÓÔØ 
+	åº•éƒ¨åŠ è½½ 
 
 
 2016-11-30 
-	ÔÙ´Î¹¹¼Üappxxx
+	å†æ¬¡æ„æ¶appxxx
 	okhttputils
 
-	Ä¿Â¼½á¹¹ÕûÀí
+	ç›®å½•ç»“æ„æ•´ç†
 	|
-	|¡ª¡ªappxxx
-	|¡ª¡ª¡ª¡ª¡ª¡ª¡ªcofig
-	|¡ª¡ª¡ª¡ª¡ª¡ª¡ªui
-	|¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-	|¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+	|â€”â€”appxxx
+	|â€”â€”â€”â€”â€”â€”â€”cofig
+	|â€”â€”â€”â€”â€”â€”â€”ui
+	|â€”â€”â€”â€”â€”â€”â€”
+	|â€”â€”â€”â€”â€”â€”â€”
 	|
-	|¡ª¡ªbase 
-	|
-	|
-	|¡ª¡ªutils ¹¤¾ßÀà¼¯ºÏ
-	|	Gson ÎÈ¶¨
-	|
-	|¡ª¡ªwidget ¿É¸´ÓÃµÄview¼¯ºÏ
+	|â€”â€”base 
 	|
 	|
-	|¡ª¡ª
+	|â€”â€”utils å·¥å…·ç±»é›†åˆ
+	|	Gson ç¨³å®š
 	|
-	|¡ª¡ª
+	|â€”â€”widget å¯å¤ç”¨çš„viewé›†åˆ
 	|
-	|¡ª¡ª
 	|
-	|¡ª¡ª
+	|â€”â€”
+	|
+	|â€”â€”
+	|
+	|â€”â€”
+	|
+	|â€”â€”
 
 2016-07-01
 	EventBus
-	×Ô¶¨Òåµ¯³ö¿ò
-	DialogFragment ´´½¨¶Ô»°¿ò  
+	è‡ªå®šä¹‰å¼¹å‡ºæ¡†
+	DialogFragment åˆ›å»ºå¯¹è¯æ¡†  
  
 2016-06-30
-	ÏÂÔØ¡¢¶ÏµãĞø´«
+	ä¸‹è½½ã€æ–­ç‚¹ç»­ä¼ 
 
 2016-06-29	(over)
-	Èí¼ş¸üĞÂ
+	è½¯ä»¶æ›´æ–°
 2016-06-28	(over)
-	ÆÀ¼Û¡¢·ÖÏí¿ÉÒÔÓÃÏµÍ³×Ô´øµÄ
-	ÆÀ¼Û
+	è¯„ä»·ã€åˆ†äº«å¯ä»¥ç”¨ç³»ç»Ÿè‡ªå¸¦çš„
+	è¯„ä»·
 	Uri uri = Uri.parse("market://details?id=" + getPackageName());
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-	·ÖÏí
+	åˆ†äº«
 	Intent sendIntent = new Intent();
 	sendIntent.setAction(Intent.ACTION_SEND);
 	sendIntent.setType("text/*");
 2016-06-16	(over)
-	listview  ITEMÀïÃæµÄµã»÷ÓëITEMµã»÷
-	Item²¼¾ÖµÄ¸ù²¼¾Ö¼ÓÉÏandroid:descendantFocusability=¡±blocksDescendants¡±
+	listview  ITEMé‡Œé¢çš„ç‚¹å‡»ä¸ITEMç‚¹å‡»
+	Itemå¸ƒå±€çš„æ ¹å¸ƒå±€åŠ ä¸Šandroid:descendantFocusability=â€blocksDescendantsâ€
 
-	beforeDescendants£ºviewgroup»áÓÅÏÈÆä×ÓÀà¿Ø¼ş¶ø»ñÈ¡µ½½¹µã
-        afterDescendants£ºviewgroupÖ»ÓĞµ±Æä×ÓÀà¿Ø¼ş²»ĞèÒª»ñÈ¡½¹µãÊ±²Å»ñÈ¡½¹µã
-        blocksDescendants£ºviewgroup»á¸²¸Ç×ÓÀà¿Ø¼ş¶øÖ±½Ó»ñµÃ½¹µã
+	beforeDescendantsï¼šviewgroupä¼šä¼˜å…ˆå…¶å­ç±»æ§ä»¶è€Œè·å–åˆ°ç„¦ç‚¹
+        afterDescendantsï¼šviewgroupåªæœ‰å½“å…¶å­ç±»æ§ä»¶ä¸éœ€è¦è·å–ç„¦ç‚¹æ—¶æ‰è·å–ç„¦ç‚¹
+        blocksDescendantsï¼šviewgroupä¼šè¦†ç›–å­ç±»æ§ä»¶è€Œç›´æ¥è·å¾—ç„¦ç‚¹
 
 2016-05-25	(over)
-	»ù±¾¼Ü¹¹
+	åŸºæœ¬æ¶æ„
 
-	|000 Ê×Ò³
-	|001 002 003 004 Æô¶¯Ò³¡¢µÇÂ¼¡¢×¢²á¡¢ÕÒ»ØÃÜÂë
+	|000 é¦–é¡µ
+	|001 002 003 004 å¯åŠ¨é¡µã€ç™»å½•ã€æ³¨å†Œã€æ‰¾å›å¯†ç 
 	|
 	|--100 fragment 1
-	|----110 111 112...... ÒµÎñ·ÖÖ§1
+	|----110 111 112...... ä¸šåŠ¡åˆ†æ”¯1
 	|----120 121 122......
 	|--200 frgament 2
 	|--300 fragment 3
@@ -111,18 +111,18 @@
 	DEMO
 
 2016-05-05
-	greenDAO¡¢EventBus¹ÙÍø
+	greenDAOã€EventBuså®˜ç½‘
 	http://greenrobot.org/
 
 2016-04-18
-	½øÈëÍË³ö¶¯»­ £¨over£©
-	½øÈë startActivityºó¼Ó overridePendingTransition
-	ÍË³ö finishºó¼Ó overridePendingTransition
+	è¿›å…¥é€€å‡ºåŠ¨ç”» ï¼ˆoverï¼‰
+	è¿›å…¥ startActivityååŠ  overridePendingTransition
+	é€€å‡º finishååŠ  overridePendingTransition
 2016-04-08
-	±êÌâÀ¸Í¨Í¸
-	ÓÃ
+	æ ‡é¢˜æ é€šé€
+	ç”¨
 
 2016-03-22
-	¼ÓÔØ¸ü¶à (over)
-	ÉÏÀ­»á»Øµ½×îÉÏÃæ ÊÇÒòÎªÃ»ÓĞÓÃ notifyDataSetChanged
+	åŠ è½½æ›´å¤š (over)
+	ä¸Šæ‹‰ä¼šå›åˆ°æœ€ä¸Šé¢ æ˜¯å› ä¸ºæ²¡æœ‰ç”¨ notifyDataSetChanged
 
