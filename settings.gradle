@@ -1,1 +1,1 @@
-include ':appxxx', ":rxretrofitlibrary",":swipebacklib"
+include ':app',':appxxx', ":rxretrofitlibrary",":swipebacklib"

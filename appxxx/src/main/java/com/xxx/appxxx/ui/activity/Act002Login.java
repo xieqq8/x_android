@@ -67,7 +67,6 @@ public class Act002Login extends BaseApcActivityWithSwipeBack implements View.On
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-
         mToolbar.setNavigationIcon(R.mipmap.title_back);//);
 
 //        ff-81-ff-00
