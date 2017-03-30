@@ -21,4 +21,16 @@ public interface  HttpOnNextListener {
      * @param e
      */
     void onError(ApiException e);
+
+//    /**
+//     * 之后要加的这个
+//     * 开始下载之前要执行的
+//     */
+//    void onStart();
+//
+//    /**
+//     *
+//     * 完成下载后要执行的
+//     */
+//    void onComplete();
 }
