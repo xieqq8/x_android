@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.xxx.mvptest.R;
 import com.xxx.mvptest.bean.UserBean;
 import com.xxx.mvptest.databinding.ActivityMainBinding;
+import com.xxx.mvptest.model.UserModel;
 import com.xxx.mvptest.presenter.UserPresenter;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,IUserView {
@@ -31,20 +32,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        presenter = new UserPresenter( this);
 
 
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        // fragment
+//        final View root = inflater.inflate(R.layout.addtask_frag, container, false);
+//        binding = ActivityMainBinding.bind(root);
+
         UserBean user = new UserBean("Test", "User");
         binding.setNews(user);
-
-
+        UserBean userBean = binding.getNews(); // 取数，不用 findviewById
+//        binding.getRoot(); // fragment
     }
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 //            case R.id.save:
-//                presenter.saveUser(getID(), getFristName(), getLastName());  // 保存页面的数据
+//                presenter.saveUser(getID(), getmFristName(), getmLastName());  // 保存页面的数据
 //                break;
             case R.id.load:
-//                presenter.loadUser(getID()); // 刷新页面
+                UserModel  userModel = new UserModel();
+                binding.setNews(userModel.load(getID()));  // mv vm
+                //                presenter.loadUser(getID()); // 刷新页面  mvp
                 break;
             default:
                 break;
@@ -57,24 +67,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public String getFristName() {
+    public String getmFristName() {
 //        return first.getText().toString();
         return null;
     }
 
     @Override
-    public String getLastName() {
+    public String getmLastName() {
 //        return last.getText().toString();
         return null;
     }
 
     @Override
-    public void setFirstName(String firstName) {
+    public void setmFirstName(String firstName) {
 //        first.setText(firstName);
     }
 
     @Override
-    public void setLastName(String lastName) {
+    public void setmLastName(String lastName) {
 //        last.setText(lastName);
     }
 

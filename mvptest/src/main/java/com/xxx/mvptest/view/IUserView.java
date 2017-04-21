@@ -7,11 +7,11 @@ package com.xxx.mvptest.view;
 public interface IUserView {
     int getID();
 
-    String getFristName();
+    String getmFristName();
 
-    String getLastName();
+    String getmLastName();
 
-    void setFirstName(String firstName);
+    void setmFirstName(String firstName);
 
-    void setLastName(String lastName);
+    void setmLastName(String lastName);
 }

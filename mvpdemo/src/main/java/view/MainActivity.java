@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.xxx.mvpdemo.R;
 
 import bean.User;
+import model.GetUserInfo;
+import model.IGetUser;
 import presenter.UserInfoPresenter;
 import view.base.BaseMvpActivity;
 
@@ -51,6 +53,8 @@ public class MainActivity extends BaseMvpActivity<IShowUserView,UserInfoPresente
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                IGetUser iGetUser = new GetUserInfo();
+//                iGetUser.getUserInfo(1 ,this);
                 presenter.getUserInfoToShow(2);
             }
         });
@@ -75,12 +79,12 @@ public class MainActivity extends BaseMvpActivity<IShowUserView,UserInfoPresente
 
     @Override
     public void showLoading() {
-        pd.show();
+        pd.show(); // 加载中
     }
 
     @Override
     public void hideLoading() {
-        pd.cancel();
+        pd.cancel(); // 加载完成
     }
 
     @Override
