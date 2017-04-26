@@ -44,6 +44,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        binding.getRoot(); // fragment
     }
 
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        com.sunzxyong.binding.databinding.ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        final User user = new User("Sunzxyong", "12345678");
+//        mBinding.setUser(user);
+//        mBinding.btn.setOnClickListener(new android.view.View.OnClickListener() {
+//            @Override
+//            public void onClick(android.view.View v) {
+//                user.setUserName("Hello");
+//                user.setUserPassword("87654321");
+//            }
+//        });
+//    }
+
 
     @Override
     public void onClick(View v) {
