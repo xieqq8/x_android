@@ -30,7 +30,7 @@ public class ConfigUtil {
     public static final String CC_USER = "0C728A4805962911";
     public static final String CC_API_KEY = "DcI2zyLMbbfPtVJ8KGOMjU2nFO0NVbLz";
     //    public static final String C_ACCESS_TOKEN = "ACCESS_TOKEN";
-    public static final String DB_NAME = "kx_vl_db";
+    public static final String DB_NAME = "kx_test_db";
 
     //
 //    public static final String C_Local_Xg_token = "user_local_xg_token";

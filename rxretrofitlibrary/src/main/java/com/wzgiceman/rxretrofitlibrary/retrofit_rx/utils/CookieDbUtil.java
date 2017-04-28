@@ -24,7 +24,7 @@ import java.util.List;
 
 public class CookieDbUtil {
     private static CookieDbUtil db;
-    private final static String dbName = "tests_db";
+    private final static String dbName = "kx_test_db";
     private DaoMaster.DevOpenHelper openHelper;
     private Context context;
 
