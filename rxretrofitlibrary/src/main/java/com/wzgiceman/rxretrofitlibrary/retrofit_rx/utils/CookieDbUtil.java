@@ -4,8 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DaoMaster;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DaoSession;
+
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.database.Entity.DaoMaster;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.database.Entity.DaoSession;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.HttpDownManager;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieResulte;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieResulteDao;
@@ -72,7 +73,6 @@ public class CookieDbUtil {
         return db;
     }
 
-
     public void saveCookie(CookieResulte info){
         DaoMaster daoMaster = new DaoMaster(getWritableDatabase());
         DaoSession daoSession = daoMaster.newSession();
@@ -93,7 +93,6 @@ public class CookieDbUtil {
         CookieResulteDao downInfoDao = daoSession.getCookieResulteDao();
         downInfoDao.delete(info);
     }
-
 
     public CookieResulte queryCookieBy(String  url) {
         DaoMaster daoMaster = new DaoMaster(getReadableDatabase());

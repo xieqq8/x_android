@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DaoMaster;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DaoSession;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.database.Entity.DaoMaster;
+import com.wzgiceman.rxretrofitlibrary.retrofit_rx.database.Entity.DaoSession;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownInfo;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.DownInfoDao;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.HttpDownManager;
@@ -28,7 +28,7 @@ public class DbDwonUtil {
     private Context context;
 
 
-    public DbDwonUtil() {
+    private DbDwonUtil() {
         context= RxRetrofitApp.getApplication();
         openHelper = new DaoMaster.DevOpenHelper(context, dbName, null);
     }

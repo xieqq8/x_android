@@ -28,7 +28,12 @@ public abstract class BaseApi {
     private int cookieNetWorkTime = 60;
     /*无网络的情况下本地缓存时间默认30天*/
     private int cookieNoNetWorkTime = 24 * 60 * 60 * 30;
-
+    /* retry次数*/
+    private int retryCount = 1;
+    /*retry延迟*/
+    private long retryDelay = 100;
+    /*retry叠加延迟*/
+    private long retryIncreaseDelay = 100;
     public Context getmContext() {
         return mContext;
     }
@@ -44,7 +49,7 @@ public abstract class BaseApi {
      * @return
      */
     public abstract Observable getObservable(Retrofit retrofit);
-
+//    public abstract Observable<String> getObservable(Retrofit retrofit);
 
     public int getCookieNoNetWorkTime() {
         return cookieNoNetWorkTime;
@@ -61,7 +66,6 @@ public abstract class BaseApi {
     public void setCookieNetWorkTime(int cookieNetWorkTime) {
         this.cookieNetWorkTime = cookieNetWorkTime;
     }
-
 
     public int getConnectionTime() {
         return connectionTime;
@@ -113,5 +117,29 @@ public abstract class BaseApi {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
+
+    public void setRetryCount(int retryCount) {
+        this.retryCount = retryCount;
+    }
+
+    public long getRetryDelay() {
+        return retryDelay;
+    }
+
+    public void setRetryDelay(long retryDelay) {
+        this.retryDelay = retryDelay;
+    }
+
+    public long getRetryIncreaseDelay() {
+        return retryIncreaseDelay;
+    }
+
+    public void setRetryIncreaseDelay(long retryIncreaseDelay) {
+        this.retryIncreaseDelay = retryIncreaseDelay;
     }
 }

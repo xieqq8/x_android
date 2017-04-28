@@ -7,12 +7,13 @@ import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
  * Created by WZG on 2016/7/16.
  */
 public interface  HttpOnNextListener {
+    // 修改 下 onNetStart开始  onNetSuccess成功  onNetError出错  onNetCompleted完成
     /**
      * 成功后回调方法
-     * @param result
-     * @param mothead
+     * @param resulte
+     * @param method
      */
-   void onNext(String result,String mothead);
+   void onNext(String resulte,String method);
 
     /**
      * 失败
@@ -22,15 +23,11 @@ public interface  HttpOnNextListener {
      */
     void onError(ApiException e);
 
+
 //    /**
-//     * 之后要加的这个
-//     * 开始下载之前要执行的
+//     * 调用完成后
+//     * @param method
 //     */
-//    void onStart();
-//
-//    /**
-//     *
-//     * 完成下载后要执行的
-//     */
-//    void onComplete();
+//    void onCompleted(String method);
+
 }
