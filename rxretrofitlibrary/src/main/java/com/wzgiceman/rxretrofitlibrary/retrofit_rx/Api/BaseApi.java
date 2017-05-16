@@ -25,9 +25,9 @@ public abstract class BaseApi {
     /*超时时间-默认6秒*/
     private int connectionTime = 6;
     /*有网情况下的本地缓存时间默认60秒*/
-    private int cookieNetWorkTime = 60;
+    private int cookieNetWorkTime = 3;  // 3 秒
     /*无网络的情况下本地缓存时间默认30天*/
-    private int cookieNoNetWorkTime = 24 * 60 * 60 * 30;
+    private int cookieNoNetWorkTime = 24 * 60 * 60 * 1; // 一天
     /* retry次数*/
     private int retryCount = 1;
     /*retry延迟*/

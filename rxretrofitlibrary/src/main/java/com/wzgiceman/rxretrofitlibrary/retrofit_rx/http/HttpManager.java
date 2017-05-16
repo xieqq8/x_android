@@ -114,6 +114,21 @@ public class HttpManager {
      * @param basePar
      */
     public void httpDeal(Observable observable, BaseApi basePar) {
+
+//        Flowable是支持背压的
+//        Flowable.create(new FlowableOnSubscribe<Integer>() {
+//                            @Override
+//                            public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+//                                e.onNext(1);
+//                                e.onNext(2);
+//                                e.onNext(3);
+//                                e.onNext(4);
+//                                e.onComplete();
+//                            }
+//                        }
+//                //需要指定背压策略
+//                , BackpressureStrategyreStrategy.BUFFER);
+
           /*失败后的retry配置*/
         observable = observable.retryWhen(new RetryWhenNetworkException(basePar.getRetryCount(),
                 basePar.getRetryDelay(), basePar.getRetryIncreaseDelay()))
@@ -129,7 +144,8 @@ public class HttpManager {
                 .subscribeOn(Schedulers.io())  // // 指定 subscribe() 发生在 IO 线程
                 .unsubscribeOn(Schedulers.io())
                 /*回调线程*/
-                .observeOn(AndroidSchedulers.mainThread());  // 指定 Subscriber 的回调发生在主线程
+                .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
+                ;//.onBackpressureBuffer()
 
         /*ober回调，链接式返回*/
         if (onNextSubListener != null && null != onNextSubListener.get()) {

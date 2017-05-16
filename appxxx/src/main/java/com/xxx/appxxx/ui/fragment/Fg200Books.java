@@ -143,6 +143,15 @@ public class Fg200Books extends BackHandledFragment implements HttpOnNextListene
     public void onError(ApiException e) {
 
     }
+    @Override
+    public void onNextCache(String resulte, String method) {
+        LogX.getLogger().d("onNextCache");
+
+    }
+    @Override
+    public void onCompleted(String method) {
+
+    }
 
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {

@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         loginBean.mPassword.set("321");
         loginBean.userface = "http://img2.cache.netease.com/auto/2016/7/28/201607282215432cd8a.jpg";
         binding.setUser(loginBean);
-
         // 点击登录
        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // 从页面获取 databinding
 //                UserLoginBean userBean = binding.getUser();
-//
 //                userModel.login(userBean);
 
                 Intent intent = new Intent(MainActivity.this, ListActivity.class);

@@ -15,32 +15,33 @@ import com.xxx.mvptest.presenter.UserPresenter;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,IUserView {
 
 // mvp 中 的presenter
-//    UserPresenter presenter;
-//    EditText id,first,last;
+    UserPresenter presenter;
+    EditText id,first,last;
 
-    private ActivityMainBinding binding;
+//    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        findViewById(R.id.save).setOnClickListener( this);
-//        findViewById(R.id.load).setOnClickListener( this);
-//        id = (EditText) findViewById(R.id.id);
-//        first = (EditText) findViewById(R.id. first);
-//        last = (EditText) findViewById(R.id. last);
-//        presenter = new UserPresenter( this);
+        findViewById(R.id.save).setOnClickListener( this);
+        findViewById(R.id.load).setOnClickListener( this);
+        id = (EditText) findViewById(R.id.id);
+        first = (EditText) findViewById(R.id. first);
+        last = (EditText) findViewById(R.id. last);
+        presenter = new UserPresenter( this);
 
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//
+//        UserBean user = new UserBean("Test", "User");
+//        binding.setNews(user);
+//        UserBean userBean = binding.getNews(); // 取数，不用 findviewById
+
 
         // fragment
 //        final View root = inflater.inflate(R.layout.addtask_frag, container, false);
 //        binding = ActivityMainBinding.bind(root);
-
-        UserBean user = new UserBean("Test", "User");
-        binding.setNews(user);
-        UserBean userBean = binding.getNews(); // 取数，不用 findviewById
 //        binding.getRoot(); // fragment
     }
 
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                break;
             case R.id.load:
                 UserModel  userModel = new UserModel();
-                binding.setNews(userModel.load(getID()));  // mv vm
-                //                presenter.loadUser(getID()); // 刷新页面  mvp
+//               binding.setNews(userModel.load(getID()));  // mv vm
+                presenter.loadUser(getID()); // 刷新页面  mvp
                 break;
             default:
                 break;

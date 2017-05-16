@@ -10,7 +10,7 @@ import rx.Observable;
 public interface HttpOnNextSubListener {
 
     /**
-     * ober成功回调
+     * ober成功回调 链式返回才用到这个
      * @param observable
      * @param method
      */

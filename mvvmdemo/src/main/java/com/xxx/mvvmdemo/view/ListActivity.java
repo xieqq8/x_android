@@ -28,19 +28,22 @@ public class ListActivity extends AppCompatActivity {
     private List<Food> foods;
     private ListView lv;
 
-    private Handler mHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            MyBaseAdapter<Food> adapter = new MyBaseAdapter<>(ListActivity.this, R.layout.listview_item, foods, com.xxx.mvvmdemo.BR.food);
-            lv.setAdapter(adapter);
-        }
-    };
+//    private Handler mHandler = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            MyBaseAdapter<Food> adapter = new MyBaseAdapter<>(ListActivity.this, R.layout.listview_item, foods, com.xxx.mvvmdemo.BR.food);
+//            lv.setAdapter(adapter);
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         lv = ((ListView) findViewById(R.id.lv));
+
+        MyBaseAdapter<Food> adapter = new MyBaseAdapter<>(ListActivity.this, R.layout.listview_item, foods, com.xxx.mvvmdemo.BR.food);
+        lv.setAdapter(adapter);
         initData();
     }
     private void initData() { // 这个应该写到model层
@@ -73,7 +76,7 @@ public class ListActivity extends AppCompatActivity {
                 String summary = item.getString("summary");
                 foods.add(new Food(description, img, keywords, summary));
             }
-            mHandler.sendEmptyMessage(0);
+//            mHandler.sendEmptyMessage(0);
         } catch (JSONException e) {
             e.printStackTrace();
         }

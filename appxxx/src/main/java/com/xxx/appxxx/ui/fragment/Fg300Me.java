@@ -40,6 +40,7 @@ import com.xxx.appxxx.uitest.DownLaodActivity;
 import com.xxx.appxxx.uitest.DrawAppBarDemoActivity;
 import com.xxx.appxxx.uitest.ScrollingActivity;
 import com.xxx.base.BackHandledFragment;
+import com.xxx.utils.LogX;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -607,7 +608,16 @@ public class Fg300Me extends BackHandledFragment implements View.OnTouchListener
         tvMsg.setText("失败：\ncode=" + e.getCode() + "\nmsg:" + e.getDisplayMessage());
     }
 
+    @Override
+    public void onCompleted(String method) {
 
+    }
+
+    @Override
+    public void onNextCache(String resulte, String method) {
+        LogX.getLogger().d("onNextCache");
+
+    }
 //    /*************************************************封装完请求*******************************************************/
 //
 //    //    完美封装简化版

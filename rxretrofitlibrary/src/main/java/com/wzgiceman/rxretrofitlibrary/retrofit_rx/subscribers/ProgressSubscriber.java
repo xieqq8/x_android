@@ -4,6 +4,7 @@ package com.wzgiceman.rxretrofitlibrary.retrofit_rx.subscribers;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.Api.BaseApi;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
@@ -113,13 +114,14 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
             CookieResulte cookieResulte = CookieDbUtil.getInstance().queryCookieBy(api.getUrl());
             if (cookieResulte != null) {
                 long time = (System.currentTimeMillis() - cookieResulte.getTime()) / 1000;
-                if (time < api.getCookieNetWorkTime()) {
+                if (time < api.getCookieNetWorkTime()) {  // 有网的情况下60秒
                     if (mSubscriberOnNextListener.get() != null) {
+                        Log.d("XLogger", "cookieResulte  onNext"); // 缓存并且有网 (服务器有问题走这里)
                         // 这里用的缓存数据, 没有缓存数据会报错
                         mSubscriberOnNextListener.get().onNext(cookieResulte.getResulte(), api.getMethod());
                     }
+                    unsubscribe(); // 从缓存中取，取消订阅
                     onCompleted();
-                    unsubscribe();
                 }
             }
         }
@@ -131,6 +133,9 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
     @Override
     public void onCompleted() {
         dismissProgressDialog();
+
+        mSubscriberOnNextListener.get().onCompleted(api.getMethod()); // xqq 170515 add complete
+
     }
 
     /**
@@ -143,7 +148,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
     public void onError(Throwable e) {
         /*需要緩存并且本地有缓存才返回*/
         if (api.isCache()) {
-            getCache();
+            getCache(); // 出错取缓存的
         } else {
             errorDo(e);
         }
@@ -157,7 +162,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
         Observable.just(api.getUrl()).subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
-
+                Log.d("XLogger", "getCache  onCompleted 有网 服务器坏 读缓存");
             }
 
             @Override
@@ -167,7 +172,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
 
             @Override
             public void onNext(String s) {
-                           /*获取缓存数据*/
+                /*获取缓存数据*/
                 CookieResulte cookieResulte = CookieDbUtil.getInstance().queryCookieBy(s);
                 if (cookieResulte == null) {
                     throw new HttpTimeException(HttpTimeException.NO_CHACHE_ERROR);
@@ -175,7 +180,9 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
                 long time = (System.currentTimeMillis() - cookieResulte.getTime()) / 1000;
                 if (time < api.getCookieNoNetWorkTime()) {
                     if (mSubscriberOnNextListener.get() != null) {
-                        mSubscriberOnNextListener.get().onNext(cookieResulte.getResulte(), api.getMethod());
+//                        mSubscriberOnNextListener.get().onNext(cookieResulte.getResulte(), api.getMethod());
+                        // 缓存的 网络取的断开
+                        mSubscriberOnNextListener.get().onNextCache(cookieResulte.getResulte(), api.getMethod());
                     }
                 } else {
                     CookieDbUtil.getInstance().deleteCookie(cookieResulte);
@@ -231,7 +238,11 @@ public class ProgressSubscriber<T> extends Subscriber<T> {
             }
         }
         if (mSubscriberOnNextListener.get() != null) {
+
             mSubscriberOnNextListener.get().onNext((String) t, api.getMethod());
+
+            Log.d("XLogger", "Override_11  onNext");  // 网络正常 ，服务器正常
+
         }
     }
 

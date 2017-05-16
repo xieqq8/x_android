@@ -22,7 +22,7 @@ public class GetTypeApi extends BaseApi {
      * 设置可查看BaseApi
      */
     public GetTypeApi() {
-        setShowProgress(false);
+        setShowProgress(false); // 加载框
         setMethod("getType");
         setCache(false);
     }

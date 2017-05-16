@@ -6,15 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.alibaba.fastjson.TypeReference;
 import com.githang.statusbar.StatusBarCompat;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.xxx.appxxx.R;
+import com.xxx.appxxx.net.api.CombinV1Api;
 import com.xxx.appxxx.net.api.GetServerTimeApi;
-import com.xxx.appxxx.net.resulte.BaseResultEntity;
-import com.xxx.appxxx.net.resulte.SubjectResulte;
 import com.xxx.appxxx.uitest.Act00NavBar;
 import com.xxx.base.BaseApcActivity;
 import com.xxx.utils.LogX;
@@ -23,11 +21,8 @@ import com.xxx.utils.PreferencesUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import rx.Observable;
 
 public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener {
 
@@ -37,6 +32,7 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
     private HttpManager manager;
     //  post请求接口信息
     private GetServerTimeApi postEntity;
+    private CombinV1Api combinApi;
 
     @Override
     public void initContentView() {
@@ -87,9 +83,13 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
 //        });
         /*初始化数据*/
         manager = new HttpManager(this, this);
-
         postEntity = new GetServerTimeApi();
         getwebdatetime();
+
+        // 或者
+//        combinApi = new CombinV1Api(this,this);
+//        combinApi.postApiServertime();
+
 
         LogX.getLogger().d("Act000Welcome onCreate " + Build.VERSION.SDK_INT + Build.VERSION_CODES.KITKAT);
         // 延迟时间
@@ -145,12 +145,14 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
         // 进度框不显示
         postEntity.setShowProgress(false);
 
-        manager.doHttpDeal(postEntity, "http://api.kuaxue.cn/ParentClient/");
+//        manager.doHttpDeal(postEntity, "http://api.kuaxue.cn/ParentClient/");
 
+        manager.doHttpDeal(postEntity, "http://192.168.1.11/thinkcmf/public/index.php/api/user/");
     }
 
     @Override
     public void onNext(String resulte, String mothead) {
+        LogX.getLogger().d("onNext");
         /*post返回处理*/
         if (mothead.equals(postEntity.getMethod())) {
 
@@ -193,9 +195,21 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
     }
 
     @Override
-    public void onError(ApiException e) {
+    public void onNextCache(String resulte, String method) {
+        LogX.getLogger().d("onNextCache:" + resulte);  // onNextCache 无网络的情况读出来的
 
     }
 
+    @Override
+    public void onError(ApiException e) {
+        LogX.getLogger().d("onError");
+
+    }
+
+    @Override
+    public void onCompleted(String method) {
+        LogX.getLogger().d("onCompleted");
+
+    }
 
 }
