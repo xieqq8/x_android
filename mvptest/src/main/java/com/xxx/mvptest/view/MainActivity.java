@@ -1,15 +1,12 @@
 package com.xxx.mvptest.view;
 
-import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import com.xxx.mvptest.R;
-import com.xxx.mvptest.bean.UserBean;
-import com.xxx.mvptest.databinding.ActivityMainBinding;
-import com.xxx.mvptest.model.UserModel;
+import com.xxx.mvptest.model.UserModelImpl;
 import com.xxx.mvptest.presenter.UserPresenter;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,IUserView {
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                presenter.saveUser(getID(), getmFristName(), getmLastName());  // 保存页面的数据
 //                break;
             case R.id.load:
-                UserModel  userModel = new UserModel();
+                UserModelImpl userModel = new UserModelImpl();
 //               binding.setNews(userModel.load(getID()));  // mv vm
                 presenter.loadUser(getID()); // 刷新页面  mvp
                 break;

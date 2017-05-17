@@ -7,6 +7,10 @@
         <variable
             name="food"
             type="com.xxx.mvvmdemo.bean.Food" />
+
+        <variable
+            name="presenter"
+            type="com.xxx.mvvmdemo.view.MoviePresenter"/>
     </data>
 
     <RelativeLayout
@@ -40,7 +44,14 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:text="@{food.description}" />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_Picasso"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="testTest" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

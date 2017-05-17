@@ -1,6 +1,7 @@
 package com.xxx.mvvmdemo.bean;
 
 import android.databinding.BindingAdapter;
+import android.databinding.ObservableField;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ public class Food {
     private String img;
     private String keywords;
     private String summary;
+//    public ObservableField<String> description = new ObservableField<>();
 
     public Food() {
     }
@@ -39,7 +41,7 @@ public class Food {
 
     @BindingAdapter("img2")      //@BindingAdapter("bind:img")
     public static void loadInternetImage2(ImageView iv, String img) {
-        Picasso.with(iv.getContext()).load(img).into(iv);
+        Picasso.with(iv.getContext()).load(img).into(iv); // 这个好、快
     }
 
     public String getDescription() {

@@ -9,7 +9,7 @@ import com.xxx.mvptest.bean.UserBean;
 /**
  * 数据层
  */
-public class UserModel implements IUserModel{
+public class UserModelImpl implements IUserModel{
     @Override
     public void setID(int id) {
 

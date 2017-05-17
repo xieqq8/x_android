@@ -2,7 +2,7 @@ package com.xxx.mvptest.presenter;
 
 import com.xxx.mvptest.bean.UserBean;
 import com.xxx.mvptest.model.IUserModel;
-import com.xxx.mvptest.model.UserModel;
+import com.xxx.mvptest.model.UserModelImpl;
 import com.xxx.mvptest.view.IUserView;
 
 /**
@@ -15,7 +15,7 @@ public class UserPresenter {
 
     public UserPresenter(IUserView view) {
         mUserView = view;
-        mUserModel = new UserModel();
+        mUserModel = new UserModelImpl();
     }
 
     public void saveUser( int id, String firstName, String lastName) {
