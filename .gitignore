@@ -3,3 +3,125 @@ local.properties
 .build/generated
 .gradle
 .idea
+XIos/Pods/Pods.xcodeproj/xcuserdata/kuaX.xcuserdatad/xcschemes/ReactiveCocoa.xcscheme
+XIos/Pods/Pods.xcodeproj/xcuserdata/kuaX.xcuserdatad/xcschemes/ReactiveSwift.xcscheme
+XIos/Pods/Pods.xcodeproj/xcuserdata/kuaX.xcuserdatad/xcschemes/Result.xcscheme
+XIos/Pods/ReactiveCocoa/LICENSE.md
+XIos/Pods/ReactiveCocoa/README.md
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/CocoaAction.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/CocoaTarget.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/DelegateProxy.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/Deprecations+Removals.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/DynamicProperty.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/module.modulemap
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+Association.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+BindingTarget.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+Intercepting.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+KeyValueObserving.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+Lifetime.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+ObjCRuntime.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+ReactiveExtensionsProvider.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/NSObject+Synchronizing.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ObjC+Constants.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ObjC+Messages.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ObjC+Runtime.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ObjC+RuntimeSubclassing.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ObjC+Selector.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ObjCRuntimeAliases.h
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ObjCRuntimeAliases.m
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/Shared/MKMapView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/Shared/NSLayoutConstraint.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/ReusableComponents.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIActivityIndicatorView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIBarButtonItem.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIBarItem.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIButton.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UICollectionView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIControl.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIGestureRecognizer.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIImageView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UILabel.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UINavigationItem.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIProgressView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIScrollView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UISegmentedControl.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UITabBarItem.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UITableView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UITextField.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UITextView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/UIView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UIDatePicker.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UIFeedbackGenerator.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UIImpact​Feedback​Generator.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UIKeyboard.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UINotification​Feedback​Generator.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UIPickerView.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UIRefreshControl.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UISearchBar.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UISelection​Feedback​Generator.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UISlider.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UIStepper.swift
+XIos/Pods/ReactiveCocoa/ReactiveCocoa/UIKit/iOS/UISwitch.swift
+XIos/Pods/ReactiveSwift/LICENSE.md
+XIos/Pods/ReactiveSwift/README.md
+XIos/Pods/ReactiveSwift/Sources/Action.swift
+XIos/Pods/ReactiveSwift/Sources/Atomic.swift
+XIos/Pods/ReactiveSwift/Sources/Bag.swift
+XIos/Pods/ReactiveSwift/Sources/Deprecations+Removals.swift
+XIos/Pods/ReactiveSwift/Sources/Disposable.swift
+XIos/Pods/ReactiveSwift/Sources/Event.swift
+XIos/Pods/ReactiveSwift/Sources/EventLogger.swift
+XIos/Pods/ReactiveSwift/Sources/Flatten.swift
+XIos/Pods/ReactiveSwift/Sources/FoundationExtensions.swift
+XIos/Pods/ReactiveSwift/Sources/Lifetime.swift
+XIos/Pods/ReactiveSwift/Sources/Observer.swift
+XIos/Pods/ReactiveSwift/Sources/Optional.swift
+XIos/Pods/ReactiveSwift/Sources/Property.swift
+XIos/Pods/ReactiveSwift/Sources/Reactive.swift
+XIos/Pods/ReactiveSwift/Sources/ResultExtensions.swift
+XIos/Pods/ReactiveSwift/Sources/Scheduler.swift
+XIos/Pods/ReactiveSwift/Sources/Signal.swift
+XIos/Pods/ReactiveSwift/Sources/SignalProducer.swift
+XIos/Pods/ReactiveSwift/Sources/TupleExtensions.swift
+XIos/Pods/ReactiveSwift/Sources/UnidirectionalBinding.swift
+XIos/Pods/ReactiveSwift/Sources/ValidatingProperty.swift
+XIos/Pods/Result/LICENSE
+XIos/Pods/Result/README.md
+XIos/Pods/Result/Result/Result.swift
+XIos/Pods/Result/Result/ResultProtocol.swift
+XIos/Pods/Target Support Files/AFNetworking/AFNetworking-umbrella.h
+XIos/Pods/Target Support Files/AFNetworking/AFNetworking.modulemap
+XIos/Pods/Target Support Files/AFNetworking/Info.plist
+XIos/Pods/Target Support Files/BlocksKit/BlocksKit-umbrella.h
+XIos/Pods/Target Support Files/BlocksKit/BlocksKit.modulemap
+XIos/Pods/Target Support Files/BlocksKit/Info.plist
+XIos/Pods/Target Support Files/FMDB/FMDB-umbrella.h
+XIos/Pods/Target Support Files/FMDB/FMDB.modulemap
+XIos/Pods/Target Support Files/FMDB/Info.plist
+XIos/Pods/Target Support Files/MBProgressHUD/Info.plist
+XIos/Pods/Target Support Files/MBProgressHUD/MBProgressHUD-umbrella.h
+XIos/Pods/Target Support Files/MBProgressHUD/MBProgressHUD.modulemap
+XIos/Pods/Target Support Files/Pods-XIos/Info.plist
+XIos/Pods/Target Support Files/Pods-XIos/Pods-XIos-umbrella.h
+XIos/Pods/Target Support Files/Pods-XIos/Pods-XIos.modulemap
+XIos/Pods/Target Support Files/ReactiveCocoa/Info.plist
+XIos/Pods/Target Support Files/ReactiveCocoa/ReactiveCocoa-dummy.m
+XIos/Pods/Target Support Files/ReactiveCocoa/ReactiveCocoa-prefix.pch
+XIos/Pods/Target Support Files/ReactiveCocoa/ReactiveCocoa.modulemap
+XIos/Pods/Target Support Files/ReactiveCocoa/ReactiveCocoa.xcconfig
+XIos/Pods/Target Support Files/ReactiveSwift/Info.plist
+XIos/Pods/Target Support Files/ReactiveSwift/ReactiveSwift-dummy.m
+XIos/Pods/Target Support Files/ReactiveSwift/ReactiveSwift-prefix.pch
+XIos/Pods/Target Support Files/ReactiveSwift/ReactiveSwift-umbrella.h
+XIos/Pods/Target Support Files/ReactiveSwift/ReactiveSwift.modulemap
+XIos/Pods/Target Support Files/ReactiveSwift/ReactiveSwift.xcconfig
+XIos/Pods/Target Support Files/Result/Info.plist
+XIos/Pods/Target Support Files/Result/Result-dummy.m
+XIos/Pods/Target Support Files/Result/Result-prefix.pch
+XIos/Pods/Target Support Files/Result/Result-umbrella.h
+XIos/Pods/Target Support Files/Result/Result.modulemap
+XIos/Pods/Target Support Files/Result/Result.xcconfig
+XIos/Pods/Target Support Files/SVProgressHUD/Info.plist
+XIos/Pods/Target Support Files/SVProgressHUD/SVProgressHUD-umbrella.h
+XIos/Pods/Target Support Files/SVProgressHUD/SVProgressHUD.modulemap

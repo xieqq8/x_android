@@ -1,5 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform:ios,'9.0'
+use_frameworks!
 
 target ‘XIos’ do
     pod 'AFNetworking' #,'~> 2.5.0'
@@ -7,6 +8,7 @@ target ‘XIos’ do
     pod 'SVProgressHUD' #,'~> 1.0'
     pod 'BlocksKit'
     pod 'FMDB' #,'~> 2.3'
+    pod 'ReactiveCocoa', '~> 5.0.0'
 end
 
 #1、一般Podfile文件中都有这么一行：
