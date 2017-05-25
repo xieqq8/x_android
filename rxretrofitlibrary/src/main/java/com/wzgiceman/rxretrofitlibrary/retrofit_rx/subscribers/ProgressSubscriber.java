@@ -11,15 +11,16 @@ import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.CodeException;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.HttpTimeException;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieResulte;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils.AppUtil;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils.CookieDbUtil;
+
 
 import java.lang.ref.SoftReference;
 
 import rx.Observable;
 import rx.Subscriber;
+import xxx.com.dbutil.CookieDbUtil;
+import xxx.com.dbutil.entity.CookieResulte;
 
 /**
  * 用于在Http请求开始时，自动显示一个ProgressDialog

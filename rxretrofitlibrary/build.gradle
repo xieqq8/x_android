@@ -24,18 +24,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'org.greenrobot:greendao:3.2.2'
     /*rx-android-java*/
-//    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    //    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     compile 'com.trello:rxlifecycle:1.0'
     compile 'com.trello:rxlifecycle-components:1.0'
     /*rotrofit*/
-//    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    //    compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0' // log 拦截器
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    // log 拦截器
+    compile project(':dbutil')
 }
 
 // 数据库的版本及Dao相关设置

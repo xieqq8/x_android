@@ -1,9 +1,9 @@
-package com.wzgiceman.rxretrofitlibrary.retrofit_rx.database.Entity;
+package xxx.com.dbutil.entity;
+
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Unique;
 
 /**
  * Created by kuaX on 2017/3/23.

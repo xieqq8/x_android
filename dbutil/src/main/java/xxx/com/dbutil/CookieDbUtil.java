@@ -1,19 +1,17 @@
-package com.wzgiceman.rxretrofitlibrary.retrofit_rx.utils;
+package xxx.com.dbutil;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
-
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.database.Entity.DaoMaster;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.database.Entity.DaoSession;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.downlaod.HttpDownManager;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieResulte;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.cookie.CookieResulteDao;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.List;
+
+import xxx.com.dbutil.entity.CookieResulte;
+import xxx.com.dbutil.greendao.CookieResulteDao;
+import xxx.com.dbutil.greendao.DaoMaster;
+import xxx.com.dbutil.greendao.DaoSession;
 
 
 /**
@@ -24,21 +22,26 @@ import java.util.List;
 
 public class CookieDbUtil {
     private static CookieDbUtil db;
-    private final static String dbName = "kx_test_db";
     private DaoMaster.DevOpenHelper openHelper;
     private Context context;
 
-
     public CookieDbUtil() {
-        context= RxRetrofitApp.getApplication();
-        openHelper = new DaoMaster.DevOpenHelper(context, dbName);
+
     }
 
+    public CookieDbUtil(Context appContext) {
+//        context= appContext;
+//        openHelper = new DaoMaster.DevOpenHelper(context, dbName);
+    }
 
-    /**
-     * 获取单例
-     * @return
-     */
+    public void setAppContext(Context appContext) {
+        this.context = appContext;
+        openHelper = new DaoMaster.DevOpenHelper(context, CommonDB.DB_NAME);
+    }
+        /**
+         * 获取单例
+         * @return
+         */
     public static CookieDbUtil getInstance() {
         if (db == null) {
             synchronized (CookieDbUtil.class) {
@@ -56,7 +59,7 @@ public class CookieDbUtil {
      */
     private SQLiteDatabase getReadableDatabase() {
         if (openHelper == null) {
-            openHelper = new DaoMaster.DevOpenHelper(context, dbName);
+            openHelper = new DaoMaster.DevOpenHelper(context, CommonDB.DB_NAME);
         }
         SQLiteDatabase db = openHelper.getReadableDatabase();
         return db;
@@ -67,7 +70,7 @@ public class CookieDbUtil {
      */
     private SQLiteDatabase getWritableDatabase() {
         if (openHelper == null) {
-            openHelper = new DaoMaster.DevOpenHelper(context, dbName);
+            openHelper = new DaoMaster.DevOpenHelper(context, CommonDB.DB_NAME);
         }
         SQLiteDatabase db = openHelper.getWritableDatabase();
         return db;

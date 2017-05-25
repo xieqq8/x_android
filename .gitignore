@@ -5,3 +5,5 @@ local.properties
 .idea
 XSwift/Pods/
 XIos/Pods/
+build/
+dbutil/src/main/java/xxx/com/dbutil/greendao
