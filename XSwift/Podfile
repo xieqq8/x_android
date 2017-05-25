@@ -1,0 +1,37 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform:ios,'9.0'
+use_frameworks!
+
+target ‘XSwift’ do
+#    pod 'AFNetworking' #,'~> 2.5.0'
+#    pod 'MBProgressHUD'#, "~> 0.9"
+#    pod 'SVProgressHUD' #,'~> 1.0'
+#    pod 'BlocksKit'
+#    pod 'FMDB' #,'~> 2.3'
+    pod 'ReactiveCocoa', '~> 5.0.0'
+end
+
+#1、一般Podfile文件中都有这么一行：
+#platform :ios, ’9.0’
+#Xcode创建完工程Deployment Info中：
+#Deployment Target 现在最低可以选择 8.0
+#
+#那么问题来了：
+#
+#（1）iOS开发使用cocoapods创建的Podfile文件中的platform有什么用？
+#
+#（2）它指定的系统版本和Xcode项目中指定的系统版本有什么关系？互相会冲突吗？（比如Alamofire导入需要9.0,我在Podfile文件中设为9.0，但是在项目中Deployment Target设为8.0，会出现什么问题吗？）
+#
+#（3）它和第三方库什么关系？(比如有些库，在platform指定为‘7.0’的时候不能install，在‘9.0’的时候就可以)
+#答案：以Alamofire为例，此框架说明最低支持 ios 9则：
+#（1）Podfile中 platform :ios, '9.0' 必须大于等于9.0才可以导入到项目中。
+#（2）导入到项目中后，Deployment Target 必须大于等于9.0才可以使用。
+#2、“~>”podFilel里经常见到这个符号，SDK又分稳定版和测试版，想用稳定版的话，就得注意这个符号了，例如：
+##融云
+#pod 'RongCloudIM/IMLib','~> 2.8.4'
+#pod 'RongCloudIM/IMKit','~> 2.8.4'
+#这个是融云的2.8.4稳定版，但是加上这个符号，会直接pod最新版解释为：“>”存在大于这个版本时更新新版。
+#想用稳定版的话，请去掉这个符号
+##融云
+#pod 'RongCloudIM/IMLib','2.8.4'
+#pod 'RongCloudIM/IMKit','2.8.4'
