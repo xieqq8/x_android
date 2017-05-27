@@ -29,10 +29,10 @@ public class CookieDbUtil {
 
     }
 
-    public CookieDbUtil(Context appContext) {
-//        context= appContext;
-//        openHelper = new DaoMaster.DevOpenHelper(context, dbName);
-    }
+//    public CookieDbUtil(Context appContext) {
+//        context= appContext; //RxRetrofitApp.getApplication();
+//        openHelper = new DaoMaster.DevOpenHelper(context, CommonDB.DB_NAME);
+//    }
 
     public void setAppContext(Context appContext) {
         this.context = appContext;

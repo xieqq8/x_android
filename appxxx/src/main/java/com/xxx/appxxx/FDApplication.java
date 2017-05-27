@@ -34,6 +34,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.jar.*;
 
+import xxx.com.dbutil.ConfigUtil;
+import xxx.com.dbutil.CookieDbUtil;
+
 /**
  * 公共application对象
  * 存储与整个应用相关的公共变量
@@ -77,9 +80,13 @@ public class FDApplication extends Application {
         RxRetrofitApp.init(this);
         LogX.getLogger().d("RxRetrofitApp init");
 
-//        // 配置设置初始化
-//        ConfigUtil.Instance().setAppContext(this.getApplicationContext());
-//
+
+        // 配置设置初始化
+        ConfigUtil.Instance().setAppContext(this.getApplicationContext());
+
+        // 网络访问Cookie存储初始化
+        CookieDbUtil.getInstance().setAppContext(this.getApplicationContext());
+
 ////        // 测试消息
 ////        TelephonyManager tm = (TelephonyManager) this.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
 ////        LogX.getLogger().d("imei:" + tm.getDeviceId());//如果是GSM网络，返回IMEI；如果是CDMA网络，返回MEID

@@ -43,7 +43,7 @@ dependencies {
 // 数据库的版本及Dao相关设置
 greendao {
     // 数据库schema版本，也可以理解为数据库版本号
-    schemaVersion 1001
+    schemaVersion 1
 //    //  设置DaoMaster 、DaoSession、Dao包名
 //    daoPackage  '***'
 //    //  设置DaoMaster 、DaoSession、Dao目录
