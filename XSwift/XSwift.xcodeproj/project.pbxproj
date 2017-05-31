@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		037EA3811EDE717C00E98E2F /* testXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037EA3801EDE717C00E98E2F /* testXib.xib */; };
+		037EA3891EDE747D00E98E2F /* testXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EA3881EDE747D00E98E2F /* testXib.swift */; };
 		03FDA2F81ED565730093241B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA2F71ED565730093241B /* AppDelegate.swift */; };
 		03FDA2FA1ED565730093241B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA2F91ED565730093241B /* ViewController.swift */; };
 		03FDA2FD1ED565730093241B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FDA2FB1ED565730093241B /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		02459E8EB2BE005FD564FF68 /* Pods_XSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		037EA3801EDE717C00E98E2F /* testXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testXib.xib; sourceTree = "<group>"; };
+		037EA3881EDE747D00E98E2F /* testXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testXib.swift; sourceTree = "<group>"; };
 		03FDA2F41ED565730093241B /* XSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FDA2F71ED565730093241B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03FDA2F91ED565730093241B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				03FDA2FE1ED565730093241B /* Assets.xcassets */,
 				03FDA3001ED565730093241B /* LaunchScreen.storyboard */,
 				03FDA3031ED565730093241B /* Info.plist */,
+				037EA3801EDE717C00E98E2F /* testXib.xib */,
+				037EA3881EDE747D00E98E2F /* testXib.swift */,
 			);
 			path = XSwift;
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 				03FDA3021ED565730093241B /* LaunchScreen.storyboard in Resources */,
 				03FDA2FF1ED565730093241B /* Assets.xcassets in Resources */,
 				03FDA2FD1ED565730093241B /* Main.storyboard in Resources */,
+				037EA3811EDE717C00E98E2F /* testXib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +346,7 @@
 			files = (
 				03FDA2FA1ED565730093241B /* ViewController.swift in Sources */,
 				03FDA2F81ED565730093241B /* AppDelegate.swift in Sources */,
+				037EA3891EDE747D00E98E2F /* testXib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +599,7 @@
 				03FDA31E1ED565740093241B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		03FDA31F1ED565740093241B /* Build configuration list for PBXNativeTarget "XSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -599,6 +608,7 @@
 				03FDA3211ED565740093241B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		03FDA3221ED565740093241B /* Build configuration list for PBXNativeTarget "XSwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -607,6 +617,7 @@
 				03FDA3241ED565740093241B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

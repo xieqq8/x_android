@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A5E4AAF53641C0169EB5208350CFF9756B03F9D8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "78F8D5027C02BC8689D1CD6F73581686FE3F6DEE" : 9223372036854775807,
+    "A5E4AAF53641C0169EB5208350CFF9756B03F9D8" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C09B8D1A-A4E8-4543-9B0E-FD8A81A1D081",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "78F8D5027C02BC8689D1CD6F73581686FE3F6DEE" : "TSWeChat\/",
+    "A5E4AAF53641C0169EB5208350CFF9756B03F9D8" : "x_android\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "XSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "XSwift\/XSwift.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hilen\/TSWeChat.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78F8D5027C02BC8689D1CD6F73581686FE3F6DEE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xieqq8\/x_android.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A5E4AAF53641C0169EB5208350CFF9756B03F9D8"
+    }
+  ]
+}

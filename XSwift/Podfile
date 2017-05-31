@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform:ios,'9.0'
 
 #用到的第三方库用动态框架的形式集成进来
-use_frameworks!   #swift写的库oc调用加这个
+use_frameworks!   #swift写的库oc调用加这个 还要再加上头文件
 
 target ‘XSwift’ do
 #    pod 'AFNetworking' #,'~> 2.5.0'
