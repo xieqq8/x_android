@@ -226,7 +226,7 @@
 				TargetAttributes = {
 					03FDA2F31ED565730093241B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = A7E87GNH72;
+						DevelopmentTeam = H5T662WA3X;
 						ProvisioningStyle = Automatic;
 					};
 					03FDA3071ED565740093241B = {
@@ -499,7 +499,7 @@
 			baseConfigurationReference = 1AD124FB2148B705D1AB827B /* Pods-XSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A7E87GNH72;
+				DEVELOPMENT_TEAM = H5T662WA3X;
 				INFOPLIST_FILE = XSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxx.XSwift;
@@ -513,7 +513,7 @@
 			baseConfigurationReference = 23A7F515526911533EC8FE01 /* Pods-XSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A7E87GNH72;
+				DEVELOPMENT_TEAM = H5T662WA3X;
 				INFOPLIST_FILE = XSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxx.XSwift;
