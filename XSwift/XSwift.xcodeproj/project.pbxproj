@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		037EA3811EDE717C00E98E2F /* testXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037EA3801EDE717C00E98E2F /* testXib.xib */; };
 		037EA3891EDE747D00E98E2F /* testXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EA3881EDE747D00E98E2F /* testXib.swift */; };
+		038C3EE01EE931D30080B7CF /* Kenny.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EDF1EE931D20080B7CF /* Kenny.jpg */; };
+		038C3EE61EE93DE30080B7CF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EE51EE93DE30080B7CF /* Info.plist */; };
+		038C3EE81EE93E030080B7CF /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EE71EE93E030080B7CF /* Readme */; };
+		038C3EEC1EE945090080B7CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EEB1EE945090080B7CF /* Images.xcassets */; };
+		038C3EEE1EE9453B0080B7CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EED1EE9453B0080B7CF /* Assets.xcassets */; };
 		03FDA2F81ED565730093241B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA2F71ED565730093241B /* AppDelegate.swift */; };
 		03FDA2FA1ED565730093241B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA2F91ED565730093241B /* ViewController.swift */; };
 		03FDA2FD1ED565730093241B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FDA2FB1ED565730093241B /* Main.storyboard */; };
-		03FDA2FF1ED565730093241B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03FDA2FE1ED565730093241B /* Assets.xcassets */; };
 		03FDA3021ED565730093241B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FDA3001ED565730093241B /* LaunchScreen.storyboard */; };
 		03FDA30D1ED565740093241B /* XSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA30C1ED565740093241B /* XSwiftTests.swift */; };
 		03FDA3181ED565740093241B /* XSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA3171ED565740093241B /* XSwiftUITests.swift */; };
@@ -40,13 +44,16 @@
 		02459E8EB2BE005FD564FF68 /* Pods_XSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		037EA3801EDE717C00E98E2F /* testXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testXib.xib; sourceTree = "<group>"; };
 		037EA3881EDE747D00E98E2F /* testXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testXib.swift; sourceTree = "<group>"; };
+		038C3EDF1EE931D20080B7CF /* Kenny.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Kenny.jpg; sourceTree = "<group>"; };
+		038C3EE51EE93DE30080B7CF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		038C3EE71EE93E030080B7CF /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
+		038C3EEB1EE945090080B7CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		038C3EED1EE9453B0080B7CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03FDA2F41ED565730093241B /* XSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FDA2F71ED565730093241B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03FDA2F91ED565730093241B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		03FDA2FC1ED565730093241B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		03FDA2FE1ED565730093241B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03FDA3011ED565730093241B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		03FDA3031ED565730093241B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03FDA3081ED565740093241B /* XSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FDA30C1ED565740093241B /* XSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSwiftTests.swift; sourceTree = "<group>"; };
 		03FDA30E1ED565740093241B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +90,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		038C3EDE1EE931D20080B7CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				038C3EED1EE9453B0080B7CF /* Assets.xcassets */,
+				038C3EEB1EE945090080B7CF /* Images.xcassets */,
+				038C3EDF1EE931D20080B7CF /* Kenny.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		038C3EE11EE93D330080B7CF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		038C3EE21EE93D330080B7CF /* Supportting Files */ = {
+			isa = PBXGroup;
+			children = (
+				038C3EE51EE93DE30080B7CF /* Info.plist */,
+			);
+			path = "Supportting Files";
+			sourceTree = "<group>";
+		};
 		03FDA2EB1ED565730093241B = {
 			isa = PBXGroup;
 			children = (
@@ -108,14 +140,16 @@
 		03FDA2F61ED565730093241B /* XSwift */ = {
 			isa = PBXGroup;
 			children = (
+				038C3EE11EE93D330080B7CF /* Classes */,
+				038C3EE21EE93D330080B7CF /* Supportting Files */,
+				038C3EDE1EE931D20080B7CF /* Resources */,
 				03FDA2F71ED565730093241B /* AppDelegate.swift */,
 				03FDA2F91ED565730093241B /* ViewController.swift */,
 				03FDA2FB1ED565730093241B /* Main.storyboard */,
-				03FDA2FE1ED565730093241B /* Assets.xcassets */,
 				03FDA3001ED565730093241B /* LaunchScreen.storyboard */,
-				03FDA3031ED565730093241B /* Info.plist */,
 				037EA3801EDE717C00E98E2F /* testXib.xib */,
 				037EA3881EDE747D00E98E2F /* testXib.swift */,
+				038C3EE71EE93E030080B7CF /* Readme */,
 			);
 			path = XSwift;
 			sourceTree = "<group>";
@@ -268,9 +302,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038C3EE01EE931D30080B7CF /* Kenny.jpg in Resources */,
+				038C3EEC1EE945090080B7CF /* Images.xcassets in Resources */,
 				03FDA3021ED565730093241B /* LaunchScreen.storyboard in Resources */,
-				03FDA2FF1ED565730093241B /* Assets.xcassets in Resources */,
+				038C3EE61EE93DE30080B7CF /* Info.plist in Resources */,
+				038C3EE81EE93E030080B7CF /* Readme in Resources */,
 				03FDA2FD1ED565730093241B /* Main.storyboard in Resources */,
+				038C3EEE1EE9453B0080B7CF /* Assets.xcassets in Resources */,
 				037EA3811EDE717C00E98E2F /* testXib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +537,7 @@
 			baseConfigurationReference = 1AD124FB2148B705D1AB827B /* Pods-XSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = H5T662WA3X;
 				INFOPLIST_FILE = XSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -513,6 +552,7 @@
 			baseConfigurationReference = 23A7F515526911533EC8FE01 /* Pods-XSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = H5T662WA3X;
 				INFOPLIST_FILE = XSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

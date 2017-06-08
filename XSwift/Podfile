@@ -10,6 +10,9 @@ target ‘XSwift’ do
 #    pod 'SVProgressHUD' #,'~> 1.0'
 #    pod 'BlocksKit'
 #    pod 'FMDB' #,'~> 2.3'
+
+#   https://github.com/hilen/TimedSilver
+    pod 'TimedSilver', '1.0.0'
     pod 'ReactiveCocoa', '~> 5.0.0'
 end
 
@@ -37,3 +40,5 @@ end
 ##融云
 #pod 'RongCloudIM/IMLib','2.8.4'
 #pod 'RongCloudIM/IMKit','2.8.4'
+
+
