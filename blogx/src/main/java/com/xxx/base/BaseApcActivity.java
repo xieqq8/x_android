@@ -44,10 +44,10 @@ public abstract class BaseApcActivity extends RxAppCompatActivity {
         mActivity = this;
         // 初始化布局
         initContentView();
-        // 初始化控制中心
-        initPresenter();
         // 初始化控件
         initView();
+        // 初始化控制中心
+        initPresenter();
     }
 
     @Override

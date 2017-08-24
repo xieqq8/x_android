@@ -13,6 +13,7 @@ import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
 import com.xxx.base.BaseApcActivity;
 import com.xxx.blogx.net.api.CombinV1Api;
 import com.xxx.blogx.net.api.GetServerTimeApi;
+import com.xxx.blogx.ui.activity.Act00NavBar;
 import com.xxx.utils.LogX;
 import com.xxx.utils.PreferencesUtil;
 
@@ -124,7 +125,7 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
 //                }else {
 //                startActivity(new Intent(mContext, Act002Login.class));//Act00NavBar
 
-//            startActivity(new Intent(mContext, Act00NavBar.class));//
+            startActivity(new Intent(mContext, Act00NavBar.class));//
 
 //            startActivity(new Intent(mContext, Act01MainViewPage.class));//
 //            startActivity(new Intent(mContext, Act001Main.class));//

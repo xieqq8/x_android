@@ -6,5 +6,5 @@
 
     <color name="orange_r">#ffec6941</color>
     <color name="black_l">#2d2d2d</color>
-
+    <color name="colorGray">#ccc</color>
 </resources>

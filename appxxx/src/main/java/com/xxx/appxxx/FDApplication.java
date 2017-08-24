@@ -187,7 +187,7 @@ public class FDApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-
+// 我们要手动加载Dex)   // MultiDex到底有多坑  方法过多的解决方式 http://blog.csdn.net/ecjtuhq/article/details/53573347
 //        if (!quickStart() && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {//>=5.0的系统默认对dex进行oat优化
 //            if (needWait(base)){
 //                waitForDexopt(base);//Dex进行优化
@@ -263,7 +263,7 @@ public class FDApplication extends Application {
     public void waitForDexopt(Context base) {
         Intent intent = new Intent();
         ComponentName componentName = new
-                ComponentName( "com.xxx.appxxx", Act000Welcome.class.getName());
+                ComponentName( "com.xxx.blogx", Act000Welcome.class.getName());
         intent.setComponent(componentName);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         base.startActivity(intent);

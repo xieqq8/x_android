@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.DisplayMetrics;
 
+import com.squareup.leakcanary.LeakCanary;
 import com.wzgiceman.rxretrofitlibrary.retrofit_rx.RxRetrofitApp;
 import com.xxx.utils.LogX;
 import com.xxx.utils.PackageUtils;
@@ -93,6 +94,9 @@ public class FDApplication extends Application {
 ////        LogX.getLogger().d("BOARD:" + Build.BOARD);//MSM8974  骁龙800 MSM8974（LTE)是高通2013年推出的Snapdragon 800系列产品
 ////        LogX.getLogger().d("HARDWARE:" + Build.HARDWARE);//qcom高通
         super.onCreate();
+
+//        LeakCanary 就会自动侦测 activity 的内存泄露了。
+        LeakCanary.install(this);
 
 //        if (quickStart()) {
 //            return;
