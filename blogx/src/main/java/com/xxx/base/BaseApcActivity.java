@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 
 
 public abstract class BaseApcActivity extends AppCompatActivity {
@@ -55,6 +56,25 @@ public abstract class BaseApcActivity extends AppCompatActivity {
 //        // 清除网络请求队列
 //        AsyncHttpNetCenter.getInstance().clearRequestQueue(this);
         super.finish();
+    }
+
+
+    private ProgressDialog dialog;
+
+    public void showLoading() {
+        if (dialog != null && dialog.isShowing()) return;
+        dialog = new ProgressDialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("请求网络中...");
+        dialog.show();
+    }
+
+    public void dismissLoading() {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 
     /**

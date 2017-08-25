@@ -11,12 +11,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okrx2.adapter.ObservableBody;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.blogx.R;
+import com.xxx.blogx.callback.JsonConvert;
+import com.xxx.blogx.model.BlogCatalog;
+import com.xxx.blogx.model.LzyResponse;
+import com.xxx.blogx.model.ServerModel;
+import com.xxx.blogx.net.HttpUrlConstant;
 import com.xxx.utils.LogX;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * A fragment with a Google +1 button.
@@ -89,6 +104,11 @@ public class Fg100Host extends BackHandledFragment {
 
         LogX.getLogger().d("Fg100Host initView:" + mParam1);
 
+        SetTable();
+    }
+
+    private void SetTable(){
+
         TabLayout tabLayout = (TabLayout) mLayoutView.findViewById(R.id.tabLayout);
 
         viewPager = (ViewPager) mLayoutView.findViewById(R.id.vp_view);
@@ -103,21 +123,60 @@ public class Fg100Host extends BackHandledFragment {
         mFragment.add(Fg110.newInstance("",""));
         mFragment.add(Fg110.newInstance("",""));
         mFragment.add(Fg110.newInstance("",""));
-//        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), mTitle, mFragment);
         MyAdapter adapter = new MyAdapter(getChildFragmentManager(), mTitle, mFragment);
 
         viewPager.setAdapter(adapter);
         //为TabLayout设置ViewPager
         tabLayout.setupWithViewPager(viewPager);
-        //使用ViewPager的适配器
-//        tabLayout.setTabsFromPagerAdapter(adapter);
-    }
+//
+        OkGo.<LzyResponse<ServerModel>>get(HttpUrlConstant.getblogcatalog)//
+                .headers("aaa", "111")//
+                .params("bbb", "222")//
+                .converter(new JsonConvert<LzyResponse<ServerModel>>() {})//
+                .adapt(new ObservableBody<LzyResponse<ServerModel>>())//
+                .subscribeOn(Schedulers.io())//
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+                        showLoading();
+                    }
+                })//
+                .map(new Function<LzyResponse<ServerModel>, ServerModel>() {
+                    @Override
+                    public ServerModel apply(@NonNull LzyResponse<ServerModel> response) throws Exception {
+                        return response.data;
+                    }
+                })//
+                .observeOn(AndroidSchedulers.mainThread())//
+                .subscribe(new Observer<ServerModel>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        addDisposable(d);
+                    }
 
+                    @Override
+                    public void onNext(@NonNull ServerModel serverModel) {
+//                        handleResponse(serverModel);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();            //请求失败
+//                        showToast("请求失败");
+//                        handleError(null);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismissLoading();
+                    }
+                });
+    }
 
     @Override
     public boolean onBackPressed() {
         Toast.makeText(getActivity(), "别点了，再点就退出", Toast.LENGTH_LONG).show();
-        getActivity().finish();
+//        getActivity().finish();
         return true;
     }
 
@@ -145,6 +204,13 @@ public class Fg100Host extends BackHandledFragment {
 //                    .hide(...)
 //            .commit();
 //        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //Activity销毁时，取消网络请求
+        dispose();
     }
 
     @Override

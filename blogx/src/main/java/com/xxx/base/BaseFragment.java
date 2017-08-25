@@ -1,5 +1,6 @@
 package com.xxx.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 
 public abstract class BaseFragment extends Fragment {
@@ -110,5 +112,23 @@ public abstract class BaseFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private ProgressDialog dialog;
+
+    public void showLoading() {
+        if (dialog != null && dialog.isShowing()) return;
+        dialog = new ProgressDialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("请求网络中...");
+        dialog.show();
+    }
+
+    public void dismissLoading() {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 }

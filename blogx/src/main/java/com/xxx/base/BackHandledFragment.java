@@ -2,6 +2,9 @@ package com.xxx.base;
 
 import android.os.Bundle;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 /**
  * Description: (这里用一句话描述这个类的作用)
  * Author:veidy
@@ -39,5 +42,18 @@ public abstract class BackHandledFragment extends BaseFragment {
     public interface BackHandledInterface {
 
         public abstract void setSelectedFragment(BackHandledFragment selectedFragment);
+    }
+
+    private CompositeDisposable compositeDisposable;
+
+    public void addDisposable(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
+    }
+
+    public void dispose() {
+        if (compositeDisposable != null) compositeDisposable.dispose();
     }
 }
