@@ -43,8 +43,9 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 
-    compile project(':rxretrofitlibrary')
+//    compile project(':rxretrofitlibrary')
     compile project(':swipebacklib')
+    compile project(':dbutil')
 
     compile 'com.githang:status-bar-compat:0.5.1'
 //    compile 'com.github.bumptech.glide:glide:3.6.1'
@@ -65,4 +66,16 @@ dependencies {
 //    http://blog.csdn.net/qq_35064774/article/details/54177702
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.1'
     compile 'com.allenliu.badgeview:library:1.1.1'
+
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+//    compile 'io.reactivex.rxjava2:rxjava:2.1.3'
+//    compile 'io.reactivex:rxjava:1.3.0'
+
+    // okgo okhttputils 用这个代替 rxretrofitlibrary
+    compile 'com.lzy.net:okgo:3.0.4'
+//    //以下三个选择添加，okrx和okrx2不能同时使用
+//    compile 'com.lzy.net:okrx:1.0.2'
+    compile 'com.lzy.net:okrx2:2.0.2'
+    compile 'com.lzy.net:okserver:2.0.5'
 }

@@ -7,34 +7,28 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.githang.statusbar.StatusBarCompat;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.exception.ApiException;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.http.HttpManager;
-import com.wzgiceman.rxretrofitlibrary.retrofit_rx.listener.HttpOnNextListener;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.convert.StringConvert;
+import com.lzy.okgo.model.Response;
+import com.lzy.okrx2.adapter.ObservableResponse;
 import com.xxx.base.BaseApcActivity;
-import com.xxx.blogx.net.api.CombinV1Api;
-import com.xxx.blogx.net.api.GetServerTimeApi;
+import com.xxx.blogx.net.HttpUrlConstant;
 import com.xxx.blogx.ui.activity.Act00NavBar;
 import com.xxx.utils.LogX;
-import com.xxx.utils.PreferencesUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.Observer;
 
 /**
  * 首页 欢迎页
  */
-public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener {
+public class Act000Welcome extends BaseApcActivity {
 
     private long lCurtime;
-
-    //    公用一个HttpManager
-    private HttpManager manager;
-    //  post请求接口信息
-    private GetServerTimeApi postEntity;
-    private CombinV1Api combinApi;
 
     @Override
     public void initContentView() {
@@ -54,44 +48,15 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // 隐藏标题栏
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        // 不显示系统的标题栏，保证windowBackground和界面activity_main的大小一样，显示在屏幕不会有错位（去掉这一行试试就知道效果了）
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
+        
         setContentView(R.layout.act_000_welcome);
 
 //        StatusBarCompat.setStatusBarColor(this, R.color.orange_r); // 这样没有效果  getResources().getColor(R.color.orange_r)
 //        StatusBarCompat.setStatusBarColor(this, Color.argb(0xff,0x81,0xff,0x00));
         StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.orange_r));   // 这样有效果  Color.argb(0xff,0xec,0x69,0x41)
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-        /*初始化数据*/
-        manager = new HttpManager(this, this);
-        postEntity = new GetServerTimeApi();
-        getwebdatetime();
 
-        // 或者
-//        combinApi = new CombinV1Api(this,this);
-//        combinApi.postApiServertime();
-
+        getwebdatetimeOkGo();
 
         LogX.getLogger().d("Act000Welcome onCreate " + Build.VERSION.SDK_INT + Build.VERSION_CODES.KITKAT);
         // 延迟时间
@@ -105,112 +70,52 @@ public class Act000Welcome extends BaseApcActivity implements HttpOnNextListener
     Runnable r = new Runnable() {
         @Override
         public void run() {
-
-//            // 如果信鸽注册失败
-//            if (ConfigUtil.Instance().GetConfigValue(ConfigUtil.C_Local_Xg_token).equals("0")) {
-//                ConfigUtil.Instance().SetConfigValue(ConfigUtil.C_Local_Xg_token, String.valueOf(java.util.UUID.randomUUID()));
-//            }
-
-//            // 跳到主页
-//            boolean isFrist = PreferencesUtil.getSharedPreference(mContext).getBoolean("FirstStart",true);
-//            long lastVersion = PreferencesUtil.getSharedPreference(mContext).getLong("lastVersion", 0);
-//            int versionCode = UpdateManager.getVersionCode(mContext);
-//            if (lastVersion != versionCode){
-//                SharedPreferences.Editor editor = PreferencesUtil.getSharedPreference(mContext).edit();
-//                editor.putLong("lastVersion",versionCode).commit();
-//                startActivity(new Intent(mContext, Act004GuidePage.class));
-//            }else{
-//                if (isFrist) {
-//                    startActivity(new Intent(mContext, Act004GuidePage.class));
-//                }else {
-//                startActivity(new Intent(mContext, Act002Login.class));//Act00NavBar
-
             startActivity(new Intent(mContext, Act00NavBar.class));//
 
-//            startActivity(new Intent(mContext, Act01MainViewPage.class));//
-//            startActivity(new Intent(mContext, Act001Main.class));//
-
-
-//                }
-//            }
             finish();
         }
     };
 
     // 时间校准
+    private void getwebdatetimeOkGo(){
+        OkGo.<String>post(HttpUrlConstant.servertime)//
+                .headers("aaa", "111")//
+                .params("bbb", "222")//
+                .converter(new StringConvert())//
+                .adapt(new ObservableResponse<String>())//
+                .subscribeOn(Schedulers.io())//
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+//                        showLoading();
+                        return;
+                    }
+                })//
+                .observeOn(AndroidSchedulers.mainThread())//
+                .subscribe(new Observer<Response<String>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                        addDisposable(d);
+                    }
 
-    /**
-     * 得到网络时间和本地的间隔时间
-     */
-    private void getwebdatetime(){
-        // 进度框不显示
-        postEntity.setShowProgress(false);
+                    @Override
+                    public void onNext(@NonNull Response<String> response) {
+//                        handleResponse(response);
+                        LogX.getLogger().d(response.body().toString());
+                    }
 
-//        manager.doHttpDeal(postEntity, "http://api.kuaxue.cn/ParentClient/");
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+//                        showToast("请求失败");
+//                        handleError(null);
+                    }
 
-        manager.doHttpDeal(postEntity, "http://192.168.1.11/thinkcmf/public/index.php/api/user/");
-    }
-
-    @Override
-    public void onNext(String resulte, String mothead) {
-        LogX.getLogger().d("onNext");
-        /*post返回处理*/
-        if (mothead.equals(postEntity.getMethod())) {
-
-            LogX.getLogger().d(resulte);
-//            BaseResultEntity<ArrayList<SubjectResulte>>   subjectResulte = com.alibaba.fastjson.JSONObject.parseObject(resulte, new
-//                    TypeReference<BaseResultEntity<ArrayList<SubjectResulte>>>(){});
-
-//            LogX.getLogger().d(subjectResulte.getData().toString());
-
-
-            Calendar calendar = new GregorianCalendar();
-            Log.d("XLogger", "__" + calendar.getTimeZone().getOffset(System.currentTimeMillis()));
-
-            // 8*60*60 = 28800 * 1000 = 28800 000  八小时
-            lCurtime = System.currentTimeMillis() + calendar.getTimeZone().getOffset(System.currentTimeMillis()) - 28800000;
-
-            try {
-                JSONObject jsonObject = new JSONObject(resulte);
-                long server = jsonObject.optLong("date3") * 1000;
-                long internal = server - lCurtime;
-                LogX.getLogger().d("internal:"+ internal +"_server:"+server+"_local:"+ String.valueOf(lCurtime));
-
-                PreferencesUtil.getSharedPreference(mContext).edit().putLong("server_internal",internal).commit();
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-//            tvMsg.setText("post返回：\n" + subjectResulte.getData().toString());
-        }
-
-//        /*上传返回处理*/
-//        if (mothead.equals(uplaodApi.getMethod())) {
-//            BaseResultEntity<UploadResulte> subjectResulte = com.alibaba.fastjson.JSONObject.parseObject(resulte, new
-//                    TypeReference<BaseResultEntity<UploadResulte>>(){});
-//            UploadResulte uploadResulte = subjectResulte.getData();
-//            tvMsg.setText("上传成功返回：\n" + uploadResulte.getHeadImgUrl());
-//            Glide.with(MainActivity.this).load(uploadResulte.getHeadImgUrl()).skipMemoryCache(true).into(img);
-//        }
-    }
-
-    @Override
-    public void onNextCache(String resulte, String method) {
-        LogX.getLogger().d("onNextCache:" + resulte);  // onNextCache 无网络的情况读出来的
-
-    }
-
-    @Override
-    public void onError(ApiException e) {
-        LogX.getLogger().d("onError");
-
-    }
-
-    @Override
-    public void onCompleted(String method) {
-        LogX.getLogger().d("onCompleted");
-
+                    @Override
+                    public void onComplete() {
+//                        dismissLoading();
+                    }
+                });
     }
 
 }

@@ -3,15 +3,15 @@ package com.xxx.base;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.trello.rxlifecycle.components.support.RxFragment;
 
-public abstract class BaseFragment extends RxFragment {
-    private RxAppCompatActivity mActivity;
+public abstract class BaseFragment extends Fragment {
+    private AppCompatActivity mActivity;
     protected View mLayoutView;
     private OnFragmentInteractionListener mListener;
 
@@ -71,9 +71,9 @@ public abstract class BaseFragment extends RxFragment {
      *
      * @return
      */
-    public RxAppCompatActivity getBaseActivity() {
+    public AppCompatActivity getBaseActivity() {
         if (mActivity == null) {
-            mActivity = (RxAppCompatActivity) getActivity();
+            mActivity = (AppCompatActivity) getActivity();
         }
         return mActivity;
     }

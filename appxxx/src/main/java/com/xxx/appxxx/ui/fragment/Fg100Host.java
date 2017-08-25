@@ -139,23 +139,6 @@ public class Fg100Host extends BackHandledFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-//        if (savedInstanceState == null) {
-//            // getFragmentManager().beginTransaction()...commit()
-//        }else{
-//            //先通过id或者tag找到“复活”的所有UI-Fragment
-//            UIFragment fragment1 = getFragmentManager().findFragmentById(R.id.fragment1);
-//            UIFragment fragment2 = getFragmentManager().findFragmentByTag("tag");
-//            UIFragment fragment3 = ...
-//            ...
-//            //show()一个即可
-//            getFragmentManager().beginTransaction()
-//                    .show(fragment1)
-//                    .hide(fragment2)
-//                    .hide(fragment3)
-//                    .hide(...)
-//            .commit();
-//        }
     }
 
     @Override

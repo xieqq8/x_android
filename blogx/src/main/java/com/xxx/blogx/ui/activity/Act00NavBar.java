@@ -31,6 +31,8 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
 
     public final static Uri ATOB = Uri.parse("ATOB_Act00NavBar");
 
+    private int nShowFg = 0;
+
     @Override
     public void initContentView() {
         bind = DataBindingUtil.setContentView(this, R.layout.act00_nav_bar);
@@ -44,9 +46,8 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
     @Override
     public void initView() {
         fragments = getFragments();
-
         setViewFragment(0);
-
+        nShowFg = 0;
     }
 
     @Override
@@ -64,11 +65,15 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.i_music: {
+                    HideFragment(nShowFg);
                     setViewFragment(0);
+                    nShowFg = 0;
                     return true;
                 }
                 case R.id.i_me: {
+                    HideFragment(nShowFg);
                     setViewFragment(1);
+                    nShowFg = 1;
                     return true;
                 }
             }
@@ -95,9 +100,18 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
         } else {
             transaction.add(R.id.layFrame, fragment);
         }
+        transaction.show(fragment); // 显示
         transaction.commitAllowingStateLoss();
     }
 
+    private void HideFragment(int position){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment fragment = fragments.get(position);
+//                ft.remove(fragment);
+        ft.hide(fragment);  // 隐藏
+        ft.commitAllowingStateLoss(); // 用hide show 没有 切换后滑动消失的
+    }
     private ArrayList<Fragment> getFragments() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(Fg100Host.newInstance("Home", "home"));
