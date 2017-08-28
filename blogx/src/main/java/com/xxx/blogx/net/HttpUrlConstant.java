@@ -19,6 +19,10 @@ public class HttpUrlConstant {
     public static final String NETWORK_ERROR_TIMEOUT = "连接超时！";
     public static final String NETWORK_ERROR_SERVERERROR = "连接服务器失败！";
 
-    public static final String getblogcatalog = "http://localhost:8686/api/blog_catalog";
+    public static final String getblogcatalog = "http://192.168.1.19:8686/api/blog_catalog";
+
+    public static final String getblog = "http://192.168.1.19:8686/api/blog";
+
+
 
 }

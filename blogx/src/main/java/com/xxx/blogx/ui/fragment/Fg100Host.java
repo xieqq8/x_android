@@ -18,8 +18,8 @@ import com.xxx.blogx.R;
 import com.xxx.blogx.callback.JsonConvert;
 import com.xxx.blogx.model.BlogCatalog;
 import com.xxx.blogx.model.LzyResponse;
-import com.xxx.blogx.model.ServerModel;
 import com.xxx.blogx.net.HttpUrlConstant;
+import com.xxx.utils.AlertUtil;
 import com.xxx.utils.LogX;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class Fg100Host extends BackHandledFragment {
     private List<String> mTitle = new ArrayList<String>();
     private List<Fragment> mFragment = new ArrayList<Fragment>();
     private ViewPager viewPager;
-
+    private TabLayout tabLayout;
     public Fg100Host() {
         // Required empty public constructor
     }
@@ -109,66 +109,87 @@ public class Fg100Host extends BackHandledFragment {
 
     private void SetTable(){
 
-        TabLayout tabLayout = (TabLayout) mLayoutView.findViewById(R.id.tabLayout);
+        tabLayout = (TabLayout) mLayoutView.findViewById(R.id.tabLayout);
 
         viewPager = (ViewPager) mLayoutView.findViewById(R.id.vp_view);
-//        for (int i = 0; i < 3; i++)
-//            tabLayout.addTab(tabLayout.newTab().setText("选项卡槽" + i));
-//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-        mTitle.add("tab1");
-        mTitle.add("tab2");
-        mTitle.add("tab3");
-
-        mFragment.add(Fg110.newInstance("",""));
-        mFragment.add(Fg110.newInstance("",""));
-        mFragment.add(Fg110.newInstance("",""));
-        MyAdapter adapter = new MyAdapter(getChildFragmentManager(), mTitle, mFragment);
-
-        viewPager.setAdapter(adapter);
-        //为TabLayout设置ViewPager
-        tabLayout.setupWithViewPager(viewPager);
+//        mTitle.add("tab1");
+//        mTitle.add("tab2");
+//        mTitle.add("tab3");
 //
-        OkGo.<LzyResponse<ServerModel>>get(HttpUrlConstant.getblogcatalog)//
-                .headers("aaa", "111")//
-                .params("bbb", "222")//
-                .converter(new JsonConvert<LzyResponse<ServerModel>>() {})//
-                .adapt(new ObservableBody<LzyResponse<ServerModel>>())//
+//        mFragment.add(Fg110.newInstance("",""));
+//        mFragment.add(Fg110.newInstance("",""));
+//        mFragment.add(Fg110.newInstance("",""));
+//        MyAdapter adapter = new MyAdapter(getChildFragmentManager(), mTitle, mFragment);
+//
+//        viewPager.setAdapter(adapter);
+//        //为TabLayout设置ViewPager
+//        tabLayout.setupWithViewPager(viewPager);
+
+        //  LzyResponse<ServerModel>或LzyResponse<List<ServerModel>>整体作为一个泛型传递
+//         // <LzyResponse<BlogCatalog>>       // 只是对象的这样也
+        // <LzyResponse<List<BlogCatalog>>>  // 如果是数组可以这样写
+        OkGo.<LzyResponse<List<BlogCatalog>>>get(HttpUrlConstant.getblogcatalog)//
+                .converter(new JsonConvert<LzyResponse<List<BlogCatalog>>>() {})//
+                .adapt(new ObservableBody<LzyResponse<List<BlogCatalog>>>())//
                 .subscribeOn(Schedulers.io())//
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
-                        showLoading();
+//                        showLoading();
                     }
                 })//
-                .map(new Function<LzyResponse<ServerModel>, ServerModel>() {
+                .map(new Function<LzyResponse<List<BlogCatalog>>,List<BlogCatalog>>() {
                     @Override
-                    public ServerModel apply(@NonNull LzyResponse<ServerModel> response) throws Exception {
-                        return response.data;
+                    public List<BlogCatalog> apply(@NonNull LzyResponse<List<BlogCatalog>> response) throws Exception {
+                        LogX.getLogger().d(String.valueOf(response.success));
+                        LogX.getLogger().d(String.valueOf(response.code));
+                        LogX.getLogger().d(String.valueOf(response.msg));
+
+                        return response.data; // //通过map将LzyResponse<List<BlogCatalog>> 变换成 List<BlogCatalog>
                     }
                 })//
                 .observeOn(AndroidSchedulers.mainThread())//
-                .subscribe(new Observer<ServerModel>() {
+                .subscribe(new Observer<List<BlogCatalog>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                         addDisposable(d);
+                        LogX.getLogger().d("addDisposable");
                     }
 
                     @Override
-                    public void onNext(@NonNull ServerModel serverModel) {
+                    public void onNext(@NonNull List<BlogCatalog> blogCatalog) {
 //                        handleResponse(serverModel);
+                        AlertUtil.showToast(getContext(),blogCatalog.get(0).getLabel());
+
+                        mTitle.clear();
+                        mFragment.clear();
+                        for (BlogCatalog catalog : blogCatalog
+                                ) {
+                            mTitle.add(catalog.getLabel());
+                            mFragment.add(Fg110.newInstance(catalog.getId(),catalog.getUrl()));
+
+                        }
+                        MyAdapter adapter = new MyAdapter(getChildFragmentManager(), mTitle, mFragment);
+
+                        viewPager.setAdapter(adapter);
+                        //为TabLayout设置ViewPager
+                        tabLayout.setupWithViewPager(viewPager);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         e.printStackTrace();            //请求失败
+//                                AlertUtil.showToast(getContext(),"error:" + e.getMessage());
+                        LogX.getLogger().d("error:" + e.getMessage());
+
 //                        showToast("请求失败");
 //                        handleError(null);
                     }
 
                     @Override
                     public void onComplete() {
-                        dismissLoading();
+//                                dismissLoading();
                     }
                 });
     }

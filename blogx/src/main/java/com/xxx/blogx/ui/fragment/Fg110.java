@@ -2,12 +2,37 @@ package com.xxx.blogx.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okrx2.adapter.ObservableBody;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.blogx.R;
+import com.xxx.blogx.callback.JsonConvert;
+import com.xxx.blogx.model.BlogCatalog;
+import com.xxx.blogx.model.BlogModel;
+import com.xxx.blogx.model.LzyResponse;
+import com.xxx.blogx.net.HttpUrlConstant;
+import com.xxx.utils.AlertUtil;
+import com.xxx.utils.LogX;
+import com.xxx.utils.StringUtil;
+import com.xxx.widget.RecyclerViewDivider;
+
+import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,8 +49,8 @@ public class Fg110 extends BackHandledFragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mParam1Id;
+    private String mParam2Url;
 
     private OnFragmentInteractionListener mListener;
 
@@ -61,17 +86,79 @@ public class Fg110 extends BackHandledFragment {
         return R.layout.fragment_fg110;
     }
 
+    private RecyclerView lv;
+
+
     @Override
     public void initView() {
 
+        lv = ((RecyclerView) mLayoutView.findViewById(R.id.lv));
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        lv.setLayoutManager(layoutManager);
+
+        // 分割线
+        lv.addItemDecoration(new RecyclerViewDivider(
+                getContext(), LinearLayoutManager.VERTICAL, 1, ContextCompat.getColor(getContext(), R.color.gray_l)));
+
+        // <LzyResponse<BlogCatalog>>       // 只是对象的这样也
+        // <LzyResponse<List<BlogCatalog>>>  // 如果是数组可以这样写
+        OkGo.<LzyResponse<BlogModel>>get(HttpUrlConstant.getblog + "/" +mParam1Id)//
+                .converter(new JsonConvert<LzyResponse<BlogModel>>() {
+                })//
+                .adapt(new ObservableBody<LzyResponse<BlogModel>>())//
+                .subscribeOn(Schedulers.io())//
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+//                        showLoading();
+                    }
+                })//
+                .map(new Function<LzyResponse<BlogModel>, BlogModel>() {
+                    @Override
+                    public BlogModel apply(@NonNull LzyResponse<BlogModel> response) throws Exception {
+                        return response.data;
+                    }
+                })//
+                .observeOn(AndroidSchedulers.mainThread())//
+                .subscribe(new Observer<BlogModel>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        addDisposable(d);
+                        LogX.getLogger().d("addDisposable");
+                    }
+
+                    @Override
+                    public void onNext(@NonNull BlogModel blogModel) {
+//                        handleResponse(serverModel);
+//                        AlertUtil.showToast(getContext(), blogCatalog.get(0).getLabel());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();            //请求失败
+//                                AlertUtil.showToast(getContext(),"error:" + e.getMessage());
+                        LogX.getLogger().d("error:" + e.getMessage());
+
+//                        showToast("请求失败");
+//                        handleError(null);
+                    }
+
+                    @Override
+                    public void onComplete() {
+//                                dismissLoading();
+                    }
+                });
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1Id = getArguments().getString(ARG_PARAM1);
+            mParam2Url = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -80,7 +167,7 @@ public class Fg110 extends BackHandledFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_fg110, container, false);
-        return super.onCreateView(inflater, container,savedInstanceState);
+        return super.onCreateView(inflater, container, savedInstanceState);
 
     }
 
@@ -90,7 +177,7 @@ public class Fg110 extends BackHandledFragment {
 
         if (isVisibleToUser) {
             // 页面正在展示,在这里加载你的数据
-        }else{
+        } else {
             // 页面没有展示
         }
     }

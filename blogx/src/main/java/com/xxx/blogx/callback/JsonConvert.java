@@ -20,6 +20,7 @@ import com.lzy.okgo.convert.Converter;
 import com.xxx.blogx.model.LzyResponse;
 import com.xxx.blogx.model.SimpleResponse;
 import com.xxx.blogx.utils.Convert;
+import com.xxx.utils.LogX;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -73,9 +74,12 @@ public class JsonConvert<T> implements Converter<T> {
 
         if (type == null) {
             if (clazz == null) {
-                // 如果没有通过构造函数传进来，就自动解析父类泛型的真实类型（有局限性，继承后就无法解析到）
+                // 如果没有通过构造函数传进来，就自动解析父类泛型的真实类型（有局限性，继承后就无法解析到） // 所以这里兼容一下写法 加上了if判断
                 Type genType = getClass().getGenericSuperclass();
                 type = ((ParameterizedType) genType).getActualTypeArguments()[0];
+// 根本原因就是使用反射获取类上泛型的真实类型是有局限性的，只能获取一层继承结构的数据，层次再多，
+// 获取到的数据类型他就是T，不是什么真实类型，Gson无法解析，所以就挂了，为什么就获取不到了呢，
+// 详细还是参考前面给出讲解泛型的几篇文章的链接，里面都有很清晰的讲到。
             } else {
                 return parseClass(response, clazz);
             }
@@ -148,10 +152,11 @@ public class JsonConvert<T> implements Converter<T> {
                 // 泛型格式如下： new JsonCallback<LzyResponse<内层JavaBean>>(this)
                 LzyResponse lzyResponse = Convert.fromJson(jsonReader, type);
                 response.close();
-                int code = lzyResponse.code;
+
+                int code = lzyResponse.code; // null 表示默认值 0
                 //这里的0是以下意思
                 //一般来说服务器会和客户端约定一个数表示成功，其余的表示失败，这里根据实际情况修改
-                if (code == 0) {
+                if (lzyResponse.success) { //  || code == 0 是成功
                     //noinspection unchecked
                     return (T) lzyResponse;
                 } else if (code == 104) {

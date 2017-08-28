@@ -30,7 +30,7 @@ public class LzyResponse<T> implements Serializable {
 
     private static final long serialVersionUID = 5213230387175987834L;
 
-    public boolean success;
+    public boolean success; // xxx add 是否成功
     public int code;
     public String msg;
     public T data;
@@ -38,7 +38,8 @@ public class LzyResponse<T> implements Serializable {
     @Override
     public String toString() {
         return "LzyResponse{\n" +//
-               "\tcode=" + code + "\n" +//
+                "\tsuccess=" + success + "\n" +//
+                "\tcode=" + code + "\n" +//
                "\tmsg='" + msg + "\'\n" +//
                "\tdata=" + data + "\n" +//
                '}';

@@ -15,6 +15,8 @@
  */
 package com.xxx.blogx.callback;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.request.base.Request;
 
@@ -22,6 +24,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * ================================================
@@ -78,7 +81,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
         if (type == null) {
             if (clazz == null) {
                 Type genType = getClass().getGenericSuperclass();
-                type = ((ParameterizedType) genType).getActualTypeArguments()[0];
+                type = ((ParameterizedType) genType).getActualTypeArguments()[0]; // 解析出当前类的父类上的泛型的真实泛型
             } else {
                 JsonConvert<T> convert = new JsonConvert<>(clazz);
                 return convert.convertResponse(response);
@@ -87,5 +90,24 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
 
         JsonConvert<T> convert = new JsonConvert<>(type);
         return convert.convertResponse(response);
+
+//        ResponseBody body = response.body();
+//        if(body == null) return null;
+//
+//        T data = null;
+//        Gson gson = new Gson();
+//        JsonReader jsonReader = new JsonReader(body.charStream());
+//
+//        if (type != null){
+//            data = gson.fromJson(jsonReader, type);
+//        } else if (clazz != null) {
+//            data = gson.fromJson(jsonReader, clazz);
+//        } else {
+//            // 解析出当前类的父类上的泛型的真实泛型
+//            Type genType = getClass().getGenericSuperclass();
+//            Type type = ((ParameterizedType)genType).getActualTypeArguments()[0];
+//            data = gson.fromJson(jsonReader, type);
+//        }
+//        return data;
     }
 }

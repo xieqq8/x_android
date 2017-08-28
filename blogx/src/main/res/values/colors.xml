@@ -7,4 +7,7 @@
     <color name="orange_r">#ffec6941</color>
     <color name="black_l">#2d2d2d</color>
     <color name="colorGray">#ccc</color>
+
+    <color name="gray_l">#ffe3e3e3</color>
+
 </resources>

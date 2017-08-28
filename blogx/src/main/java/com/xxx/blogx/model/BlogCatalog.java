@@ -69,44 +69,44 @@ public class BlogCatalog {
      }
      */
 
-    private boolean success;
-    private Object code;
-    private Object msg;
-    private List<DataBean> data;
+//    private boolean success;
+//    private Object code;
+//    private Object msg;
+//    private List<DataBean> data;
+//
+//    public boolean isSuccess() {
+//        return success;
+//    }
+//
+//    public void setSuccess(boolean success) {
+//        this.success = success;
+//    }
+//
+//    public Object getCode() {
+//        return code;
+//    }
+//
+//    public void setCode(Object code) {
+//        this.code = code;
+//    }
+//
+//    public Object getMsg() {
+//        return msg;
+//    }
+//
+//    public void setMsg(Object msg) {
+//        this.msg = msg;
+//    }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public Object getCode() {
-        return code;
-    }
-
-    public void setCode(Object code) {
-        this.code = code;
-    }
-
-    public Object getMsg() {
-        return msg;
-    }
-
-    public void setMsg(Object msg) {
-        this.msg = msg;
-    }
-
-    public List<DataBean> getData() {
-        return data;
-    }
-
-    public void setData(List<DataBean> data) {
-        this.data = data;
-    }
-
-    public static class DataBean {
+//    public List<DataBean> getData() {
+//        return data;
+//    }
+//
+//    public void setData(List<DataBean> data) {
+//        this.data = data;
+//    }
+//
+//    public static class DataBean {
         /**
          * id : java
          * label : Java
@@ -210,6 +210,6 @@ public class BlogCatalog {
         public void setChildNodes(List<?> childNodes) {
             this.childNodes = childNodes;
         }
-    }
+//    }
 
 }

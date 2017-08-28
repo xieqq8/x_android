@@ -78,4 +78,8 @@ dependencies {
 //    compile 'com.lzy.net:okrx:1.0.2'
     compile 'com.lzy.net:okrx2:2.0.2'
     compile 'com.lzy.net:okserver:2.0.5'
+
+    // RecyclerView https://github.com/CymChad/BaseRecyclerViewAdapterHelper    http://www.jianshu.com/p/b343fcff51b0
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+
 }
