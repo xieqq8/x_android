@@ -67,7 +67,9 @@ dependencies {
 
 //    http://blog.csdn.net/qq_35064774/article/details/54177702
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.1'
-    compile 'com.allenliu.badgeview:library:1.1.1'
+
+    // badge 小红点
+    compile 'q.rorbin:badgeview:1.1.2'
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 

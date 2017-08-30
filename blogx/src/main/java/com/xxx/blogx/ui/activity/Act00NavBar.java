@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.githang.statusbar.StatusBarCompat;
@@ -24,6 +25,9 @@ import com.xxx.blogx.ui.fragment.Fg300Me;
 import com.xxx.utils.LogX;
 
 import java.util.ArrayList;
+
+import q.rorbin.badgeview.Badge;
+import q.rorbin.badgeview.QBadgeView;
 
 public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragmentInteractionListener,
         BackHandledFragment.BackHandledInterface {
@@ -51,11 +55,28 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
         fragments = getFragments();
         setViewFragment(0);
         nShowFg = 0;
+
+        addBadgeAt(1, 5);
     }
 
     @Override
     public void initPresenter() {
         bind.bnve.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private Badge addBadgeAt(int position, int number) {
+        // add badge
+        return new QBadgeView(this)
+                .setBadgeNumber(number)
+                .setGravityOffset(12, 2, true)
+                .bindTarget(bind.bnve.getBottomNavigationItemView(position))
+                .setOnDragStateChangedListener(new Badge.OnDragStateChangedListener() {
+                    @Override
+                    public void onDragStateChanged(int dragState, Badge badge, View targetView) {
+                        if (Badge.OnDragStateChangedListener.STATE_SUCCEED == dragState)
+                            Toast.makeText(Act00NavBar.this, "Badge is removed", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     /**
