@@ -131,7 +131,7 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
     private void initAdapter() {
         pullToRefreshAdapter = new BlogPullToRefreshAdapter();
         pullToRefreshAdapter.setOnLoadMoreListener(this, mRecyclerView);
-        pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
+        pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT); // 设置载入动画
 //        pullToRefreshAdapter.setPreLoadNumber(3);
         mRecyclerView.setAdapter(pullToRefreshAdapter);
         mCurrentCounter = pullToRefreshAdapter.getData().size();
@@ -139,6 +139,7 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
+                // 点击
                 Toast.makeText(getContext(), Integer.toString(position), Toast.LENGTH_LONG).show();
             }
         });
@@ -260,20 +261,15 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
         } else {
                 refreshData();
 
-//                pullToRefreshAdapter.loadMoreEnd(mLoadMoreEndGone);//true is gone,false is visible
-//            } else {
-//                if (isErr) {
-////                    pullToRefreshAdapter.addData(DataServer.getSampleData(PAGE_SIZE));
-//                    mCurrentCounter = pullToRefreshAdapter.getData().size();
-//                    pullToRefreshAdapter.loadMoreComplete();
-//                } else {
-//                    isErr = true;
-//                    Toast.makeText(getContext(), "network error", Toast.LENGTH_LONG).show();
-//                    pullToRefreshAdapter.loadMoreFail();
-//
-//                }
-//            }
             mSwipeRefreshLayout.setEnabled(true);
         }
     }
+
+//    @Override
+//    public void onDestroy() { base onDetach()
+//        super.onDestroy();
+//
+//        LogX.getLogger().d("Fg110 onDestroy ");
+//        dispose();
+//    }
 }

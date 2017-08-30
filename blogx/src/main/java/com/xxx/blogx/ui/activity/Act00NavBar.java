@@ -9,7 +9,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.githang.statusbar.StatusBarCompat;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.base.BaseApcActivity;
@@ -122,11 +125,20 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
         return fragments;
     }
 
+    /**
+     * 设置选中的Fragment
+     * @param selectedFragment
+     */
     @Override
     public void setSelectedFragment(BackHandledFragment selectedFragment) {
+//        LogX.getLogger().d("setSelectedFragment_");
 
     }
 
+    /**
+     * fragment中点击就这里可以响应
+     * @param uri
+     */
     @Override
     public void onFragmentInteraction(Uri uri) {
         // 这里的Uri可以自己改
@@ -140,5 +152,23 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
 
     }
 
-
+    // 双击返回键退出用
+    private long exitTime = 0;
+    /**
+     * 再按一次退出
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                this.finish();
+//                ActivityManager.getAppManager().AppExit(mContext);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

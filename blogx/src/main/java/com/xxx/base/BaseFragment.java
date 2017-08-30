@@ -11,6 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.xxx.utils.LogX;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 
 public abstract class BaseFragment extends Fragment {
     private AppCompatActivity mActivity;
@@ -85,7 +90,6 @@ public abstract class BaseFragment extends Fragment {
         return getActivity();
     }
 
-        // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -107,6 +111,10 @@ public abstract class BaseFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+
+        dispose();
+
+        LogX.getLogger().d("Base Fragment onDetach()");
     }
 
     public interface OnFragmentInteractionListener {
@@ -130,5 +138,19 @@ public abstract class BaseFragment extends Fragment {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
+    }
+
+
+    private CompositeDisposable compositeDisposable;
+
+    public void addDisposable(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
+    }
+
+    public void dispose() {
+        if (compositeDisposable != null) compositeDisposable.dispose();
     }
 }

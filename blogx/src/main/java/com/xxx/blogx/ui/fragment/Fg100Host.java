@@ -153,14 +153,14 @@ public class Fg100Host extends BackHandledFragment {
                 .subscribe(new Observer<List<BlogCatalog>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-                        addDisposable(d);
+                        addDisposable(d);   // 统一管理，页面销毁时取消
                         LogX.getLogger().d("addDisposable");
                     }
 
                     @Override
                     public void onNext(@NonNull List<BlogCatalog> blogCatalog) {
 //                        handleResponse(serverModel);
-                        AlertUtil.showToast(getContext(),blogCatalog.get(0).getLabel());
+//                        AlertUtil.showToast(getContext(),blogCatalog.get(0).getLabel());
 
                         mTitle.clear();
                         mFragment.clear();
@@ -195,7 +195,7 @@ public class Fg100Host extends BackHandledFragment {
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed() { // 未执行
         Toast.makeText(getActivity(), "别点了，再点就退出", Toast.LENGTH_LONG).show();
 //        getActivity().finish();
         return true;
@@ -209,29 +209,6 @@ public class Fg100Host extends BackHandledFragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-//        if (savedInstanceState == null) {
-//            // getFragmentManager().beginTransaction()...commit()
-//        }else{
-//            //先通过id或者tag找到“复活”的所有UI-Fragment
-//            UIFragment fragment1 = getFragmentManager().findFragmentById(R.id.fragment1);
-//            UIFragment fragment2 = getFragmentManager().findFragmentByTag("tag");
-//            UIFragment fragment3 = ...
-//            ...
-//            //show()一个即可
-//            getFragmentManager().beginTransaction()
-//                    .show(fragment1)
-//                    .hide(fragment2)
-//                    .hide(fragment3)
-//                    .hide(...)
-//            .commit();
-//        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //Activity销毁时，取消网络请求
-        dispose();
     }
 
     @Override
