@@ -19,16 +19,18 @@ import com.xxx.blogx.model.BlogModel;
  * 修改时间：
  * 修改备注：
  */
-public class BlogPullToRefreshAdapter extends BaseQuickAdapter<BlogModel, BaseViewHolder> {
+public class BlogPullToRefreshAdapter extends BaseQuickAdapter<BlogModel.ListBean, BaseViewHolder> {
     public BlogPullToRefreshAdapter() {
         super( R.layout.layout_animation, null); // 第二个参数是数据
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BlogModel item) {
+    protected void convert(BaseViewHolder helper, BlogModel.ListBean item) {
 //        helper.addOnClickListener(R.id.img).addOnClickListener(R.id.tweetText).addOnClickListener(R.id.tweetName);
 //
-//        helper.setText(R.id.tweetName,"Hoteis in Rio de Janeiro");
+        helper.setText(R.id.blogTitle,item.getTitle());
+        helper.setText(R.id.blogCatalog,item.getCatalog());
+
 //        String msg="\"He was one of Australia's most of distinguished artistes, renowned for his portraits\"";
 //        ( (TextView)helper.getView(R.id.tweetText)).setText(SpannableStringUtils.getBuilder(msg).append("landscapes and nedes").setClickSpan(clickableSpan).create());
 //        ( (TextView)helper.getView(R.id.tweetText)).setMovementMethod(LinkMovementMethod.getInstance());

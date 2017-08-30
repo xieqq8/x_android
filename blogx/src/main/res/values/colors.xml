@@ -10,4 +10,6 @@
 
     <color name="gray_l">#ffe3e3e3</color>
 
+    <color name="item_bg">#FFFFFF</color>
+
 </resources>
