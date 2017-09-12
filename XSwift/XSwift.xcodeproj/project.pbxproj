@@ -14,7 +14,7 @@
 		038C3EE81EE93E030080B7CF /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EE71EE93E030080B7CF /* Readme */; };
 		038C3EEC1EE945090080B7CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EEB1EE945090080B7CF /* Images.xcassets */; };
 		038C3EEE1EE9453B0080B7CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EED1EE9453B0080B7CF /* Assets.xcassets */; };
-		03A905121F56B5BE0015B99C /* BlogX.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03A905101F56B5BE0015B99C /* BlogX.storyboard */; };
+		03EAE3D21F59009900B8D305 /* BlogX.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03EAE3D01F59009900B8D305 /* BlogX.storyboard */; };
 		03FDA2F81ED565730093241B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA2F71ED565730093241B /* AppDelegate.swift */; };
 		03FDA2FA1ED565730093241B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FDA2F91ED565730093241B /* ViewController.swift */; };
 		03FDA2FD1ED565730093241B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FDA2FB1ED565730093241B /* Main.storyboard */; };
@@ -50,7 +50,7 @@
 		038C3EE71EE93E030080B7CF /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
 		038C3EEB1EE945090080B7CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		038C3EED1EE9453B0080B7CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		03A905111F56B5BE0015B99C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = XSwift/Base.lproj/BlogX.storyboard; sourceTree = "<group>"; };
+		03EAE3D11F59009900B8D305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BlogX.storyboard; sourceTree = "<group>"; };
 		03FDA2F41ED565730093241B /* XSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FDA2F71ED565730093241B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03FDA2F91ED565730093241B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 				03FDA2F71ED565730093241B /* AppDelegate.swift */,
 				03FDA2F91ED565730093241B /* ViewController.swift */,
 				03FDA2FB1ED565730093241B /* Main.storyboard */,
-				03A905101F56B5BE0015B99C /* BlogX.storyboard */,
+				03EAE3D01F59009900B8D305 /* BlogX.storyboard */,
 				03FDA3001ED565730093241B /* LaunchScreen.storyboard */,
 				037EA3801EDE717C00E98E2F /* testXib.xib */,
 				037EA3881EDE747D00E98E2F /* testXib.swift */,
@@ -308,7 +308,7 @@
 				038C3EE01EE931D30080B7CF /* Kenny.jpg in Resources */,
 				038C3EEC1EE945090080B7CF /* Images.xcassets in Resources */,
 				03FDA3021ED565730093241B /* LaunchScreen.storyboard in Resources */,
-				03A905121F56B5BE0015B99C /* BlogX.storyboard in Resources */,
+				03EAE3D21F59009900B8D305 /* BlogX.storyboard in Resources */,
 				038C3EE61EE93DE30080B7CF /* Info.plist in Resources */,
 				038C3EE81EE93E030080B7CF /* Readme in Resources */,
 				03FDA2FD1ED565730093241B /* Main.storyboard in Resources */,
@@ -340,9 +340,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-XSwift/Pods-XSwift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/TimedSilver/TimedSilver.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TimedSilver.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -370,13 +379,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XSwift-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -424,13 +436,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		03A905101F56B5BE0015B99C /* BlogX.storyboard */ = {
+		03EAE3D01F59009900B8D305 /* BlogX.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				03A905111F56B5BE0015B99C /* Base */,
+				03EAE3D11F59009900B8D305 /* Base */,
 			);
 			name = BlogX.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		03FDA2FB1ED565730093241B /* Main.storyboard */ = {
