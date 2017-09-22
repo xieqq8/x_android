@@ -39,7 +39,7 @@ public abstract class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    protected  ViewDataBinding binding = null;
+    private  ViewDataBinding binding = null;
 
 
     @Override

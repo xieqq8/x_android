@@ -9,7 +9,7 @@ package com.xxx.blogx.net;
 public class HttpUrlConstant {
 
     // 接口地址
-    public static final String HOST = "http://192.168.1.113:8686/api/";
+    public static final String HOST = "http://192.168.1.35:8686/api/";
 
 
     //defined network response
