@@ -1,5 +1,6 @@
 package com.xxx.blogx.ui.fragment;
 
+import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,8 @@ import com.xxx.base.BackHandledFragment;
 import com.xxx.blogx.R;
 import com.xxx.blogx.adapter.BlogPullToRefreshAdapter;
 import com.xxx.blogx.callback.JsonConvert;
+import com.xxx.blogx.databinding.Act001MainBinding;
+import com.xxx.blogx.databinding.FragmentFg110Binding;
 import com.xxx.blogx.model.BlogCatalog;
 import com.xxx.blogx.model.BlogModel;
 import com.xxx.blogx.model.LzyResponse;
@@ -60,8 +63,8 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
 
     private OnFragmentInteractionListener mListener;
 
-    private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+//    private RecyclerView mRecyclerView;
+//    private SwipeRefreshLayout mSwipeRefreshLayout;
     private BlogPullToRefreshAdapter pullToRefreshAdapter;
     private int mCurrentCounter = 0;
     private boolean isErr;
@@ -103,40 +106,41 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
     }
 
 
+    private FragmentFg110Binding bind; // Act00NavBarBinding这个是activity layout 的名字
 
     @Override
-    public void initView() {
+    public void initView(ViewDataBinding binding) {
 
-        mRecyclerView = ((RecyclerView) mLayoutView.findViewById(R.id.lv));
-
+//        mRecyclerView = ((RecyclerView) mLayoutView.findViewById(R.id.lv));
+        bind = (FragmentFg110Binding)binding;
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
+        bind.lv.setLayoutManager(layoutManager);
 
         // 分割线
-        mRecyclerView.addItemDecoration(new RecyclerViewDivider(
+        bind.lv.addItemDecoration(new RecyclerViewDivider(
                 getContext(), LinearLayoutManager.VERTICAL, 1, ContextCompat.getColor(getContext(), R.color.gray_l)));
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) mLayoutView.findViewById(R.id.swipeLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189));
+//        mSwipeRefreshLayout = (SwipeRefreshLayout) mLayoutView.findViewById(R.id.swipeLayout);
+        bind.swipeLayout.setOnRefreshListener(this);
+        bind.swipeLayout.setColorSchemeColors(Color.rgb(47, 223, 189));
 
         initAdapter();
 
         onRefresh(); // 第一次加载
-        mSwipeRefreshLayout.setRefreshing(true); // 显示转圈圈的
+        bind.swipeLayout.setRefreshing(true); // 显示转圈圈的
     }
 
     private void initAdapter() {
         pullToRefreshAdapter = new BlogPullToRefreshAdapter();
-        pullToRefreshAdapter.setOnLoadMoreListener(this, mRecyclerView);
+        pullToRefreshAdapter.setOnLoadMoreListener(this, bind.lv);
         pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT); // 设置载入动画
 //        pullToRefreshAdapter.setPreLoadNumber(3);
-        mRecyclerView.setAdapter(pullToRefreshAdapter);
+        bind.lv.setAdapter(pullToRefreshAdapter);
         mCurrentCounter = pullToRefreshAdapter.getData().size();
 
-        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+        bind.lv.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
                 // 点击
@@ -245,7 +249,7 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
                     @Override
                     public void onComplete() {
 
-                        mSwipeRefreshLayout.setRefreshing(false);
+                        bind.swipeLayout.setRefreshing(false);
 //                        pullToRefreshAdapter.setEnableLoadMore(true);
                     }
                 });
@@ -254,14 +258,14 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
     @Override
     public void onLoadMoreRequested() {
         // 加载更多
-        mSwipeRefreshLayout.setEnabled(false);
+        bind.swipeLayout.setEnabled(false);
 
         if (!bhasNext) {
             pullToRefreshAdapter.loadMoreEnd(true); // //true is gone,false is visible
         } else {
                 refreshData();
 
-            mSwipeRefreshLayout.setEnabled(true);
+            bind.swipeLayout.setEnabled(true);
         }
     }
 

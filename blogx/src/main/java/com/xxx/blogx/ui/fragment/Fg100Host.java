@@ -1,5 +1,6 @@
 package com.xxx.blogx.ui.fragment;
 
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import com.lzy.okrx2.adapter.ObservableBody;
 import com.xxx.base.BackHandledFragment;
 import com.xxx.blogx.R;
 import com.xxx.blogx.callback.JsonConvert;
+import com.xxx.blogx.databinding.Act001MainBinding;
+import com.xxx.blogx.databinding.Act00NavBarBinding;
 import com.xxx.blogx.model.BlogCatalog;
 import com.xxx.blogx.model.LzyResponse;
 import com.xxx.blogx.net.HttpUrlConstant;
@@ -56,8 +59,11 @@ public class Fg100Host extends BackHandledFragment {
 
     private List<String> mTitle = new ArrayList<String>();
     private List<Fragment> mFragment = new ArrayList<Fragment>();
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+
+    private Act001MainBinding bind; // Act00NavBarBinding这个是activity layout 的名字
+
+    //    private ViewPager viewPager;
+//    private TabLayout tabLayout;
     public Fg100Host() {
         // Required empty public constructor
     }
@@ -98,9 +104,10 @@ public class Fg100Host extends BackHandledFragment {
 
 
     @Override
-    public void initView() {
-        if(mLayoutView == null)
+    public void initView(ViewDataBinding binding) {
+        if(binding == null)
             return;
+        bind = (Act001MainBinding)binding;
 
         LogX.getLogger().d("Fg100Host initView:" + mParam1);
 
@@ -109,9 +116,9 @@ public class Fg100Host extends BackHandledFragment {
 
     private void SetTable(){
 
-        tabLayout = (TabLayout) mLayoutView.findViewById(R.id.tabLayout);
-
-        viewPager = (ViewPager) mLayoutView.findViewById(R.id.vp_view);
+//        tabLayout = (TabLayout) mLayoutView.findViewById(R.id.tabLayout);
+//
+//        viewPager = (ViewPager) mLayoutView.findViewById(R.id.vp_view);
 
 //        mTitle.add("tab1");
 //        mTitle.add("tab2");
@@ -172,9 +179,9 @@ public class Fg100Host extends BackHandledFragment {
                         }
                         MyAdapter adapter = new MyAdapter(getChildFragmentManager(), mTitle, mFragment);
 
-                        viewPager.setAdapter(adapter);
+                        bind.vpView.setAdapter(adapter);
                         //为TabLayout设置ViewPager
-                        tabLayout.setupWithViewPager(viewPager);
+                        bind.tabLayout.setupWithViewPager(bind.vpView);
                     }
 
                     @Override

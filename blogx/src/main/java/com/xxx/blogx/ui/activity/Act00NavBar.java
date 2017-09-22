@@ -1,6 +1,7 @@
 package com.xxx.blogx.ui.activity;
 
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -132,8 +133,8 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment fragment = fragments.get(position);
-//                ft.remove(fragment);
-        ft.hide(fragment);  // 隐藏
+                ft.remove(fragment);
+//        ft.hide(fragment);  // 隐藏
         ft.commitAllowingStateLoss(); // 用hide show 没有 切换后滑动消失的
     }
     private ArrayList<Fragment> getFragments() {

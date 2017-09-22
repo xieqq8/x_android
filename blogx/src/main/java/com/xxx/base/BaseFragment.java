@@ -2,6 +2,8 @@ package com.xxx.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +21,7 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BaseFragment extends Fragment {
     private AppCompatActivity mActivity;
-    protected View mLayoutView;
+//    protected View mLayoutView;
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -30,39 +32,42 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 初始化视图
      */
-    public abstract void initView();
+    public abstract void initView(ViewDataBinding binding);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    protected  ViewDataBinding binding = null;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //20160727 修复该方法多次调用 bug
-        if (mLayoutView != null) {
-            ViewGroup parent = (ViewGroup) mLayoutView.getParent();
-            if (parent != null) {
-                parent.removeView(mLayoutView);
-            }
+        if(binding == null || (binding.getRoot() == null)){
+            binding = DataBindingUtil.inflate(inflater,getLayoutRes(), container, false);
+            initView(binding);     //初始化布局
+//            mLayoutView = binding.getRoot();
         } else {
-            mLayoutView = getCreateView(inflater, container);
-            initView();     //初始化布局
+            ViewGroup parent = (ViewGroup) binding.getRoot().getParent();
+            if (parent != null) {
+                parent.removeView(binding.getRoot());
+            }
         }
-
-        return mLayoutView;
+        return binding.getRoot();
     }
 
-    /**
-     * 获取Fragment布局文件的View
-     *
-     * @param inflater
-     * @param container
-     * @return
-     */
-    private View getCreateView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(getLayoutRes(), container, false);
-    }
+//    /**
+//     * 获取Fragment布局文件的View
+//     *
+//     * @param inflater
+//     * @param container
+//     * @return
+//     */
+//    private View getCreateView(LayoutInflater inflater, ViewGroup container) {
+//        return inflater.inflate(getLayoutRes(), container, false);
+//    }
 
     /**
      * 获取当前Fragment状态

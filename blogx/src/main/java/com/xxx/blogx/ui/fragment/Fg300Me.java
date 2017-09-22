@@ -3,6 +3,7 @@ package com.xxx.blogx.ui.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,8 @@ import com.bumptech.glide.Glide;
 
 import com.xxx.base.BackHandledFragment;
 import com.xxx.blogx.R;
+import com.xxx.blogx.databinding.FragmentFg110Binding;
+import com.xxx.blogx.databinding.FragmentFg300MeBinding;
 import com.xxx.blogx.ui.activity.Act00NavBar;
 import com.xxx.utils.LogX;
 
@@ -90,21 +93,23 @@ public class Fg300Me extends BackHandledFragment  {
         return R.layout.fragment_fg300_me;
 //        return R.layout.act_001_main;               //  这个 Toolbar 上滑可隐藏
     }
+    private FragmentFg300MeBinding bind; // Act00NavBarBinding这个是activity layout 的名字
 
     @Override
-    public void initView() {
-        Button button = (Button) mLayoutView.findViewById(R.id.button2);
+    public void initView(ViewDataBinding binding) {
+        bind=(FragmentFg300MeBinding)binding;
+//        Button button = (Button) mLayoutView.findViewById(R.id.button2);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        bind.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                startActivity(new Intent(getActivity(), ScrollingActivity.class));
             }
         });
 
-        Button btn = (Button) mLayoutView.findViewById(R.id.button);
-        btn.setText(mParam2);
-        btn.setOnClickListener(new View.OnClickListener() {
+//        Button btn = (Button) mLayoutView.findViewById(R.id.button);
+        bind.button.setText(mParam2);
+        bind.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Uri uri = Act00NavBar.ATOB;
@@ -115,9 +120,9 @@ public class Fg300Me extends BackHandledFragment  {
             }
         });
 
-        Button btn3 = (Button) mLayoutView.findViewById(R.id.button_appbar);
+//        Button btn3 = (Button) mLayoutView.findViewById(R.id.button_appbar);
 //        btn3.setText(mParam2);
-        btn3.setOnClickListener(new View.OnClickListener() {
+        bind.buttonAppbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Uri uri = Act00NavBar.ATOB;
@@ -128,18 +133,18 @@ public class Fg300Me extends BackHandledFragment  {
             }
         });
         //获取控件实例
-        cityET = (EditText) mLayoutView.findViewById(R.id.city);
-        queryTV = (TextView) mLayoutView.findViewById(R.id.query);
-        weatherTV = (TextView) mLayoutView.findViewById(R.id.weather);
+//        cityET = (EditText) mLayoutView.findViewById(R.id.city);
+//        queryTV = (TextView) mLayoutView.findViewById(R.id.query);
+//        weatherTV = (TextView) mLayoutView.findViewById(R.id.weather);
         //对查询按钮侦听点击事件
-        queryTV.setOnClickListener(new View.OnClickListener(){
+        bind.button2.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 // 查询
 
-                weatherTV.setText("");
-                String city = cityET.getText().toString();
+                bind.weather.setText("");
+                String city = bind.city.getText().toString();
                 if(TextUtils.isEmpty(city)){
                     Toast.makeText(getActivity(), "城市不能为空！", Toast.LENGTH_SHORT).show();
                     return;
@@ -171,9 +176,9 @@ public class Fg300Me extends BackHandledFragment  {
      * 天气预报API地址
      */
     private static final String WEATHRE_API_URL="http://php.weather.sina.com.cn/xml.php?city=%s&password=DJOYnieT8234jlsK&day=0";
-    private EditText cityET;     //城市
-    private TextView queryTV;    //查询按钮
-    private TextView weatherTV;  //天气结果
+//    private EditText cityET;     //城市
+//    private TextView queryTV;    //查询按钮
+//    private TextView weatherTV;  //天气结果
 
 
 

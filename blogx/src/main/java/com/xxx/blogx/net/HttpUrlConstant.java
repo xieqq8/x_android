@@ -7,8 +7,6 @@ package com.xxx.blogx.net;
  * @code: create：2015-8-27 下午1:33
  */
 public class HttpUrlConstant {
-    // 时间校准
-    public static final String servertime = "https://api.kuaxue.com/ParentClient/server_time";
 
     // 接口地址
     public static final String HOST = "http://192.168.1.113:8686/api/";
@@ -23,6 +21,8 @@ public class HttpUrlConstant {
 
     public static final String getblog = HOST + "blog";
 
+    // 时间校准
+    public static final String servertime = HOST + "server_time";
 
 
 }
