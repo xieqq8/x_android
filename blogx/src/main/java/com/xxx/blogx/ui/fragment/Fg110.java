@@ -113,6 +113,7 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
 
 //        mRecyclerView = ((RecyclerView) mLayoutView.findViewById(R.id.lv));
         bind = (FragmentFg110Binding)binding;
+        LogX.getLogger().d("Fg110 initView:" );
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -213,7 +214,7 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                         addDisposable(d);
-                        LogX.getLogger().d("addDisposable");
+                        LogX.getLogger().d("onSubscribe");
                     }
 
                     @Override

@@ -21,7 +21,8 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BaseFragment extends Fragment {
     private AppCompatActivity mActivity;
-//    protected View mLayoutView;
+
+    // 给父级传参用
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -103,6 +104,10 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
+
+        LogX.getLogger().d("Base Fragment onAttach()");
+
+
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;

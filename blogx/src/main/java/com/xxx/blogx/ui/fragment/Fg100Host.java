@@ -186,9 +186,11 @@ public class Fg100Host extends BackHandledFragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        // 网络错误读缓存
+
                         e.printStackTrace();            //请求失败
 //                                AlertUtil.showToast(getContext(),"error:" + e.getMessage());
-                        LogX.getLogger().d("error:" + e.getMessage());
+                        LogX.getLogger().d("error:" + e.getLocalizedMessage() +e.getMessage());
 
 //                        showToast("请求失败");
 //                        handleError(null);

@@ -39,7 +39,7 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
 
     public final static Uri ATOB = Uri.parse("ATOB_Act00NavBar");
 
-    private int nShowFg = 0;
+    private int nShowFg = -1;
 
     @Override
     public void initContentView() {
@@ -54,10 +54,9 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
     @Override
     public void initView() {
         fragments = getFragments();
-        setViewFragment(0);
+        ChangeFragment(0, nShowFg);
         nShowFg = 0;
-
-        addBadgeAt(1, 5);
+//        addBadgeAt(1, 5);
     }
 
     @Override
@@ -90,14 +89,12 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.i_music: {
-                    HideFragment(nShowFg);
-                    setViewFragment(0);
+                    ChangeFragment(0, nShowFg);
                     nShowFg = 0;
                     return true;
                 }
                 case R.id.i_me: {
-                    HideFragment(nShowFg);
-                    setViewFragment(1);
+                    ChangeFragment(1, nShowFg);
                     nShowFg = 1;
                     return true;
                 }
@@ -113,30 +110,43 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
     }
 
     /**
-     * 设置默认的
+     * 改变显示的fragment
+     * @param newIndex
+     * @param old
      */
-    private void setViewFragment(int index) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
+    private void ChangeFragment(int newIndex, int old){
 
-        Fragment fragment = fragments.get(index);
-        if (fragment.isAdded()) {
-            transaction.replace(R.id.layFrame, fragment);
-        } else {
-            transaction.add(R.id.layFrame, fragment);
+        LogX.getLogger().d(old + "_ChangeFragment_" + newIndex);
+
+        if(old == newIndex)
+            return;
+
+        FragmentManager mFragmentMan = getSupportFragmentManager();
+        FragmentTransaction transaction = mFragmentMan.beginTransaction();
+        Fragment fragmentNew = fragments.get(newIndex);
+
+        if(old == -1){
+            // 之前没有，新加一下
+            transaction.add(R.id.layFrame, fragmentNew).commitAllowingStateLoss();
+            return;
         }
-        transaction.show(fragment); // 显示
-        transaction.commitAllowingStateLoss();
+
+        Fragment fragmentOld = fragments.get(old);
+
+        if(fragmentNew.isAdded()){
+            transaction.hide(fragmentOld).show(fragmentNew).commitAllowingStateLoss();
+        } else {
+            transaction.hide(fragmentOld).add(R.id.layFrame, fragmentNew).commitAllowingStateLoss(); // 隐藏当前的fragment，add下一个到Activity中
+        }
+
+//        commitAllowingStateLoss则直接跳过这步，这里我们调用commit方法时，系统系判断状态（mStateSaved）是否已经保存，如果已经保存，
+// 则抛出"Can not perform this action after onSaveInstanceState"异常，这就是我们遇到的问题了，而用commitAllowingStateLoss方法
+// 则不会这样，这就与我们之前分析的activity去保存状态对应上了，在activity保存状态完成之后调用commit时，这个mStateSaved就是已经保存状态，
+// 所以会抛出异常。
+
     }
 
-    private void HideFragment(int position){
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = fragments.get(position);
-                ft.remove(fragment);
-//        ft.hide(fragment);  // 隐藏
-        ft.commitAllowingStateLoss(); // 用hide show 没有 切换后滑动消失的
-    }
+
     private ArrayList<Fragment> getFragments() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(Fg100Host.newInstance("Home", "home"));
@@ -148,17 +158,17 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
     }
 
     /**
-     * 设置选中的Fragment
+     * 设置选中的Fragment  可以知道当前选中的fragment
      * @param selectedFragment
      */
     @Override
     public void setSelectedFragment(BackHandledFragment selectedFragment) {
 //        LogX.getLogger().d("setSelectedFragment_");
-
+        // 当前选中的fragment
     }
 
     /**
-     * fragment中点击就这里可以响应
+     * fragment中点击就这里可以响应  fragment和activity交互
      * @param uri
      */
     @Override
