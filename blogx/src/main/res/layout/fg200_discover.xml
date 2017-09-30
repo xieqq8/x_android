@@ -21,33 +21,6 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways">
 
-
-            <!--<android.support.v7.widget.Toolbar-->
-                <!--android:id="@+id/toolbar"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="?attr/actionBarSize"-->
-                <!--android:minHeight="?attr/actionBarSize"-->
-                <!--app:layout_collapseMode="pin"-->
-                <!--app:layout_scrollFlags="scroll|enterAlways"-->
-                <!--app:popupTheme="@style/AppTheme.AppBarOverlay">-->
-                <!--&lt;!&ndash;<android.support.v7.widget.Toolbar&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/toolBar"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:background="#2196f3"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:minHeight="?attr/actionBarSize"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:layout_scrollFlags="scroll|enterAlways">&ndash;&gt;-->
-                <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="@dimen/app_bar_height"-->
-                    <!--android:layout_marginRight="@dimen/app_bar_height"-->
-                    <!--android:gravity="center_horizontal"-->
-                    <!--android:text="一个标题"-->
-                    <!--android:textColor="@color/grey" />-->
-            <!--</android.support.v7.widget.Toolbar>-->
-
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -67,7 +40,13 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-
+            <TextView
+                android:id="@+id/iv_msg_hint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Nothing Now"
+                android:layout_margin="10dp" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

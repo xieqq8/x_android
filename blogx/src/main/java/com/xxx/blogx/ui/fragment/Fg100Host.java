@@ -203,12 +203,12 @@ public class Fg100Host extends BackHandledFragment {
                 });
     }
 
-    @Override
-    public boolean onBackPressed() { // 未执行
-        Toast.makeText(getActivity(), "别点了，再点就退出", Toast.LENGTH_LONG).show();
-//        getActivity().finish();
-        return true;
-    }
+//    @Override
+//    public boolean onBackPressed() { // 未执行
+//        Toast.makeText(getActivity(), "别点了，再点就退出", Toast.LENGTH_LONG).show();
+////        getActivity().finish();
+//        return true;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		037EA3811EDE717C00E98E2F /* testXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037EA3801EDE717C00E98E2F /* testXib.xib */; };
-		037EA3891EDE747D00E98E2F /* testXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EA3881EDE747D00E98E2F /* testXib.swift */; };
 		038C3EE01EE931D30080B7CF /* Kenny.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EDF1EE931D20080B7CF /* Kenny.jpg */; };
 		038C3EE61EE93DE30080B7CF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EE51EE93DE30080B7CF /* Info.plist */; };
 		038C3EE81EE93E030080B7CF /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 038C3EE71EE93E030080B7CF /* Readme */; };
@@ -43,8 +41,6 @@
 
 /* Begin PBXFileReference section */
 		02459E8EB2BE005FD564FF68 /* Pods_XSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		037EA3801EDE717C00E98E2F /* testXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testXib.xib; sourceTree = "<group>"; };
-		037EA3881EDE747D00E98E2F /* testXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testXib.swift; sourceTree = "<group>"; };
 		038C3EDF1EE931D20080B7CF /* Kenny.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Kenny.jpg; sourceTree = "<group>"; };
 		038C3EE51EE93DE30080B7CF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		038C3EE71EE93E030080B7CF /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
@@ -150,8 +146,6 @@
 				03FDA2FB1ED565730093241B /* Main.storyboard */,
 				03EAE3D01F59009900B8D305 /* BlogX.storyboard */,
 				03FDA3001ED565730093241B /* LaunchScreen.storyboard */,
-				037EA3801EDE717C00E98E2F /* testXib.xib */,
-				037EA3881EDE747D00E98E2F /* testXib.swift */,
 				038C3EE71EE93E030080B7CF /* Readme */,
 			);
 			path = XSwift;
@@ -313,7 +307,6 @@
 				038C3EE81EE93E030080B7CF /* Readme in Resources */,
 				03FDA2FD1ED565730093241B /* Main.storyboard in Resources */,
 				038C3EEE1EE9453B0080B7CF /* Assets.xcassets in Resources */,
-				037EA3811EDE717C00E98E2F /* testXib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +393,6 @@
 			files = (
 				03FDA2FA1ED565730093241B /* ViewController.swift in Sources */,
 				03FDA2F81ED565730093241B /* AppDelegate.swift in Sources */,
-				037EA3891EDE747D00E98E2F /* testXib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

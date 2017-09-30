@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/i_music"
+        android:id="@+id/i_home"
         android:checked="true"
         android:icon="@mipmap/ic_home_white_24dp"
         android:title="@string/title_home" />
-
+    <item
+        android:id="@+id/i_discover"
+        android:checked="true"
+        android:icon="@mipmap/ic_home_white_24dp"
+        android:title="@string/title_discover" />
     <item
         android:id="@+id/i_me"
         android:icon="@mipmap/ic_book_white_24dp"

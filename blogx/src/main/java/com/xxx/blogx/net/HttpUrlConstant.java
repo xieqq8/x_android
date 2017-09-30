@@ -10,7 +10,7 @@ public class HttpUrlConstant {
 
     // 接口地址
 //    public static final String HOST = "http://192.168.1.35:8686/api/";
-    public static final String HOST = "http://192.168.1.35/api/";
+    public static final String HOST = "http://51heshui.com/api/";
 
 
     //defined network response

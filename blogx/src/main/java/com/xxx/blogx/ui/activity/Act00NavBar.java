@@ -22,6 +22,7 @@ import com.xxx.base.BaseFragment;
 import com.xxx.blogx.R;
 import com.xxx.blogx.databinding.Act00NavBarBinding;
 import com.xxx.blogx.ui.fragment.Fg100Host;
+import com.xxx.blogx.ui.fragment.Fg200Discover;
 import com.xxx.blogx.ui.fragment.Fg300Me;
 import com.xxx.utils.LogX;
 
@@ -88,14 +89,19 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.i_music: {
+                case R.id.i_home: {
                     ChangeFragment(0, nShowFg);
                     nShowFg = 0;
                     return true;
                 }
-                case R.id.i_me: {
+                case R.id.i_discover: {
                     ChangeFragment(1, nShowFg);
                     nShowFg = 1;
+                    return true;
+                }
+                case R.id.i_me: {
+                    ChangeFragment(2, nShowFg);
+                    nShowFg = 2;
                     return true;
                 }
             }
@@ -150,8 +156,7 @@ public class Act00NavBar extends BaseApcActivity implements BaseFragment.OnFragm
     private ArrayList<Fragment> getFragments() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(Fg100Host.newInstance("Home", "home"));
-//        fragments.add(Fg200Books.newInstance("Books","books"));
-//        fragments.add(Fg100Host.newInstance("Music","music"));
+        fragments.add(Fg200Discover.newInstance("Discover","discover"));
         fragments.add(Fg300Me.newInstance("Music", "music"));
 
         return fragments;

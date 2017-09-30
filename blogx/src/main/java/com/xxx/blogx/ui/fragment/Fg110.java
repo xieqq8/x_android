@@ -96,11 +96,6 @@ public class Fg110 extends BackHandledFragment implements BaseQuickAdapter.Reque
     }
 
     @Override
-    public boolean onBackPressed() {
-        return false;
-    }
-
-    @Override
     public int getLayoutRes() {
         return R.layout.fragment_fg110;
     }
