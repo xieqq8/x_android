@@ -1,14 +1,91 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform:ios,'9.0'
 use_frameworks!
+inhibit_all_warnings!  # 全局禁止显示警告
 
 target ‘XIos’ do
-    pod 'AFNetworking' #,'~> 2.5.0'
-    pod 'MBProgressHUD'#, "~> 0.9"
-    pod 'SVProgressHUD' #,'~> 1.0'
-    pod 'BlocksKit'
+#    pod 'MBProgressHUD'#, "~> 0.9"
+#    pod 'SVProgressHUD' #,'~> 1.0'
+#    pod 'BlocksKit'
     pod 'FMDB' #,'~> 2.3'
-    pod 'ReactiveCocoa', '~> 5.0.0'
+#    pod 'ReactiveCocoa', '~> 5.0.0'
+    pod 'ObjectiveSugar', '>=1.0.0'  # ObjectiveSugar 版本必须 >=1.0.0
+    pod 'AFNetworking', '~> 3.0'
+    pod 'MJRefresh'
+    pod 'YYKit'
+    pod 'MBProgressHUD', '~> 1.0.0'     #1.1以下(不含0.2)，1.0.0以上（含1.0.0）
+    pod 'Masonry'
+    #pod 'NIMSDK', '~> 3.7.0'
+    pod 'YTKNetwork'
+    pod 'SDWebImage', '~>3.8'
+    
+    
+    # U-Share SDK UI模块（分享面板，建议添加）
+    pod ‘UMengUShare/UI’
+    # 集成微信(精简版0.2M)
+    pod ‘UMengUShare/Social/ReducedWeChat'
+    # 集成微信(完整版14.4M)
+    pod ‘UMengUShare/Social/WeChat'
+    # 集成QQ/QZone/TIM(精简版0.5M)
+    pod ‘UMengUShare/Social/ReducedQQ'
+    # 集成QQ/QZone/TIM(完整版7.6M)
+    pod ‘UMengUShare/Social/QQ'
+    # 集成新浪微博(精简版1M)
+    pod ‘UMengUShare/Social/ReducedSina'
+    # 集成新浪微博(完整版25.3M)
+    pod ‘UMengUShare/Social/Sina'
+    # 集成Facebook/Messenger
+    pod ‘UMengUShare/Social/Facebook'
+    # 集成Twitter
+    pod ‘UMengUShare/Social/Twitter'
+    # 集成支付宝
+    pod ‘UMengUShare/Social/AlipayShare'
+    # 集成钉钉
+    pod ‘UMengUShare/Social/DingDing'
+    # 集成豆瓣
+    pod ‘UMengUShare/Social/Douban'
+    # 集成人人
+    pod ‘UMengUShare/Social/Renren'
+    # 集成腾讯微博
+    pod ‘UMengUShare/Social/TencentWeibo'
+    # 集成来往(点点虫)
+    pod ‘UMengUShare/Social/LaiWang'
+    # 集成易信
+    pod ‘UMengUShare/Social/YiXin'
+    # 集成领英
+    pod ‘UMengUShare/Social/Linkedin'
+    # 集成Flickr
+    pod ‘UMengUShare/Social/Flickr'
+    # 集成Kakao
+    pod ‘UMengUShare/Social/Kakao'
+    # 集成Tumblr
+    pod ‘UMengUShare/Social/Tumblr'
+    # 集成Pinterest
+    pod ‘UMengUShare/Social/Pinterest'
+    # 集成Instagram
+    pod ‘UMengUShare/Social/Instagram'
+    # 集成Line
+    pod ‘UMengUShare/Social/Line'
+    # 集成WhatsApp
+    pod ‘UMengUShare/Social/WhatsApp'
+    # 集成有道云笔记
+    pod ‘UMengUShare/Social/YouDao'
+    # 集成印象笔记
+    pod ‘UMengUShare/Social/EverNote'
+    # 集成Google+
+    pod ‘UMengUShare/Social/GooglePlus'
+    # 集成Pocket
+    pod ‘UMengUShare/Social/Pocket'
+    # 集成DropBox
+    pod ‘UMengUShare/Social/DropBox'
+    # 集成VKontakte
+    pod ‘UMengUShare/Social/VKontakte'
+    # 集成邮件
+    pod ‘UMengUShare/Social/Email'
+    # 集成短信
+    pod ‘UMengUShare/Social/SMS'
+    # 加入IDFA获取
+    pod ‘UMengUShare/Plugin/IDFA'
 end
 
 #1、一般Podfile文件中都有这么一行：
@@ -35,3 +112,16 @@ end
 ##融云
 #pod 'RongCloudIM/IMLib','2.8.4'
 #pod 'RongCloudIM/IMKit','2.8.4'
+
+
+#下面是podfile指定版本号时的逻辑运算符：
+#Besides no version, or a specific one, it is also possible to use logical operators:
+#'> 0.1'    Any version higher than 0.1         0.1以上
+#'>= 0.1'   Version 0.1 and any higher version  0.1以上，包括0.1
+#'< 0.1'    Any version lower than 0.1          0.1以下
+#'<= 0.1'   Version 0.1 and any lower version   0.1以下，包括0.1
+#In addition to the logic operators CocoaPods has an optimisic operator ~>:
+#'~> 0.1.2' Version 0.1.2 and the versions up to 0.2, not including 0.2 and higher  0.2以下(不含0.2)，0.1.2以上（含0.1.2）
+#'~> 0.1' Version 0.1 and the versions up to 1.0, not including 1.0 and higher      1.0以下(不含1.0)，0.1以上（含0.1）
+#'~> 0' Version 0 and higher, this is basically the same as not having it.          0和以上，等于没有此约束
+#
