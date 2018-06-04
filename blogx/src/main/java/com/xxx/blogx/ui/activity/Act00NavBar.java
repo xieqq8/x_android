@@ -1,7 +1,6 @@
 package com.xxx.blogx.ui.activity;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
