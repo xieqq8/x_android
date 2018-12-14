@@ -11,3 +11,14 @@ XIos/XIos.xcodeproj/xcuserdata/xieqingqing.xcuserdatad/xcschemes/xcschememanagem
 XIos/XIos.xcodeproj/xcuserdata/xieqingqing.xcuserdatad/xcschemes/XIos.xcscheme
 XSwift/XSwift.xcodeproj/xcuserdata/xieqingqing.xcuserdatad/xcschemes/xcschememanagement.plist
 XSwift/XSwift.xcodeproj/xcuserdata/xieqingqing.xcuserdatad/xcschemes/XSwift.xcscheme
+springmapper/target/classes/application.properties
+springmapper/target/classes/com/xxx/SpringmapperApplication.class
+springmapper/target/classes/com/xxx/common/MyBatisConfig.class
+springmapper/target/classes/com/xxx/controller/UserController.class
+springmapper/target/classes/com/xxx/dao/UserDao.class
+springmapper/target/classes/com/xxx/dao/UserDaoImpl.class
+springmapper/target/classes/com/xxx/entity/User.class
+springmapper/target/classes/com/xxx/mapper/UserMapper.class
+springmapper/target/classes/com/xxx/service/UserService.class
+springmapper/target/classes/mapping/UserMapper.xml
+springmapper/target/test-classes/com/xxx/SpringmapperApplicationTests.class
