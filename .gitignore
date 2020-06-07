@@ -22,3 +22,4 @@ springmapper/target/classes/com/xxx/mapper/UserMapper.class
 springmapper/target/classes/com/xxx/service/UserService.class
 springmapper/target/classes/mapping/UserMapper.xml
 springmapper/target/test-classes/com/xxx/SpringmapperApplicationTests.class
+.xie.kdbx.lock
